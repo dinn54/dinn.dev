@@ -19,3 +19,12 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer base{
+    @font-face {
+    font-family: 'Jalnan2';
+    src: url('@/assets/fonts/Jalnan2TTF.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+}

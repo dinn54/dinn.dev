@@ -19,6 +19,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ['var(--font-inter)'],
+        jalnan2: ['Jalnan2', 'sans-serif'],
       },
       colors: {
         background: "var(--background)",
