@@ -4,5 +4,7 @@
   "headerText_about": "<1>About</1>",
   "headerText_work": "<1>Work</1>",
   "headerText_skill": "<1>Skill</1>",
-  "changeLanguage": "<1>EN</1>"
+  "changeLanguage": "<1>EN</1>",
+
+  "profileIntroduction": "<1>Frontend Architect Dedicated to Scalable and Sustainable Solutions</1>"
 }

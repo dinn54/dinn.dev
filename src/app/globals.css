@@ -23,7 +23,7 @@ body {
 @layer base{
     @font-face {
     font-family: 'Jalnan2';
-    src: url('@/assets/fonts/Jalnan2TTF.ttf');
+    src: url('../assets/fonts/Jalnan2TTF.ttf');
     font-weight: normal;
     font-style: normal;
   }
