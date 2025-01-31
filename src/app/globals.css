@@ -21,10 +21,19 @@ body {
 }
 
 @layer base{
-    @font-face {
+  @font-face {
     font-family: 'Jalnan2';
     src: url('../assets/fonts/Jalnan2TTF.ttf');
     font-weight: normal;
     font-style: normal;
   }
+}
+@layer utilities {
+
+  .progress-bar-animation {
+    transition-property: transform;
+    transition-timing-function: linear;
+    transition-duration: 0.15s;
+  }
+
 }

@@ -33,7 +33,7 @@ export const HeaderProgress = () =>{
   }, [parentId]);
 
   return (
-    <div className={`flex absolute bottom-0 w-full h-[0.05rem] bg-blue-500`} 
+    <div className={`flex absolute bottom-0 w-full h-[0.05rem] bg-blue-500 progress-bar-animation`} 
     style={{transform: `scaleX(${(progressRate/100).toFixed(2)})` , transformOrigin: "left"}} />
   )
 }
