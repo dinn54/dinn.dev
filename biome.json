@@ -7,7 +7,18 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": []
+		"ignore": [
+			"node_modules",
+			"dist",
+			"build",
+			"public",
+			".next",
+			"eslint.config.mjs",
+			"package.json",
+			"nest.config.ts",
+			"pnpm-lock.yaml",
+			"postcss,config.mjs"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -19,7 +30,17 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"a11y": {
+				"useFocusableInteractive": "error",
+				"useKeyWithClickEvents": "error",
+				"useKeyWithMouseEvents": "error",
+				"noAccessKey": "error",
+				"noPositiveTabindex": "error",
+				"noNoninteractiveTabindex": "error",
+				"useButtonType": "error",
+				"useSemanticElements": "warn",
+				"useValidAnchor": "error"
+			}
 		}
 	},
 	"javascript": {
