@@ -78,7 +78,22 @@ img {
 	font-weight: 600;
 	font-style: normal;
 }
+@layer base {
+	/* 폰트 stroke 두께 */
+	.font-outline-1 {
+		-webkit-text-stroke: 1px var(--stroke-color);
+	}
+	.font-outline-2 {
+		-webkit-text-stroke: 2px var(--stroke-color);
+	}
+	.font-outline-3 {
+		-webkit-text-stroke: 3px var(--stroke-color);
+	}
+	.font-outline-4 {
+		-webkit-text-stroke: 4px var(--stroke-color);
+	}
 
 .font-k-pretendard{
 	font-family: 'KoreanPretendard';
+}
 }
