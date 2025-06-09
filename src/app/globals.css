@@ -52,3 +52,33 @@ img {
 	user-select: none;
 }
 
+/* font 설정 */
+@font-face {
+	font-family: 'KoreanPretendard';
+	src: url('/fonts/PyeojinGothic-Light.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'KoreanPretendard';
+	src: url('/fonts/PyeojinGothic-Medium.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'KoreanPretendard';
+	src: url('/fonts/PyeojinGothic-Regular.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'KoreanPretendard';
+	src: url('/fonts/PyeojinGothic-SemiBold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+.font-k-pretendard{
+	font-family: 'KoreanPretendard';
+}

@@ -3,10 +3,9 @@ import Image from "next/image";
 import PageContainer from "./ui/page_container";
 import LeafImage from "@public/leaf.svg"
 import TreeImage from "@public/tree.png"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { animate } from "animejs";
 import CharacterImage from "@public/character2.svg"
-import CountUp from "react-countup";
 
 interface LeafConfig {
 	startX: number;
@@ -265,7 +264,7 @@ const Introduction = () => {
 	return (
 		<PageContainer color="#e1eebc">
 			{/* Tree interaction section */}
-			<div ref={TreeAnimateRef} className="relative w-[clamp(14rem,50%,999rem)] h-full border border-black">
+			<div ref={TreeAnimateRef} className="relative w-[clamp(14rem,50%,999rem)] h-full">
 				{/* Tree image section */}
 				<Tree 
 					leafConfigs={leafConfigs} 
@@ -274,7 +273,12 @@ const Introduction = () => {
 					TreeContainerRef={TreeContainerRef}
 				/>
 				<PlayGuide />
-				{/* <LeafCounter countRef={leafCountRef} /> */}
+			</div>
+			<div className="relative flex flex-col w-[50%] h-full font-k-pretendard font-semibold text-3xl text-end pr-4">
+				<div className="flex flex-col"><span className="text-base text-gray-400">USER:</span> <span>DINN(JOO)</span></div>
+				<div className="flex flex-col"><span className="text-base text-gray-400">CLASS:</span> <span>FRONTEND ENGINEER</span></div>
+				<div className="flex flex-col"><span className="text-base text-gray-400">WEAPON:</span> <span>CLEAN CODE, SMOOTH UX, INTERACTIVE</span></div>
+				<div className="flex flex-col"><span className="text-base text-gray-400">STATUS:</span> <span>READY FOR DEPLOYMENT</span></div>
 			</div>
 			<Character characterRef={CharacterRef} />
 		</PageContainer>
@@ -356,23 +360,23 @@ const PlayGuide = () => {
 	)
 }
 
-const LeafCounter = ({ countRef }: { countRef: React.RefObject<number> }) => {
-	const [visibleCount, setVisibleCount] = useState(0);	
+// const LeafCounter = ({ countRef }: { countRef: React.RefObject<number> }) => {
+// 	const [visibleCount, setVisibleCount] = useState(0);	
 	
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setVisibleCount(countRef.current);
-		}, 100); // 약간의 딜레이로 동기화
+// 	useEffect(() => {
+// 		const interval = setInterval(() => {
+// 			setVisibleCount(countRef.current);
+// 		}, 100); // 약간의 딜레이로 동기화
 
-		return () => clearInterval(interval);
-	}, [countRef]);
+// 		return () => clearInterval(interval);
+// 	}, [countRef]);
 
-	return (
-		<div className="absolute bottom-36 left-88 text-lg font-extrabold text-green-600 text-center resize-none" >
-			<CountUp start={countRef.current} end={visibleCount} duration={0.1} />
-		</div>
-	)
-}
+// 	return (
+// 		<div className="absolute bottom-36 left-88 text-lg font-extrabold text-green-600 text-center resize-none" >
+// 			<CountUp start={countRef.current} end={visibleCount} duration={0.1} />
+// 		</div>
+// 	)
+// }
 
 const Character = ({characterRef}: {characterRef: React.RefObject<HTMLDivElement | null>}) => {
 	return (
