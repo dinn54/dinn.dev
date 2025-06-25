@@ -9,7 +9,7 @@ const Home = () =>{
 			<Introduction />
 			<About />
 			<Projects />
-			<div className="flex w-full h-full bg-transparent border" />
+			<div id="contact-section" className="flex w-full h-full bg-transparent border" />
 			<Contact />
 		</>
   )

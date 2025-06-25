@@ -11,8 +11,8 @@ import { animate } from "animejs";
 
 const About = () =>{
 	return (
-		<PageContainer color="#ffe065">
-			<div className="flex w-full h-full">
+		<PageContainer  color="#ffe065">
+			<div id="about-section" className="flex w-full h-full">
 				<div className="w-[40%] h-full flex flex-col items-center gap-10">
 				<div className="group flex items-center gap-4 no-underline">
 					<span className="text-black group-hover:underline font-semibold text-[2.8rem]">

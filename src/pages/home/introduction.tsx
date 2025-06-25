@@ -1,13 +1,14 @@
 'use client'
-import Image from "next/image";
 import PageContainer from "./ui/page_container";
-import LeafImage from "@public/leaf.svg"
-import TreeImage from "@public/tree.png"
+
 import { useEffect, useRef } from "react";
 import { animate } from "animejs";
-import CharacterImage from "@public/character2.svg"
+import { Character, IntroductionText, PlayGuide } from "./ui/introductionComponents";
+import dynamic from "next/dynamic";
 
-interface LeafConfig {
+const Tree = dynamic(() => import('./ui/introductionComponents').then(mod => mod.Tree), { ssr: false });
+
+export interface LeafConfig {
 	startX: number;
 	delay: number;
 	duration: number;
@@ -260,128 +261,31 @@ const Introduction = () => {
 			document.removeEventListener('keyup', handleKeyUp);
 		};
 	}, []);
-	
+
+	const playGuideRef = useRef<HTMLDivElement>(null);
+	const moveControlRef = useRef<HTMLSpanElement>(null);
+
 	return (
-		<PageContainer color="#e1eebc">
+		<PageContainer color="#effcb7" className="items-end flex-col sm:flex-row " >
 			{/* Tree interaction section */}
-			<div ref={TreeAnimateRef} className="relative w-[clamp(14rem,50%,999rem)] h-full">
+			<div className="absolute flex w-full left-0 top-0 sm:hidden">
+				<IntroductionText moveControlRef={moveControlRef} />
+			</div>
+			<div ref={TreeAnimateRef} className="relative w-full h-full sm:w-[clamp(14rem,45%,999rem)] sm:h-[calc(100%-5rem)]">
 				{/* Tree image section */}
-				<Tree 
+				<Tree
 					leafConfigs={leafConfigs} 
 					LeafRefs={LeafRefs} 
 					LeafRotateRefs={LeafRotateRefs} 
 					TreeContainerRef={TreeContainerRef}
 				/>
-				<PlayGuide />
+				<PlayGuide playGuideRef={playGuideRef} moveControlRef={moveControlRef} />
 			</div>
-			<div className="relative flex flex-col w-[50%] h-full font-k-pretendard font-semibold text-3xl text-end pr-4">
-				<div className="flex flex-col"><span className="text-base text-gray-400">USER:</span> <span>DINN(JOO)</span></div>
-				<div className="flex flex-col"><span className="text-base text-gray-400">CLASS:</span> <span>FRONTEND ENGINEER</span></div>
-				<div className="flex flex-col"><span className="text-base text-gray-400">WEAPON:</span> <span>CLEAN CODE, SMOOTH UX, INTERACTIVE</span></div>
-				<div className="flex flex-col"><span className="text-base text-gray-400">STATUS:</span> <span>READY FOR DEPLOYMENT</span></div>
+			<div className="flex flex-1 ml-[5%] w-full h-full">
+				<IntroductionText moveControlRef={moveControlRef} />
 			</div>
 			<Character characterRef={CharacterRef} />
 		</PageContainer>
 	)
 }
 export default Introduction;
-
-const Tree = ({
-	leafConfigs, 
-	LeafRefs, 
-	LeafRotateRefs, 
-	TreeContainerRef
-}: {
-	leafConfigs: LeafConfig[], 
-	LeafRefs: React.RefObject<(HTMLDivElement | null)[]>, 
-	LeafRotateRefs: React.RefObject<(HTMLDivElement | null)[]>,
-	TreeContainerRef: React.RefObject<HTMLDivElement | null>
-}) => {
-	return (
-		<div 
-			ref={TreeContainerRef}
-			className="absolute bottom-0 left-0 sm:left-4 md:left-12 h-[70%] lg:h-[80%] xl:h-[95%] aspect-[2/3]"
-		>
-			<div className="relative w-full h-full z-[1]">
-				<Image src={TreeImage} alt="tree" />
-			</div>
-
-			<FallingLeaf 
-				leafConfigs={leafConfigs} 
-				LeafRefs={LeafRefs} 
-				LeafRotateRefs={LeafRotateRefs} 
-			/>
-		</div>
-	)
-}
-
-const FallingLeaf = ({
-	leafConfigs, 
-	LeafRefs, 
-	LeafRotateRefs, 
-}: {
-	leafConfigs: LeafConfig[], 
-	LeafRefs: React.RefObject<(HTMLDivElement | null)[]>, 
-	LeafRotateRefs: React.RefObject<(HTMLDivElement | null)[]>,
-}) => {
-	return (
-		<>
-		{leafConfigs.map((config, index) => (
-			<div 
-				key={index}
-				ref={(el) => { LeafRefs.current[index] = el }}
-				className={`absolute w-[2rem] sm:w-[2.5rem] md:w-[3rem] aspect-square z-[0]`}
-				style={{ 
-					top: `${14 + Math.random() * 12}%`, // 10%-40% 영역
-					left: `${config.startX}%`,
-					transformStyle: 'preserve-3d',
-				}}
-			>
-				<div 
-					ref={(el) => { LeafRotateRefs.current[index] = el }}
-					style={{ 
-						transformStyle: 'preserve-3d',
-					}}
-				>
-					<Image src={LeafImage} alt={`leaf-${index}`} className="rotate-220" />
-				</div>
-			</div>
-		))}
-		</>
-	)
-}
-
-const PlayGuide = () => {
-	return (
-		<div className="absolute flex w-[12rem] flex-col justify-center items-center bottom-[clamp(5rem,20%,10rem)] left-[clamp(1rem,10%,1rem)] text-sm text-black text-center" >
-			<span className="text-xs sm:text-sm md:text-base font-regular stroke-2">{"Press Enter"}</span>
-			<span className="text-xs sm:text-sm md:text-base font-regular stroke-2">{"Press Arrow or A/D"}</span>
-		</div>
-	)
-}
-
-// const LeafCounter = ({ countRef }: { countRef: React.RefObject<number> }) => {
-// 	const [visibleCount, setVisibleCount] = useState(0);	
-	
-// 	useEffect(() => {
-// 		const interval = setInterval(() => {
-// 			setVisibleCount(countRef.current);
-// 		}, 100); // 약간의 딜레이로 동기화
-
-// 		return () => clearInterval(interval);
-// 	}, [countRef]);
-
-// 	return (
-// 		<div className="absolute bottom-36 left-88 text-lg font-extrabold text-green-600 text-center resize-none" >
-// 			<CountUp start={countRef.current} end={visibleCount} duration={0.1} />
-// 		</div>
-// 	)
-// }
-
-const Character = ({characterRef}: {characterRef: React.RefObject<HTMLDivElement | null>}) => {
-	return (
-		<div ref={characterRef} className="absolute transform w-[4rem] left-6 lg:left-10 bottom-[2rem] aspect-square z-[1]">
-			<Image src={CharacterImage} alt="character" />
-		</div>
-	)
-}

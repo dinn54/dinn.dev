@@ -1,8 +1,9 @@
+import {twMerge} from "tailwind-merge";
 /**
  * @param color - 페이지 컨테이너 배경색 ex) #e1eebc
  */
-const PageContainer = ({children, color}: {children: React.ReactNode, color: string}) =>{
-	return <div className="relative flex w-full h-full pt-[5rem] z-[1] min-h-[540px]" style={{backgroundColor: color}}>
+const PageContainer = ({children, color, className, style}: {children: React.ReactNode, color: string, className?: string, style?: React.CSSProperties}) =>{
+	return <div className={twMerge("relative flex w-full h-full z-[1] min-h-[540px]", className)} style={{backgroundColor: color, ...style}}>
 		{children}
 	</div>
 }

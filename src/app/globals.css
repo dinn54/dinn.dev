@@ -59,7 +59,6 @@ img {
 	font-weight: 300;
 	font-style: normal;
 }
-
 @font-face {
 	font-family: 'KoreanPretendard';
 	src: url('/fonts/PyeojinGothic-Medium.woff2') format('woff2');
@@ -78,6 +77,63 @@ img {
 	font-weight: 600;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'KoreanPretendard';
+	src: url('/fonts/PyeojinGothic-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GmarketSans';
+	src: url('/fonts/GmarketSansTTFLight.ttf') format('ttf');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GmarketSans';
+	src: url('/fonts/GmarketSansTTFMedium.ttf') format('ttf');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GmarketSans';
+	src: url('/fonts/GmarketSansTTFBold.ttf') format('ttf');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: GowunDodum;
+	src: url('/fonts/GowunDodum-Regular.ttf') format('ttf');
+	font-weight: noraml;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Pretendard';
+	src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face{
+	font-family: 'custom';
+	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+.font-k-pretendard{
+	font-family: 'KoreanPretendard';
+}
+.font-gmarket-sans{
+	font-family: 'GmarketSans';
+}
+.font-gowun-dodum{
+	font-family: 'GowunDodum';
+}
+.font-pretendard{
+	font-family: 'Pretendard';
+}
+.font-custom{
+	font-family: 'custom';
+}
 @layer base {
 	/* 폰트 stroke 두께 */
 	.font-outline-1 {
@@ -93,7 +149,47 @@ img {
 		-webkit-text-stroke: 4px var(--stroke-color);
 	}
 
-.font-k-pretendard{
-	font-family: 'KoreanPretendard';
 }
+.underline-animate {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.underline-animate::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 1;
+  width: 100%; height: 2px;
+  background: currentColor; /* underline matches text color */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.underline-animate:hover::after,
+.underline-animate.active::after {
+  transform: scaleX(1);
+}
+
+/* 동적 색상 할당 */
+[class*="underline-animate-[#"]::after {
+  --underline-color: var(--color);
+}
+
+.pointer-updown-infinite{
+	transform: translateY(-50%);
+	animation: updown-infinite 1s infinite;
+}
+
+@keyframes updown-infinite{
+	0%{
+		transform: translateY(-10%);
+	}
+	50%{
+		transform: translateY(10%);
+	}
+	100%{
+		transform: translateY(-10%);
+	}
 }
