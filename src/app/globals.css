@@ -140,6 +140,9 @@
   .font-inter {
     font-family: "Inter";
   }
+	.font-noto-sans-kr{
+		font-family: "Noto Sans KR";
+	}
   .font-custom {
     font-family: "custom";
   }
