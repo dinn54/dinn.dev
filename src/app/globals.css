@@ -1,155 +1,167 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
-body {
-	background: var(--background);
-	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
-
-	/* 드래그 방지 */
-	user-select: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	
-	-webkit-user-drag: none;
-	-webkit-touch-callout: none;
-}
-
-/* 필요한 곳만 선택 허용 */
-input, textarea, [contenteditable="true"] {
-	user-select: auto;
-	-webkit-user-select: auto;
-}
-
-/* 모든 이미지 드래그 방지 */
-img {
-	-webkit-user-drag: none;
-	pointer-events: none;
-}
-
-/* 드래그 가능한 요소만 활성화 */
-.draggable-element {
-	pointer-events: auto;
-	user-select: none;
-}
-
-/* font 설정 */
-@font-face {
-	font-family: 'KoreanPretendard';
-	src: url('/fonts/PyeojinGothic-Light.woff2') format('woff2');
-	font-weight: 300;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'KoreanPretendard';
-	src: url('/fonts/PyeojinGothic-Medium.woff2') format('woff2');
-	font-weight: 400;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'KoreanPretendard';
-	src: url('/fonts/PyeojinGothic-Regular.woff2') format('woff2');
-	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'KoreanPretendard';
-	src: url('/fonts/PyeojinGothic-SemiBold.woff2') format('woff2');
-	font-weight: 600;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'KoreanPretendard';
-	src: url('/fonts/PyeojinGothic-Bold.woff2') format('woff2');
-	font-weight: 700;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'GmarketSans';
-	src: url('/fonts/GmarketSansTTFLight.ttf') format('ttf');
-	font-weight: 300;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'GmarketSans';
-	src: url('/fonts/GmarketSansTTFMedium.ttf') format('ttf');
-	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'GmarketSans';
-	src: url('/fonts/GmarketSansTTFBold.ttf') format('ttf');
-	font-weight: 700;
-	font-style: normal;
-}
-@font-face {
-	font-family: GowunDodum;
-	src: url('/fonts/GowunDodum-Regular.ttf') format('ttf');
-	font-weight: noraml;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Pretendard';
-	src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-}
-@font-face{
-	font-family: 'custom';
-	src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-.font-k-pretendard{
-	font-family: 'KoreanPretendard';
-}
-.font-gmarket-sans{
-	font-family: 'GmarketSans';
-}
-.font-gowun-dodum{
-	font-family: 'GowunDodum';
-}
-.font-pretendard{
-	font-family: 'Pretendard';
-}
-.font-custom{
-	font-family: 'custom';
-}
 @layer base {
-	/* 폰트 stroke 두께 */
-	.font-outline-1 {
-		-webkit-text-stroke: 1px var(--stroke-color);
-	}
-	.font-outline-2 {
-		-webkit-text-stroke: 2px var(--stroke-color);
-	}
-	.font-outline-3 {
-		-webkit-text-stroke: 3px var(--stroke-color);
-	}
-	.font-outline-4 {
-		-webkit-text-stroke: 4px var(--stroke-color);
-	}
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
 
+    /* 드래그 방지 */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* 필요한 곳만 선택 허용 */
+  input,
+  textarea,
+  [contenteditable="true"] {
+    user-select: auto;
+    -webkit-user-select: auto;
+  }
+
+  /* 모든 이미지 드래그 방지 */
+  img {
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+
+  /* 드래그 가능한 요소만 활성화 */
+  .draggable-element {
+    pointer-events: auto;
+    user-select: none;
+  }
+
+  /* font 설정 */
+  @font-face {
+    font-family: "KoreanPretendard";
+    src: url("/fonts/PyeojinGothic-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "KoreanPretendard";
+    src: url("/fonts/PyeojinGothic-Medium.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "KoreanPretendard";
+    src: url("/fonts/PyeojinGothic-Regular.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "KoreanPretendard";
+    src: url("/fonts/PyeojinGothic-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "KoreanPretendard";
+    src: url("/fonts/PyeojinGothic-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "GmarketSans";
+    src: url("/fonts/GmarketSansTTFLight.ttf") format("ttf");
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "GmarketSans";
+    src: url("/fonts/GmarketSansTTFMedium.ttf") format("ttf");
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "GmarketSans";
+    src: url("/fonts/GmarketSansTTFBold.ttf") format("ttf");
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: GowunDodum;
+    src: url("/fonts/GowunDodum-Regular.ttf") format("ttf");
+    font-weight: noraml;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Pretendard";
+    src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+      format("woff");
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "custom";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  .font-k-pretendard {
+    font-family: "KoreanPretendard";
+  }
+  .font-gmarket-sans {
+    font-family: "GmarketSans";
+  }
+  .font-gowun-dodum {
+    font-family: "GowunDodum";
+  }
+  .font-pretendard {
+    font-family: "Pretendard";
+  }
+  .font-inter {
+    font-family: "Inter";
+  }
+  .font-custom {
+    font-family: "custom";
+  }
+
+  /* 폰트 stroke 두께 */
+  .font-outline-1 {
+    -webkit-text-stroke: 1px var(--stroke-color);
+  }
+  .font-outline-2 {
+    -webkit-text-stroke: 2px var(--stroke-color);
+  }
+  .font-outline-3 {
+    -webkit-text-stroke: 3px var(--stroke-color);
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px var(--stroke-color);
+  }
 }
+.border-inside {
+  box-shadow: inset 0 0 0 1px var(--shadow-color);
+}
+
 .underline-animate {
   display: inline-block;
   position: relative;
@@ -159,12 +171,14 @@ img {
 .underline-animate::after {
   content: "";
   position: absolute;
-  left: 0; bottom: 1;
-  width: 100%; height: 2px;
+  left: 0;
+  bottom: 1;
+  width: 100%;
+  height: 2px;
   background: currentColor; /* underline matches text color */
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .underline-animate:hover::after,
@@ -177,19 +191,19 @@ img {
   --underline-color: var(--color);
 }
 
-.pointer-updown-infinite{
-	transform: translateY(-50%);
-	animation: updown-infinite 1s infinite;
+.pointer-updown-infinite {
+  transform: translateY(-50%);
+  animation: updown-infinite 1s infinite;
 }
 
-@keyframes updown-infinite{
-	0%{
-		transform: translateY(-10%);
-	}
-	50%{
-		transform: translateY(10%);
-	}
-	100%{
-		transform: translateY(-10%);
-	}
+@keyframes updown-infinite {
+  0% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
 }

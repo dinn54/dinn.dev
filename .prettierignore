@@ -1,0 +1,13 @@
+# node_modules와 빌드 디렉토리 제외
+node_modules/
+dist/
+build/
+
+# 특정 확장자 무시
+*.min.js
+
+.gitignore
+tsconfig.json
+next.config.ts
+eslint.config.mjs
+biome.json
