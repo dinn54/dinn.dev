@@ -7,7 +7,7 @@ const config: Config = {
       //design system
       screens: {
         tab: "26.25rem", // 420px
-        pc: "80rem", // 1280px
+        pc: "64.0625rem", // 1025px
       },
       colors: {
         custom: "#333333",
@@ -77,6 +77,8 @@ const config: Config = {
       },
       width: {
         p194: "12.125rem", // 194px
+        p180: "11.25rem", // 180px
+        p166: "10.375rem", // 166px
       },
       height: {
         p50: "3.125rem", // 50px

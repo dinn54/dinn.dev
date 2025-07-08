@@ -1,3 +1,4 @@
+import { B3 } from "../text/text";
 import { ButtonProps, CustonButton } from "./button.types";
 
 // 색상 입력, 텍스트 입력
@@ -26,7 +27,7 @@ export const DefaultButton = ({
 
   return (
     <Button className={`text-p18 h-p50 tracking-mp5 ${colorMapping[color]}`}>
-      {children}
+      <B3>{children}</B3>
     </Button>
   );
 };
@@ -41,7 +42,8 @@ export const LongButton = ({ color, children }: CustonButton) => {
 
   return (
     <Button
-      className={`text-p18 h-p50 tracking-mp25 w-p194 rounded-p20 font-bold text-white px-p38 ${colorMapping[color]}`}
-    >{children}</Button>
+      className={`text-p18 h-p50 tracking-mp25 pc:w-p194 tab:w-p180 w-p166 rounded-p20 font-bold text-white px-p38 ${colorMapping[color]}`}
+    >      <B3>{children}</B3>
+</Button>
   );
 };
