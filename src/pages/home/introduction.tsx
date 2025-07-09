@@ -374,7 +374,7 @@ const Introduction = () => {
   const moveControlRef = useRef<HTMLSpanElement>(null);
 
   return (
-    <PageContainer color="#effcb7" className="flex-col items-end sm:flex-row">
+    <PageContainer className="flex-col items-end sm:flex-row bg-home-light dark:bg-home-dark">
       {/* Tree interaction section */}
       <div className="absolute top-0 left-0 flex w-full sm:hidden">
         <IntroductionText moveControlRef={moveControlRef} />

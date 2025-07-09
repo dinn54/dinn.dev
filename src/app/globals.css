@@ -175,16 +175,16 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: 1;
+  bottom: -1px;
   width: 100%;
   height: 2px;
   background: currentColor; /* underline matches text color */
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.underline-animate:hover::after,
+.group:hover .underline-animate::after,
 .underline-animate.active::after {
   transform: scaleX(1);
 }
@@ -209,4 +209,8 @@
   100% {
     transform: translateY(-10%);
   }
+}
+
+.darkMode-animate{
+  transition: all 0.3s ease-in-out;
 }

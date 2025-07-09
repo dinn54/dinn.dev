@@ -21,7 +21,7 @@ export const DefaultButton = ({
     green:
       "bg-button-green-light text-white hover:bg-button-green-light/90 dark:bg-button-green-dark  dark:hover:bg-button-green-dark/90",
     gold: "bg-button-gold-light text-white hover:bg-button-gold-light/90 dark:bg-button-gold-dark  dark:hover:bg-button-gold-dark/90",
-    blue: "bg-button-blue-light  text-white hover:bg-button-blue-light/90 dark:bg-button-blue-dark  dark:hover:bg-button-blue-dark/90",
+    blue: "bg-button-blue-light text-white hover:bg-button-blue-light/90 dark:bg-button-blue-dark  dark:hover:bg-button-blue-dark/90",
     none: "bg-transparent border-inside shadow-color-util-input-text text-black dark:border-white dark:text-white !text-p16",
   };
 

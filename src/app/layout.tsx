@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 // layout.tsx
 import { Inter, Noto_Sans_KR } from "next/font/google";
+import Header from "@/features/header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,9 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1200px)] w-screen overflow-x-hidden antialiased`}
+        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1200px)] w-screen overflow-x-hidden antialiased animate-none`}
       >
-        {/* <Header /> */}
+        <Header />
         {children}
       </body>
     </html>

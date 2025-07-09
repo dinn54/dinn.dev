@@ -4,22 +4,20 @@ import { twMerge } from "tailwind-merge";
  */
 const PageContainer = ({
   children,
-  color,
   className,
   style,
 }: {
   children: React.ReactNode;
-  color: string;
   className?: string;
   style?: React.CSSProperties;
 }) => {
   return (
     <div
       className={twMerge(
-        "relative z-[1] flex h-full min-h-[540px] w-full",
+        `relative z-[1] flex h-full min-h-[540px] w-full shrink-0 darkMode-animate`, 
         className,
       )}
-      style={{ backgroundColor: color, ...style }}
+      style={{ ...style }}
     >
       {children}
     </div>
