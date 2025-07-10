@@ -1,6 +1,6 @@
 export const Text = ({children, className}: {children: React.ReactNode, className?: string}) =>{
   return (
-    <span className={`font-inter font-noto-sans-kr ${className}`}>{children}</span>
+    <span className={`font-inter font-noto-sans-kr leading-[1.2] dark:text-white ${className}`}>{children}</span>
   )
 }
 /**
@@ -16,7 +16,7 @@ export const H1 = ({children, className}: {children: React.ReactNode, className?
  */
 export const H2 = ({children, className}: {children: React.ReactNode, className?: string}) =>{
   return (
-    <Text className={`pc:text-p40 tab:text-p36 text-p32 font-semibold ${className}`}>{children}</Text>
+    <Text className={`pc:text-p40 tab:text-p36 text-p32 font-bold ${className}`}>{children}</Text>
   )
 }
 /**

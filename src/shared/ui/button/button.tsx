@@ -1,11 +1,10 @@
-import { B3 } from "../text/text";
 import { ButtonProps, CustonButton } from "./button.types";
 
 // 색상 입력, 텍스트 입력
 export const Button = ({ children, className, ...props }: ButtonProps) => {
   return (
     <button
-      className={`rounded-p12 font-inter flex items-center justify-center px-4 leading-[1.45] font-medium ${className}`}
+      className={`rounded-p12 font-inter flex items-center justify-center px-4 leading-[1.45] font-medium shrink-0 ${className}`}
       {...props}
     >
       {children}
@@ -13,9 +12,10 @@ export const Button = ({ children, className, ...props }: ButtonProps) => {
   );
 };
 
-export const DefaultButton = ({
+export const BaseButton = ({
   color,
   children,
+  ...props
 }:CustonButton) => {
   const colorMapping = {
     green:
@@ -26,8 +26,8 @@ export const DefaultButton = ({
   };
 
   return (
-    <Button className={`text-p18 h-p50 tracking-mp5 ${colorMapping[color]}`}>
-      <B3>{children}</B3>
+    <Button className={`text-p18 h-p44 tab:h-p47 pc:h-p50 tracking-mp5 hover:cursor-pointer ${colorMapping[color]}`} {...props}>
+      {children}
     </Button>
   );
 };
@@ -43,7 +43,7 @@ export const LongButton = ({ color, children }: CustonButton) => {
   return (
     <Button
       className={`text-p18 h-p50 tracking-mp25 pc:w-p194 tab:w-p180 w-p166 rounded-p20 font-bold text-white px-p38 ${colorMapping[color]}`}
-    >      <B3>{children}</B3>
-</Button>
+    >{children}
+    </Button>
   );
 };

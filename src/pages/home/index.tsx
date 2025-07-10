@@ -16,8 +16,8 @@ const Home = () => {
       <Introduction />
 			<About />
 			<Projects />
-			<div id="contact-section" className="flex w-full h-full bg-transparent border" />
-			<Contact />
+			{/* <div id="contact-section" className="flex w-full h-full bg-transparent border" />
+			<Contact /> */}
     </div>
   );
 };

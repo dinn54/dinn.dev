@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1200px)] w-screen overflow-x-hidden antialiased animate-none`}
+        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1440px)] w-screen  antialiased animate-none`}
       >
         <Header />
         {children}

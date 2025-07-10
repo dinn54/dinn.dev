@@ -6,6 +6,8 @@ import { LeafConfig } from "../introduction";
 import LeafImage from "@public/leaf.svg";
 import TreeImage from "@public/tree.png";
 import CharacterImage from "@public/character2.svg";
+import { B1, B3, B4, H2 } from "@/shared/ui/text/text";
+import { BaseButton } from "@/shared/ui/button";
 
 export const Tree = ({
   leafConfigs,
@@ -18,20 +20,21 @@ export const Tree = ({
   LeafRotateRefs: React.RefObject<(HTMLDivElement | null)[]>;
   TreeContainerRef: React.RefObject<HTMLDivElement | null>;
 }) => {
+
   return (
     <div
       ref={TreeContainerRef}
-      className="absolute bottom-0 flex aspect-[2/3] h-[70%] w-full sm:right-0 sm:w-auto lg:h-[80%] xl:h-full"
+      className="flex w-full pc:w-auto pc:h-full justify-center items-center"
     >
-      <div className="relative z-[1] h-full w-full opacity-30 sm:opacity-100">
-        <Image src={TreeImage} alt="tree" />
+      <div className="relative z-[1] h-full w-full pc:opacity-100">
+        <Image src={TreeImage} alt="tree" className=" w-full h-full object-contain object-left opacity-0 pc:opacity-100" priority />
       </div>
 
-      <FallingLeaf
+      {/* <FallingLeaf
         leafConfigs={leafConfigs}
         LeafRefs={LeafRefs}
         LeafRotateRefs={LeafRotateRefs}
-      />
+      /> */}
     </div>
   );
 };
@@ -164,9 +167,9 @@ export const Character = ({
   return (
     <div
       ref={characterRef}
-      className="absolute bottom-[2rem] left-6 z-[1] aspect-square w-[4rem] transform lg:left-10"
+      className="hidden pc:block absolute bottom-[2rem] z-[1] aspect-square w-[4rem] transform pc:right-10"
     >
-      <Image src={CharacterImage} alt="character" />
+      <Image src={CharacterImage} alt="character" className="scale-x-[-1]" />
     </div>
   );
 };
@@ -178,7 +181,7 @@ export const IntroductionText = ({
 }) => {
   const [isTextHovered, setIsTextHovered] = useState(false);
   return (
-    <div className="font-custom relative flex h-full w-full flex-col text-start font-semibold">
+    <div className="relative flex pc:w-auto w-fit flex-col justify-center text-start font-semibold shrink-0  ">
       {/* <div className="flex flex-col w-full h-2/3 absolute top-30 left-15 text-2xl gap-10 ">
         <span className="text-[2.5rem] pt-20">안녕하세요, 주정혁입니다. </span>
         <div className="text-[3.2vw] ">
@@ -186,14 +189,23 @@ export const IntroductionText = ({
           <span ref={moveControlRef} className="underline-animate underline-animate-[#ffffff] text-green-800">상호작용</span> 요소를 결합하는 것을 좋아합니다.
         </div>
       </div> */}
-      <div className="flex h-full flex-col justify-center py-8 pr-6 text-gray-800">
-        <p className="mb-4 text-2xl font-bold sm:text-2xl">
-          안녕하세요, 프론트엔드 개발자{" "}
-          <span className="text-[#151e13]">주정혁</span>입니다.
+      <div className="flex flex-col justify-center text-gray-800 ">
+        <H2>안녕하세요</H2>
+        <H2>프론트엔드 개발자 주정혁입니다</H2>
+
+
+        <p className="mt-14 flex flex-col">
+          <B1>사용자 흐름을 고려한</B1>
+          <B1>화면을 구성하고</B1>
+        </p>
+        <p className="mt-7 mb-14 flex flex-col">
+          <B1>사용성과 완성도를 고려한</B1>
+          <B1>세밀한 구현을 지향합니다.</B1>
         </p>
 
-        <p className="mb-3 text-lg leading-relaxed sm:text-lg">
-          <span>저는 </span>
+        
+
+          {/* <B1>저는 </B1>
           <span
             ref={moveControlRef}
             className="underline-animate group relative font-semibold text-[#6b8e23]"
@@ -209,16 +221,16 @@ export const IntroductionText = ({
             </span>
           </span>{" "}
           와 <br />
-          <span className="">원활한 사용자 경험</span>을 중요하게 생각합니다.
-        </p>
+          <span className="">원활한 사용자 경험</span>을 중요하게 생각합니다. */}
 
-        <div className="mt-3 text-base text-neutral-500 italic">
+        <B3 className="text-neutral-500 italic">
           어떤 기술과 경험을 해왔는지 궁금하시다면 ↓
-        </div>
+        </B3>
 
-        <div className="mt-3 flex w-full gap-4">
-          <button
-            className="font-gmarket-sans flex h-10 w-28 items-center justify-center rounded-lg bg-[#3a6b35] pt-0.5 text-white transition-all duration-300 hover:cursor-pointer hover:bg-[#2e552b]"
+        <div className="mt-4 flex flex-col pc:flex-row w-full gap-4 pc:gap-4">
+          <div className="flex gap-4">
+          <BaseButton
+            color="green"
             onClick={() => {
               const target = document.getElementById("about-section");
               if (target) {
@@ -226,10 +238,10 @@ export const IntroductionText = ({
               }
             }}
           >
-            이어서 보기
-          </button>
-          <button
-            className="font-gmarket-sans flex h-10 w-28 items-center justify-center rounded-lg pt-0.5 outline transition-all duration-300 hover:cursor-pointer hover:bg-[#6b8e23]/20"
+            <B3>About me</B3>
+          </BaseButton>
+          <BaseButton
+            color="gold"
             onClick={() => {
               const target = document.getElementById("contact-section");
               if (target) {
@@ -237,8 +249,33 @@ export const IntroductionText = ({
               }
             }}
           >
-            리뷰 남기기
-          </button>
+            <B3>Projects</B3>
+          </BaseButton>
+          </div>
+          <div className="flex gap-4">
+          <BaseButton
+            color="none"
+            onClick={() => {
+              const target = document.getElementById("contact-section");
+              if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            <B4>리뷰 남기기</B4>
+          </BaseButton>
+          <BaseButton
+            color="none"
+            onClick={() => {
+              const target = document.getElementById("contact-section");
+              if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
+            <B4>Contact</B4>
+          </BaseButton>
+          </div>
         </div>
       </div>
 

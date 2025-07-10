@@ -7,11 +7,11 @@ const config: Config = {
     extend: {
       //design system
       screens: {
-        tab: "26.25rem", // 420px
+        tab: "28.125rem", // 450px
         pc: "64.0625rem", // 1025px
       },
       colors: {
-        custom: "#333333",
+        "custom-green": '#6b8e23',
         "home-light": "#f8fbe8",
         "home-dark": "#3b4933",
         "about-light": "#f8fcf4",
@@ -83,6 +83,8 @@ const config: Config = {
       },
       height: {
         p50: "3.125rem", // 50px
+        p47: "2.9375rem", // 47px
+        p44: "2.75rem", // 44px
       },
       padding: {
         p38: "2.375rem", //38px

@@ -9,6 +9,9 @@ import {
   PlayGuide,
 } from "./ui/introductionComponents";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+import TreeImage from "@public/tree.png";
+
 
 const Tree = dynamic(
   () => import("./ui/introductionComponents").then((mod) => mod.Tree),
@@ -370,18 +373,23 @@ const Introduction = () => {
     };
   }, []);
 
+
   const playGuideRef = useRef<HTMLDivElement>(null);
   const moveControlRef = useRef<HTMLSpanElement>(null);
 
   return (
-    <PageContainer className="flex-col items-end sm:flex-row bg-home-light dark:bg-home-dark">
-      {/* Tree interaction section */}
-      <div className="absolute top-0 left-0 flex w-full sm:hidden">
+    <PageContainer className="bg-home-light dark:bg-home-dark ">
+      {/* Tree interaction section */} 
+      <div className="pc:pl-40 flex w-full h-full gap-10 justify-center items-center">
+      <div className="flex pc:justify-center w-full pc:w-fit pc:h-fit h-full z-[2] shrink-0">
         <IntroductionText moveControlRef={moveControlRef} />
+      </div>
+      <div className="absolute right-0 h-full tab:h-[60%] opacity-10 tab:opacity-30 pc:opacity-0">
+        <Image src={TreeImage} alt="tree" className="block w-full h-full object-contain object-left " priority />
       </div>
       <div
         ref={TreeAnimateRef}
-        className="relative h-full w-full sm:h-[calc(100%-5rem)] sm:w-[clamp(14rem,45%,999rem)]"
+        className="hidden pc:flex pc:h-full pc:w-auto items-center justify-center shrink-0 "
       >
         {/* Tree image section */}
         <Tree
@@ -395,10 +403,9 @@ const Introduction = () => {
           moveControlRef={moveControlRef}
         />
       </div>
-      <div className="ml-[5%] flex h-full w-full flex-1">
-        <IntroductionText moveControlRef={moveControlRef} />
-      </div>
+
       <Character characterRef={CharacterRef} />
+      </div>
     </PageContainer>
   );
 };

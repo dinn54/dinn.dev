@@ -1,6 +1,6 @@
 const Contact = () => {
   return (
-    <div className="fixed bottom-0 left-0 z-0 h-full w-full bg-[#333333] p-5">
+    <div id="contact-section" className="fixed bottom-0 left-0 z-0 h-screen w-screen bg-[#333333] p-5">
       <div className="h-full w-full rounded-lg bg-white p-5">
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-col items-center justify-center">

@@ -2,7 +2,7 @@ import PageContainer from "./ui/page_container";
 
 const Projects = () => {
   return (
-    <PageContainer color="#b39cd0">
+    <PageContainer id="projects-section">
       <>hi</>
     </PageContainer>
   );

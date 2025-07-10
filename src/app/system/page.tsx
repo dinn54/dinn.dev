@@ -1,4 +1,4 @@
-import { Button, DefaultButton, LongButton } from "@/shared/ui/button/button";
+import { Button, BaseButton, LongButton } from "@/shared/ui/button/button";
 import { B1, B2, B3, B4, H1, H2, H3, H4, H5, H6, PlaceholderB1 } from "@/shared/ui/text/text";
 
 const DesignSystem = () =>{
@@ -6,10 +6,10 @@ const DesignSystem = () =>{
     <div className="flex flex-col items-start justify-start">
     Maintenance...
     <Button>Hi</Button>
-    <DefaultButton color="green">About me</DefaultButton>
-    <DefaultButton color="gold">Projects</DefaultButton>
-    <DefaultButton color="none">리뷰 남기기</DefaultButton>
-    <DefaultButton color="none">Contact</DefaultButton>
+    <BaseButton color="green">About me</BaseButton>
+    <BaseButton color="gold">Projects</BaseButton>
+    <BaseButton color="none">리뷰 남기기</BaseButton>
+    <BaseButton color="none">Contact</BaseButton>
     <LongButton color="blue">리뷰 남기기</LongButton>
     <H1>This is English font</H1>
     <H1>한글 폰트입니다.</H1>

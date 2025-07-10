@@ -58,7 +58,7 @@ const Header = () => {
   }, [darkMode])
 
   return (
-    <header className="fixed top-0 left-0 z-[10] flex h-[5rem] w-full items-center justify-between px-8  backdrop-blur-sm">
+    <header className="fixed top-0 z-[10] flex h-[3.5rem] tab:h-[4.25rem] pc:h-[5rem] w-full items-center bg-transparent justify-between px-8 shrink-0 backdrop-blur-sm">
       <nav className="flex h-full items-center">
         <Link href="/" className="">
           home
