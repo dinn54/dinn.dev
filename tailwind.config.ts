@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import scrollbarHide from 'tailwind-scrollbar-hide'
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -28,11 +29,19 @@ const config: Config = {
         "button-blue-light": "#6A7DE7",
         "button-blue-dark": "#5162BD",
 
+        "util-tech-stack-orange-bg": "#fdf6e1",
+        "util-tech-stack-orange-bg-dark": "#746d57",
+        "util-project-card-description-text": "#858585",
+        "util-tech-stack-orange-text": "#EA9732",
+        
+        
+
         "util-scrollbar-blue-light": "#bac1e6",
         "util-scrollbar-blue-dark": "#525b91",
         "util-scrollbar-gray-light": "#d9d9d9",
         "util-scrollbar-gray-dark": "#5c5c5c",
 
+        "util-container-bg-dark": "#4A4A4A",
         "util-input-light": "#f3f4f6",
         "util-input-dark": "#5c5c5c",
         "util-input-text": "#B5BBC4",
@@ -43,6 +52,7 @@ const config: Config = {
         sans: ["var(--font-inter)", "var(--font-noto)", "sans-serif"],
       },
       fontSize: {
+        p10: "0.625rem", // 10px
         p12: "0.75rem", // 12px
         p14: "0.875rem", // 14px
         p16: "1rem", // 16px
@@ -92,6 +102,7 @@ const config: Config = {
     },
   },
   plugins: [
+    scrollbarHide,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function ({ matchUtilities, theme }: { matchUtilities: any; theme: any }) {
       matchUtilities(

@@ -58,7 +58,8 @@ const Header = () => {
   }, [darkMode])
 
   return (
-    <header className="fixed top-0 z-[10] flex h-[3.5rem] tab:h-[4.25rem] pc:h-[5rem] w-full items-center bg-transparent justify-between px-8 shrink-0 backdrop-blur-sm">
+    <header className="fixed top-0 z-[10] flex h-[3.5rem] tab:h-[4.25rem] pc:h-[5rem] w-full max-w-[1440px] bg-transparent justify-center px-8 shrink-0 backdrop-blur-sm">
+      <div className="flex w-full h-full justify-between items-center">
       <nav className="flex h-full items-center">
         <Link href="/" className="">
           home
@@ -99,6 +100,7 @@ const Header = () => {
           </button>
         </div>
       </nav>
+      </div>
     </header>
   );
 };

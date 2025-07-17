@@ -1,10 +1,10 @@
 import { ButtonProps, CustonButton } from "./button.types";
 
 // 색상 입력, 텍스트 입력
-export const Button = ({ children, className, ...props }: ButtonProps) => {
+export const Button = ({ children, className ='', ...props }: ButtonProps) => {
   return (
     <button
-      className={`rounded-p12 font-inter flex items-center justify-center px-4 leading-[1.45] font-medium shrink-0 ${className}`}
+      className={`rounded-p12 font-inter flex items-center justify-center px-4 py-3.5 leading-[1.45] font-medium shrink-0 ${className}`}
       {...props}
     >
       {children}
@@ -26,7 +26,7 @@ export const BaseButton = ({
   };
 
   return (
-    <Button className={`text-p18 h-p44 tab:h-p47 pc:h-p50 tracking-mp5 hover:cursor-pointer ${colorMapping[color]}`} {...props}>
+    <Button className={`text-p18 h-p44 tab:h-p47 pc:h-p50 tracking-mp5 hover:cursor-pointer ${colorMapping[color]} ${props.className}`} {...props}>
       {children}
     </Button>
   );

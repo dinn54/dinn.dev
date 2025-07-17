@@ -1,6 +1,5 @@
-export type ButtonProps = {
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
-  props?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   className?: string;
 };
 

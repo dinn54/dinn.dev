@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 const noto = Noto_Sans_KR({
+  subsets: ["latin"],
   variable: "--font-noto",
 });
 
@@ -26,10 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1440px)] w-screen  antialiased animate-none`}
+        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1440px)] flex justify-center w-screen antialiased animate-none`}
       >
         <Header />
-        {children}
+        <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide">{children}</div>
       </body>
     </html>
   );

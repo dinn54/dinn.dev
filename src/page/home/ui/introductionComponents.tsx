@@ -2,17 +2,17 @@
 import { animate } from "animejs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { LeafConfig } from "../introduction";
-import LeafImage from "@public/leaf.svg";
+// import LeafImage from "@public/leaf.svg";
 import TreeImage from "@public/tree.png";
 import CharacterImage from "@public/character2.svg";
-import { B1, B3, B4, H2 } from "@/shared/ui/text/text";
+import { B1, B3, H2 } from "@/shared/ui/text/text";
 import { BaseButton } from "@/shared/ui/button";
+import { LeafConfig } from "./introductionSection";
 
 export const Tree = ({
-  leafConfigs,
-  LeafRefs,
-  LeafRotateRefs,
+  // leafConfigs,
+  // LeafRefs,
+  // LeafRotateRefs,
   TreeContainerRef,
 }: {
   leafConfigs: LeafConfig[];
@@ -24,10 +24,10 @@ export const Tree = ({
   return (
     <div
       ref={TreeContainerRef}
-      className="flex w-full pc:w-auto pc:h-full justify-center items-center"
+      className="flex w-full pc:h-full justify-center "
     >
-      <div className="relative z-[1] h-full w-full pc:opacity-100">
-        <Image src={TreeImage} alt="tree" className=" w-full h-full object-contain object-left opacity-0 pc:opacity-100" priority />
+      <div className="relative z-[1] w-full h-full">
+        <Image src={TreeImage} alt="tree" className="h-full  object-contain object-left opacity-0 pc:opacity-100" priority />
       </div>
 
       {/* <FallingLeaf
@@ -39,49 +39,49 @@ export const Tree = ({
   );
 };
 
-const FallingLeaf = ({
-  leafConfigs,
-  LeafRefs,
-  LeafRotateRefs,
-}: {
-  leafConfigs: LeafConfig[];
-  LeafRefs: React.RefObject<(HTMLDivElement | null)[]>;
-  LeafRotateRefs: React.RefObject<(HTMLDivElement | null)[]>;
-}) => {
-  return (
-    <>
-      {leafConfigs.map((config, index) => (
-        <div
-          key={index}
-          ref={(el) => {
-            LeafRefs.current[index] = el;
-          }}
-          className={`absolute z-[0] hidden aspect-square w-[2rem] sm:block sm:w-[2.5rem] md:w-[3rem]`}
-          style={{
-            top: `${14 + Math.random() * 12}%`, // 10%-40% 영역
-            left: `${config.startX}%`,
-            transformStyle: "preserve-3d",
-          }}
-        >
-          <div
-            ref={(el) => {
-              LeafRotateRefs.current[index] = el;
-            }}
-            style={{
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <Image
-              src={LeafImage}
-              alt={`leaf-${index}`}
-              className="rotate-220"
-            />
-          </div>
-        </div>
-      ))}
-    </>
-  );
-};
+// const FallingLeaf = ({
+//   leafConfigs,
+//   LeafRefs,
+//   LeafRotateRefs,
+// }: {
+//   leafConfigs: LeafConfig[];
+//   LeafRefs: React.RefObject<(HTMLDivElement | null)[]>;
+//   LeafRotateRefs: React.RefObject<(HTMLDivElement | null)[]>;
+// }) => {
+//   return (
+//     <>
+//       {leafConfigs.map((config, index) => (
+//         <div
+//           key={index}
+//           ref={(el) => {
+//             LeafRefs.current[index] = el;
+//           }}
+//           className={`absolute z-[0] hidden aspect-square w-[2rem] sm:block sm:w-[2.5rem] md:w-[3rem]`}
+//           style={{
+//             top: `${14 + Math.random() * 12}%`, // 10%-40% 영역
+//             left: `${config.startX}%`,
+//             transformStyle: "preserve-3d",
+//           }}
+//         >
+//           <div
+//             ref={(el) => {
+//               LeafRotateRefs.current[index] = el;
+//             }}
+//             style={{
+//               transformStyle: "preserve-3d",
+//             }}
+//           >
+//             <Image
+//               src={LeafImage}
+//               alt={`leaf-${index}`}
+//               className="rotate-220"
+//             />
+//           </div>
+//         </div>
+//       ))}
+//     </>
+//   );
+// };
 
 export const PlayGuide = ({
   playGuideRef,
@@ -175,11 +175,11 @@ export const Character = ({
 };
 
 export const IntroductionText = ({
-  moveControlRef,
+  // moveControlRef,
 }: {
   moveControlRef: React.RefObject<HTMLSpanElement | null>;
 }) => {
-  const [isTextHovered, setIsTextHovered] = useState(false);
+  // const [isTextHovered, setIsTextHovered] = useState(false);
   return (
     <div className="relative flex pc:w-auto w-fit flex-col justify-center text-start font-semibold shrink-0  ">
       {/* <div className="flex flex-col w-full h-2/3 absolute top-30 left-15 text-2xl gap-10 ">
@@ -227,8 +227,8 @@ export const IntroductionText = ({
           어떤 기술과 경험을 해왔는지 궁금하시다면 ↓
         </B3>
 
-        <div className="mt-4 flex flex-col pc:flex-row w-full gap-4 pc:gap-4">
-          <div className="flex gap-4">
+        <div className="mt-4 flex flex-col pc:flex-row w-full gap-3 pc:gap-4">
+          <div className="flex gap-3">
           <BaseButton
             color="green"
             onClick={() => {
@@ -238,21 +238,21 @@ export const IntroductionText = ({
               }
             }}
           >
-            <B3>About me</B3>
-          </BaseButton>
+            <span className="text-p12 tab:text-p14 pc:text-p16">About me</span>
+            </BaseButton>
           <BaseButton
             color="gold"
             onClick={() => {
-              const target = document.getElementById("contact-section");
+              const target = document.getElementById("projects-section");
               if (target) {
                 target.scrollIntoView({ behavior: "smooth" });
               }
             }}
           >
-            <B3>Projects</B3>
-          </BaseButton>
+            <span className="text-p12 tab:text-p14 pc:text-p16">Projects</span>
+            </BaseButton>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-3">
           <BaseButton
             color="none"
             onClick={() => {
@@ -262,8 +262,8 @@ export const IntroductionText = ({
               }
             }}
           >
-            <B4>리뷰 남기기</B4>
-          </BaseButton>
+            <span className="text-p12 tab:text-p14 pc:text-p16">리뷰 남기기</span>
+            </BaseButton>
           <BaseButton
             color="none"
             onClick={() => {
@@ -273,7 +273,7 @@ export const IntroductionText = ({
               }
             }}
           >
-            <B4>Contact</B4>
+            <span className="text-p12 tab:text-p14 pc:text-p16">Contact</span>
           </BaseButton>
           </div>
         </div>

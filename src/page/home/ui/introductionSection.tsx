@@ -1,20 +1,17 @@
 "use client";
-import PageContainer from "./ui/page_container";
 
 import { useEffect, useRef } from "react";
 import { animate } from "animejs";
-import {
-  Character,
-  IntroductionText,
-  PlayGuide,
-} from "./ui/introductionComponents";
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import TreeImage from "@public/tree.png";
+import PageContainer from "./page_container";
+import { Character, IntroductionText, PlayGuide } from "./introductionComponents";
 
 
 const Tree = dynamic(
-  () => import("./ui/introductionComponents").then((mod) => mod.Tree),
+  () => import("./introductionComponents").then((mod) => mod.Tree),
   { ssr: false },
 );
 
@@ -378,33 +375,35 @@ const Introduction = () => {
   const moveControlRef = useRef<HTMLSpanElement>(null);
 
   return (
-    <PageContainer className="bg-home-light dark:bg-home-dark ">
+    <PageContainer id="introduction-section" className="bg-home-light dark:bg-home-dark ">
+      <div className="relative w-full h-full justify-center items-center">
       {/* Tree interaction section */} 
-      <div className="pc:pl-40 flex w-full h-full gap-10 justify-center items-center">
-      <div className="flex pc:justify-center w-full pc:w-fit pc:h-fit h-full z-[2] shrink-0">
-        <IntroductionText moveControlRef={moveControlRef} />
-      </div>
-      <div className="absolute right-0 h-full tab:h-[60%] opacity-10 tab:opacity-30 pc:opacity-0">
-        <Image src={TreeImage} alt="tree" className="block w-full h-full object-contain object-left " priority />
-      </div>
-      <div
-        ref={TreeAnimateRef}
-        className="hidden pc:flex pc:h-full pc:w-auto items-center justify-center shrink-0 "
-      >
-        {/* Tree image section */}
-        <Tree
-          leafConfigs={leafConfigs}
-          LeafRefs={LeafRefs}
-          LeafRotateRefs={LeafRotateRefs}
-          TreeContainerRef={TreeContainerRef}
-        />
-        <PlayGuide
-          playGuideRef={playGuideRef}
-          moveControlRef={moveControlRef}
-        />
-      </div>
+      <div className="pc:px-[10%] flex w-full h-full gap-10 justify-center items-center">
+        <div className="flex pc:justify-center w-full pc:w-1/2 pc:h-fit h-full z-[2] shrink-0">
+          <IntroductionText moveControlRef={moveControlRef} />
+        </div>
+        <div className="absolute right-0 h-full tab:h-[60%] opacity-10 tab:opacity-30 pc:opacity-0">
+          <Image src={TreeImage} alt="tree" className="block w-full h-full object-contain object-left " priority />
+        </div>
+        <div
+          ref={TreeAnimateRef}
+          className="hidden pc:flex pc:w-[50%] pc:h-full pc:min-w-[20rem] items-center justify-center shrink-0 "
+        >
+          {/* Tree image section */}
+          <Tree
+            leafConfigs={leafConfigs}
+            LeafRefs={LeafRefs}
+            LeafRotateRefs={LeafRotateRefs}
+            TreeContainerRef={TreeContainerRef}
+          />
+          <PlayGuide
+            playGuideRef={playGuideRef}
+            moveControlRef={moveControlRef}
+          />
+        </div>
 
-      <Character characterRef={CharacterRef} />
+        <Character characterRef={CharacterRef} />
+        </div>
       </div>
     </PageContainer>
   );

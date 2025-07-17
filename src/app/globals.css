@@ -1,9 +1,11 @@
 @import "tailwindcss";
+
 @config "../../tailwind.config.ts";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-text: #111111;
 }
 
 @theme inline {
@@ -17,6 +19,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --color-text: #ededed;
   }
 }
 
@@ -34,6 +37,8 @@
 
     -webkit-user-drag: none;
     -webkit-touch-callout: none;
+
+
   }
 
   /* 필요한 곳만 선택 허용 */
@@ -89,25 +94,25 @@
   }
   @font-face {
     font-family: "GmarketSans";
-    src: url("/fonts/GmarketSansTTFLight.ttf") format("ttf");
+    src: url("/fonts/GmarketSansTTFLight.ttf") format("truetype");
     font-weight: 300;
     font-style: normal;
   }
   @font-face {
     font-family: "GmarketSans";
-    src: url("/fonts/GmarketSansTTFMedium.ttf") format("ttf");
+    src: url("/fonts/GmarketSansTTFMedium.ttf") format("truetype");
     font-weight: 500;
     font-style: normal;
   }
   @font-face {
     font-family: "GmarketSans";
-    src: url("/fonts/GmarketSansTTFBold.ttf") format("ttf");
+    src: url("/fonts/GmarketSansTTFBold.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
   }
   @font-face {
     font-family: GowunDodum;
-    src: url("/fonts/GowunDodum-Regular.ttf") format("ttf");
+    src: url("/fonts/GowunDodum-Regular.ttf") format("truetype");
     font-weight: noraml;
     font-style: normal;
   }
@@ -160,57 +165,101 @@
   .font-outline-4 {
     -webkit-text-stroke: 4px var(--stroke-color);
   }
-}
-.border-inside {
-  box-shadow: inset 0 0 0 1.2px var(--shadow-color);
+
+
 }
 
-.underline-animate {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
+@layer utilities{
 
-.underline-animate::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 2px;
-  background: currentColor; /* underline matches text color */
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.group:hover .underline-animate::after,
-.underline-animate.active::after {
-  transform: scaleX(1);
-}
-
-/* 동적 색상 할당 */
-[class*="underline-animate-[#"]::after {
-  --underline-color: var(--color);
-}
-
-.pointer-updown-infinite {
-  transform: translateY(-50%);
-  animation: updown-infinite 1s infinite;
-}
-
-@keyframes updown-infinite {
-  0% {
-    transform: translateY(-10%);
+  .shake-animate:hover{
+    animation: shake 0.2s ease-in-out;
   }
-  50% {
-    transform: translateY(10%);
+
+  .border-inside {
+    box-shadow: inset 0 0 0 1.2px var(--shadow-color);
   }
-  100% {
-    transform: translateY(-10%);
+  
+  .underline-animate {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
   }
+  
+  .underline-animate::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: currentColor; /* underline matches text color */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .group:hover .underline-animate::after,
+  .underline-animate.active::after {
+    transform: scaleX(1);
+  }
+  
+  /* 동적 색상 할당 */
+  [class*="underline-animate-[#"]::after {
+    --underline-color: var(--color);
+  }
+  
+  .pointer-updown-infinite {
+    transform: translateY(-50%);
+    animation: updown-infinite 1s infinite;
+  }
+  
+  .darkMode-animate{
+    transition: all 0.3s ease-in-out;
+  }
+  .multi-drop-shadow {
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.03)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.02));
+  }
+  .scroll-y-snap{
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* 좌우로 살짝씩 흔들리는 애니메이션 */
+  @keyframes shake {
+    0% {
+      transform: translate(0);
+    }
+    25% {
+      transform: translate(2px);
+    }
+    50% {
+      transform: translate(0);
+    }
+    75% {
+      transform: translate(-2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes updown-infinite {
+    0% {
+      transform: translateY(-10%);
+    }
+    50% {
+      transform: translateY(10%);
+    }
+    100% {
+      transform: translateY(-10%);
+    }
+  }
+  
 }
 
-.darkMode-animate{
-  transition: all 0.3s ease-in-out;
-}
