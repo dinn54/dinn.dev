@@ -4,7 +4,7 @@
 // import Introduction from "@/pages/home/introduction"
 // import Projects from "@/pages/home/projects"
 
-import Review from "./review";
+import Review from "./ui/reviewSection";
 import Projects from "./ui/projectsSection";
 import About from "./ui/aboutSection";
 import Introduction from "./ui/introductionSection";
@@ -83,8 +83,9 @@ const Home = () => {
   
 
   return (
-    <div       id="page-container"
-    className="flex flex-col w-full h-full overflow-y-auto scrollbar-hide">
+    <div 
+      id="page-container" 
+      className="flex flex-col w-full h-full overflow-y-auto scrollbar-hide snap-y snap-mandatory">
       <Introduction />
 			<About />
 			<Projects />
