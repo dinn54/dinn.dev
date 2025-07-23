@@ -1,7 +1,7 @@
 'use client'
 import { PageHeader } from "@/shared/ui/pageHeader";
 import PageContainer from "./page_container";
-import { ReviewCard } from "./reviewSectionComponents";
+import { ReviewCard, ReviewModal, ReviewModalButton } from "./reviewSectionComponents";
 import { useEffect, useRef, useState } from "react";
 
 export type Review = {
@@ -38,7 +38,7 @@ const Review = () => {
   const scrollMoveBarRef = useRef<HTMLDivElement>(null)
   const scrollTargetRef = useRef<HTMLDivElement>(null)
   
-  const [reviews, setReviews] = useState<Review[]>(mockReviews)
+  const [reviews] = useState<Review[]>(mockReviews)
   
   useEffect(()=>{
     //  스크롤 타겟의 갯수 계산 (reviews.length)
@@ -122,22 +122,61 @@ const Review = () => {
     };
   }, []);
 
+  useEffect(()=>{
+    // reviews container wheel 이벤트 리스너 추가
+    const targetEl = scrollTargetRef.current
+    if (!targetEl) return
+
+    const syncScroll = (e: WheelEvent)=>{
+      e.stopPropagation()
+      const moveEl = scrollMoveBarRef.current
+      if (!moveEl) return
+      const moveElHeight = moveEl.offsetHeight
+      const containerEl = scrollbarContainerRef.current
+      if (!containerEl) return
+      const containerElHeight = containerEl.offsetHeight
+      const maxTop = containerElHeight - moveElHeight
+      const minTop = 0
+      const currentTop = moveEl.offsetTop
+      const newTop = currentTop + e.deltaY
+      const clampedTop = Math.max(minTop, Math.min(maxTop, newTop))
+      moveEl.style.top = `${clampedTop}px`
+    }
+    targetEl.addEventListener('wheel', syncScroll)
+    return ()=>{
+      targetEl.removeEventListener('wheel', syncScroll)
+    }
+  }, [])
+
+  const [reviewModalOpen, setReviewModalOpen] = useState(false)
+
   return (
     <PageContainer id="contact-section" className="bg-[#f4f6ff] dark:bg-review-dark">
       <div className="flex flex-col w-full h-full justify-center items-center">
         <PageHeader title="Review" color="bg-review-light dark:bg-review-dark" />
-        <div className="mt-[5.5rem] tab:mt-[5.75rem] pc:mt-[8rem] flex w-full  z-[100] h-[calc(100%-6rem)] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:px-[8.8%] pc:px-[10%] tab:py-2 shrink-0">
-          <div className="absolute flex left-0 top-[9rem] w-[100vw] h- px-2 gap-4 shrink-0">
-            <div ref={scrollbarContainerRef} className="relative flex w-4 h-[24rem] bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark">
-              <div ref={scrollMoveBarRef} className="absolute flex w-full h-[3rem] bg-util-scrollbar-blue-light dark:bg-util-scrollbar-blue-dark" />
-            </div>
-            <div  className="flex flex-col w-full max-h-[24rem] overflow-y-hidden pointer-events-none">
-              <div ref={scrollTargetRef} className="flex flex-col w-full h-fit gap-4 px-4 py-6 overflow-y-auto scrollbar-hide pointer-events-auto">
-              {reviews.map(review=>
-                <ReviewCard key={review.nickname} review={review} />
-              )}
+        <div className="mt-[5.5rem] tab:mt-[5.75rem] pc:mt-[8rem] flex w-full z-[100] h-[calc(100%-6rem)] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:px-[8.8%] pc:px-[10%] tab:py-2 shrink-0 justify-center">
+          <div className="absolute flex left-0 top-[9rem] pc:top-[13rem] w-[100vw] h-[calc(100%-9rem)] pc:h-[calc(100%-13rem)] px-2 gap-10 shrink-0 flex-col pc:flex-row tab:px-[10%] pc:px-[6%] ">
+            <div className="mt-3 tab:mt-10 pc:mt-5 flex w-full h-fit ">
+              <div ref={scrollbarContainerRef} className="relative flex w-4 h-[24rem] tab:h-[clamp(20rem,60vh,40rem)] bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark ">
+                <div ref={scrollMoveBarRef} className="absolute flex w-full h-[3rem] bg-util-scrollbar-blue-light dark:bg-util-scrollbar-blue-dark " />
+              </div>
+              <div className="flex flex-col w-full max-h-[24rem] tab:max-h-[clamp(20rem,60vh,40rem)] overflow-y-hidden pointer-events-none">
+                <div ref={scrollTargetRef} className="flex flex-col w-full h-fit gap-4 px-4 py-3 overflow-y-auto scrollbar-hide pointer-events-auto">
+                {reviews.map(review=>
+                  <ReviewCard key={review.nickname} review={review} />
+                )}
+                </div>
               </div>
             </div>
+            <div className="flex pc:flex-row flex-col w-full pc:max-w-[50%]  items-center pc:items-start tab:px-[10%] pc:px-0 ">
+              <ReviewModalButton reviewModalOpen={reviewModalOpen} setReviewModalOpen={setReviewModalOpen} />
+              <div className="mt-[20px] hidden flex-col relative pc:flex w-full h-[clamp(20rem,60vh,40rem)]   shrink-0 px-10 bg-white dark:bg-util-container-bg-dark rounded-[20px]">
+                <ReviewModal reviewModalOpen={reviewModalOpen} setReviewModalOpen={setReviewModalOpen} />
+              </div>
+            </div>
+          </div>
+          <div className={`absolute pc:hidden bottom-0 left-0 flex w-full tab:w-[70%] h-[28rem] tab:mx-[15%] z-[1]  bg-white dark:bg-util-container-bg-dark rounded-[20px] ${reviewModalOpen ? "animate-slide-up" : "animate-slide-down"} `}>
+            <ReviewModal reviewModalOpen={reviewModalOpen} setReviewModalOpen={setReviewModalOpen} />
           </div>
         </div>
       </div>
@@ -145,4 +184,5 @@ const Review = () => {
   );
 };
 export default Review;
+
 

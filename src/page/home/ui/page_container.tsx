@@ -16,7 +16,7 @@ const PageContainer = ({
   return (
     <div
       className={
-        `relative snap-section z-[1] snap-start flex h-full min-h-[540px] w-full shrink-0 darkMode-animate pt-[3.5rem] tab:pt-[4.25rem] pc:pt-[5rem] pc:px-[10%] justify-center tab:px-[10%] px-6 items-center ${className}`
+        `relative snap-section z-[1] snap-start flex h-full min-h-[600px] w-full shrink-0 darkMode-animate pt-[3.5rem] tab:pt-[4.25rem] pc:pt-[5rem] pc:px-[10%] justify-center tab:px-[10%] px-6 items-center ${className}`
         
       }
       style={{ ...style }}

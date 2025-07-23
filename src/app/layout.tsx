@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`relative ${inter.variable} ${noto.variable} h-[clamp(540px,100vh,1440px)] flex justify-center w-screen antialiased animate-none`}
+        className={`relative ${inter.variable} ${noto.variable} h-[clamp(600px,100vh,1440px)] flex justify-center w-screen antialiased animate-none`}
       >
         <Header />
         <div className="flex flex-col w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide">{children}</div>

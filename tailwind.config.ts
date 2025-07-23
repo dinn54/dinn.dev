@@ -85,6 +85,7 @@ const config: Config = {
       borderRadius: {
         p12: "0.75rem",
         p20: "1.25rem",
+        p24: "1.5rem",
       },
       width: {
         p194: "12.125rem", // 194px
@@ -92,6 +93,7 @@ const config: Config = {
         p166: "10.375rem", // 166px
       },
       height: {
+        p38: "2.375rem", // 38px
         p50: "3.125rem", // 50px
         p47: "2.9375rem", // 47px
         p44: "2.75rem", // 44px

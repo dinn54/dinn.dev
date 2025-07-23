@@ -6,4 +6,5 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export type CustonButton = {
   color: "green" | "gold" | "blue" | "none";
   children: React.ReactNode;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+  rounded?: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement> & {className?: string};
