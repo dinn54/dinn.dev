@@ -38,7 +38,11 @@
     -webkit-user-drag: none;
     -webkit-touch-callout: none;
 
+    @apply bg-white text-black
 
+  }
+  .dark body{
+    @apply bg-[#3A3A3A] text-white
   }
 
   /* 필요한 곳만 선택 허용 */
@@ -217,7 +221,7 @@
   }
   
   .darkMode-animate{
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
   .multi-drop-shadow {
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.03)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.02));
