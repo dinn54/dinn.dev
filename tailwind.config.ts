@@ -10,6 +10,7 @@ const config: Config = {
 			screens: {
 				tab: "28.125rem", // 450px
 				pc: "64.0625rem", // 1025px
+				max: "90.063rem", //1441px
 			},
 			colors: {
 				"custom-green": "#6b8e23",
@@ -50,6 +51,8 @@ const config: Config = {
 				sans: ["var(--font-inter)", "var(--font-noto)", "sans-serif"],
 			},
 			fontSize: {
+				p8: "0.5rem", // 8px
+				p9: "0.5625rem", // 9px
 				p10: "0.625rem", // 10px
 				p12: "0.75rem", // 12px
 				p14: "0.875rem", // 14px

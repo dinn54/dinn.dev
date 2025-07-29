@@ -1,3 +1,4 @@
+import { PageHeaderProjectArrow } from "./pageHeaderProjectArrow";
 import { H1 } from "./text/text";
 
 export const PageHeader = ({
@@ -10,7 +11,8 @@ export const PageHeader = ({
 				className={`relative flex w-full h-[9rem] tab:h-[10rem] pc:h-[13rem] ${color} darkMode-animate max-w-[1440px]`}
 			>
 				<div className="absolute tab:left-10 pc:left-0 bottom-5 flex w-full items-center gap-4">
-					<H1 className="pl-[clamp(2rem,6vw,7rem)] ">{title}</H1>
+					<H1 className="pl-[clamp(2rem,6vw,7rem)] shrink-0">{title}</H1>
+					<PageHeaderProjectArrow />
 				</div>
 			</div>
 		</div>

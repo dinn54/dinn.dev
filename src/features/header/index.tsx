@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { animate, eases } from "animejs";
 import { FiSun, FiMoon } from "react-icons/fi";
-import { B2, B3 } from "@/shared/ui/text/text";
+import {  B4F } from "@/shared/ui/text/text";
 import { useThemeToggle } from "@/shared/state/themeStore";
 
 const Header = () => {
@@ -62,19 +62,19 @@ const Header = () => {
 			<div className="flex w-full h-full justify-between items-center">
 				<nav className="flex w-fit h-full items-center">
 					<Link href="/" className="">
-						<B3>Home</B3>
+						<B4F>Home</B4F>
 					</Link>
 				</nav>
 				<div className="flex w-auto h-full gap-2 tab:gap-5 pc:gap-8">
 					<nav className="flex h-full items-center gap-1 tab:gap-4 pc:gap-6">
 						<Link href="/about" className="px-2 py-1 group">
-							<B3 className="underline-animate">About</B3>
+							<B4F className="underline-animate">About</B4F>
 						</Link>
 						<Link href="/projects/1" className="px-2 py-1 group">
-							<B3 className="underline-animate">Projects</B3>
+							<B4F className="underline-animate">Projects</B4F>
 						</Link>
 						<Link href="#blog" className="px-2 py-1 group">
-							<B3 className="underline-animate ">Blog</B3>
+							<B4F className="underline-animate ">Blog</B4F>
 						</Link>
 					</nav>
 

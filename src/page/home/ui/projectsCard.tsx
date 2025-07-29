@@ -14,7 +14,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
 			id={`project-card-${index}`}
 			className="flex w-[calc((100%-24vw))] tab:w-[75%] pc:w-[clamp(18rem,19vw,22rem)] tab:max-w-[24rem] pc:max-w-[32rem] flex-col h-fit py-0.5 shrink-0 snap-start"
 		>
-			<Link href={"#"}>
+			<Link href={`/projects/${index+1}`}>
 				<div
 					className="flex w-full max-w-[91.2%]  flex-col rounded-2xl border border-[rgba(0,0,0,0.1)] multi-drop-shadow shrink-0 "
 					ref={detailLinkRef}
@@ -38,7 +38,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
 					</div>
 					<div className="flex flex-col w-full h-fit bg-white dark:bg-util-container-bg-dark rounded-b-2xl pt-6 px-6 pb-2">
 						<div className="flex w-full ">
-							<H6 className="">{data.title + index}</H6>
+							<H6 className="">{data.title + (index+1)}</H6>
 						</div>
 						<div className="mt-2 flex w-full h-fit px-0.5">
 							<B4 className=" h-fit line-clamp-3 ">{data.description}</B4>

@@ -89,13 +89,13 @@ const About = () => {
 									생각하며 커뮤니케이션하려고 노력합니다.
 								</B3>
 							</div>
-							<div className="">
+							<Link href={"/about"} >
 								<BaseButton color="green">
 									<span className="text-p12 tab:text-p14 pc:text-p16">
 										자세히 보기 →
 									</span>
 								</BaseButton>
-							</div>
+							</Link>
 						</div>
 					</div>
 				</div>

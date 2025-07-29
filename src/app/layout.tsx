@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'tippy.js/dist/tippy.css';
+
 // layout.tsx
 import { Inter, Noto_Sans_KR } from "next/font/google";
 import Header from "@/features/header";

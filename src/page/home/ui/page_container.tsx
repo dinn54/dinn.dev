@@ -17,7 +17,7 @@ const PageContainer = ({
 			style={{ ...style }}
 			{...props}
 		>
-			<div className="flex flex-col max-w-[1440px] w-full h-full justify-center items-center">
+			<div className="flex flex-col w-full h-full justify-center items-center max-w-[1440px]">
 				{children}
 			</div>
 		</div>

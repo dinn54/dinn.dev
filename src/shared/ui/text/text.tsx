@@ -119,12 +119,34 @@ export const H1 = ({
 	);
 };
 
+export const H1F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p36 tab:text-p46 pc:text-p52 font-bold ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
 export const H2 = ({
 	children,
 	className,
 }: { children: React.ReactNode; className?: string }) => {
 	return (
-		<Text className={`text-[clamp(2rem,2.1vw,2.5rem)] font-bold ${className}`}>
+		<Text className={`text-[clamp(1.75rem,2.1vw,2.5rem)] font-bold ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
+export const H2F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p32 tab:text-p36 pc:text-p40 font-bold ${className}`}>
 			{children}
 		</Text>
 	);
@@ -149,12 +171,34 @@ export const H3 = ({
 	);
 };
 
+export const H3F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p28 tab:text-p32 pc:text-p36 font-bold ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
 export const H4 = ({
 	children,
 	className,
 }: { children: React.ReactNode; className?: string }) => {
 	return (
 		<Text className={`text-[clamp(1.4rem,1.7vw,2rem)] font-bold ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
+export const H4F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p24 tab:text-p28 pc:text-p32 font-bold ${className}`}>
 			{children}
 		</Text>
 	);
@@ -173,6 +217,17 @@ export const H5 = ({
 	);
 };
 
+export const H5F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p20 tab:text-p24 pc:text-p28 font-semibold ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
 export const H6 = ({
 	children,
 	className,
@@ -181,6 +236,17 @@ export const H6 = ({
 		<Text
 			className={`text-[clamp(1.125rem,2vw,1.25rem)] font-bold ${className}`}
 		>
+			{children}
+		</Text>
+	);
+};
+
+export const H6F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p18 tab:text-p20 pc:text-p24 font-bold ${className}`}>
 			{children}
 		</Text>
 	);
@@ -199,6 +265,17 @@ export const B1 = ({
 	);
 };
 
+export const B1F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p20 tab:text-p24 pc:text-p28 font-medium ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
 export const B2 = ({
 	children,
 	className,
@@ -212,14 +289,36 @@ export const B2 = ({
 	);
 };
 
+export const B2F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p16 tab:text-p20 pc:text-p24 font-medium ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
 export const B3 = ({
 	children,
 	className,
 }: { children: React.ReactNode; className?: string }) => {
 	return (
 		<Text
-			className={`text-[clamp(0.875rem,1.7vw,1.125rem)] font-medium ${className}`}
+			className={`text-[clamp(0.875rem,1.32vw,1.25rem)] font-medium ${className}`}
 		>
+			{children}
+		</Text>
+	);
+};
+
+export const B3F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p14 tab:text-p17 pc:text-p20 font-medium ${className}`}>
 			{children}
 		</Text>
 	);
@@ -237,6 +336,18 @@ export const B4 = ({
 		</Text>
 	);
 };
+
+export const B4F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p12 tab:text-p14 pc:text-p16 font-medium ${className}`}>
+			{children}
+		</Text>
+	);
+};
+
 export const B5 = ({
 	children,
 	className,
@@ -245,6 +356,17 @@ export const B5 = ({
 		<Text
 			className={`text-[clamp(0.5rem,2.9vw,0.675rem)] font-medium ${className}`}
 		>
+			{children}
+		</Text>
+	);
+};
+
+export const B5F = ({
+	children,
+	className,
+}: { children: React.ReactNode; className?: string }) => {
+	return (
+		<Text className={`text-p8 tab:text-p9 pc:text-p10 font-medium ${className}`}>
 			{children}
 		</Text>
 	);
