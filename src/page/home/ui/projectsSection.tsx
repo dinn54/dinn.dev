@@ -98,22 +98,20 @@ const Projects = () => {
 					color="bg-projects-light dark:bg-projects-dark"
 				/>
 				<div className="mt-[5.5rem] tab:mt-[5.75rem] pc:mt-[8rem] flex w-full h-[calc(100%-6rem)] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] px-[8.8%] z-[1] tab:py-2 shrink-0">
-					<div className="flex flex-col w-full h-full gap-[0.5vh] tab:gap-6 pc:gap-10 items-center justify-center pb-[20%] tab:pb-[12%] pc:pb-[5%]">
+					<div className="flex flex-col w-full h-full gap-4 tab:gap-6 pc:gap-10 items-center pc:pb-0 pb-[12vh] tab:pb-[9vh] justify-center pc:justify-start">
 						<div
 							id="projects-cards-container"
-							className=" flex-col flex w-full h-fit overflow-hidden"
+							className=" flex-col flex h-full w-full max-h-[clamp(0px,50vh,500px)] pc:max-h-[500px]"
 						>
 							<div
 								ref={projectsRef}
-								className="flex w-[calc(100vw-3rem)] tab:w-[calc(100vw-20%)] pc:w-full h-fit overflow-auto scrollbar-hide scroll-smooth snap-x snap-mandatory gap-[2vw]"
+								className="flex w-[calc(100vw-3rem)] tab:w-[calc(100vw-20%)] pc:w-full px-2 h-full overflow-x-auto scrollbar-hide scroll-smooth"
 							>
-								<div className="flex w-[4vw] tab:w-[4vw] pc:w-0 h-full bg-transparent shrink-0 snap-start" />
 								{ProjectData.map((project, index) => {
 									return (
 										<ProjectCard key={index} index={index} data={project} />
 									);
 								})}
-								<div className="flex w-[8%] tab:w-[24%] pc:w-0 h-full bg-transparent shrink-0" />
 							</div>
 						</div>
 						<Button
