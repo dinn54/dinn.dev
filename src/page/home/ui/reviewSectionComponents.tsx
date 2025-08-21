@@ -3,6 +3,8 @@ import { B3, H4, H6 } from "@/shared/ui/text/text";
 import { useEffect, useState } from "react";
 import { Review } from "./reviewSection";
 import { BaseButton, LongButton } from "@/shared/ui/button";
+import { createDBClient } from "@/shared/model/dbClient";
+import { dbGetUserReviews, dbInsertUserReview } from "@/shared/model/dbActions";
 
 export const ReviewCard = ({ review }: { review: Review }) => {
   useEffect(() => {}, []);
@@ -94,7 +96,14 @@ export const ReviewModal = ({
             color="blue"
             rounded="rounded-p24"
             className="pc:pt-4"
-            onClick={() => {
+            onClick={async () => {
+              await dbInsertUserReview(createDBClient(), {
+                content: "좋아요~~",
+              });
+              console.log(
+                "review write",
+                await dbGetUserReviews(createDBClient()),
+              );
               setReviewModalOpen(false);
             }}
           >
