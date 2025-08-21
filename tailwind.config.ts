@@ -15,12 +15,13 @@ const config: Config = {
         max: "90.063rem", //1441px
       },
       colors: {
+        "default-dark": "#3a3a3a",
         "custom-green": "#6b8e23",
         "home-light": "#f8fbe8",
         "home-dark": "#3b4933",
-        "about-light": "#f8fcf4",
+        "about-light": "#EEF8E4",
         "about-dark": "#475d52",
-        "projects-light": "#fefcf9",
+        "projects-light": "#F9F3E8",
         "projects-dark": "#5a5d50",
         "review-light": "#f4f6ff",
         "review-dark": "#454a5f",

@@ -128,11 +128,14 @@
     font-style: normal;
   }
   @font-face {
-    font-family: "custom";
-    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff")
-      format("woff");
-    font-weight: normal;
-    font-style: normal;
+    font-family: "rubik";
+    src: url("/fonts/Rubik-VariableFont_wght.ttf")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "rubik";
+    src: url("/fonts/Rubik-Italic-VariableFont_wght.ttf");
+    font-style: italic;
   }
   .font-k-pretendard {
     font-family: "KoreanPretendard";
@@ -152,8 +155,11 @@
 	.font-noto-sans-kr{
 		font-family: "Noto Sans KR";
 	}
-  .font-custom {
-    font-family: "custom";
+  .font-rubik {
+    font-family: "rubik";
+  }
+  .font-rubik-italic {
+    font-family: "rubik-italic";
   }
 
   /* 폰트 stroke 두께 */
