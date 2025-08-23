@@ -3,11 +3,16 @@ import PageContainer from "../home/ui/page_container";
 import Image from "next/image";
 import { LinkTab } from "./ui/profileLinkTab";
 import {
-  AboutInterest,
+  AboutCertificate,
+  AboutEducation,
+  // AboutInterest,
   AboutIntroduction,
-  AboutTechStack,
+  AboutSkillsets,
+  AboutWorkExperience,
 } from "./ui/aboutMeContents";
 import ProfilePicture from "@public/profilePicture3.png";
+// import ProfileDrawing from "@public/profileDrawing.png";
+
 const AboutPage = () => {
   return (
     <PageContainer>
@@ -33,10 +38,13 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="pc:mt-10 flex w-full flex-col gap-16">
+          <div className="pc:mt-10 flex w-full flex-col gap-16 pb-40">
             <AboutIntroduction />
-            <AboutTechStack />
-            <AboutInterest />
+            {/* <AboutInterest /> */}
+            <AboutWorkExperience />
+            <AboutSkillsets />
+            <AboutEducation />
+            <AboutCertificate />
           </div>
         </div>
       </div>

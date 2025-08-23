@@ -8,6 +8,8 @@ import {
   ReviewModalButton,
 } from "./reviewSectionComponents";
 import { useEffect, useRef, useState } from "react";
+import { dbGetUserReviews } from "@/shared/model/dbActions";
+import { createDBClient } from "@/shared/model/dbClient";
 
 export type Review = {
   nickname: string;
@@ -15,32 +17,40 @@ export type Review = {
   date: string;
 };
 
-const mockReviews: Review[] = [
-  {
-    nickname: "Nickname1",
-    content: "리뷰 이벤트 참여합니다",
-    date: "2025-01-01T12:00:00",
-  },
-  {
-    nickname: "Nickname2",
-    content: "리뷰 이벤트 참여합니다",
-    date: "2025-01-01T12:05:00",
-  },
-  {
-    nickname: "Nickname3",
-    content: "리뷰 이벤트 참여합니다",
-    date: "2025-01-01T12:10:00",
-  },
-];
+// const mockReviews: Review[] = [
+//   {
+//     nickname: "Nickname1",
+//     content: "리뷰 이벤트 참여합니다",
+//     date: "2025-01-01T12:00:00",
+//   },
+//   {
+//     nickname: "Nickname2",
+//     content: "리뷰 이벤트 참여합니다",
+//     date: "2025-01-01T12:05:00",
+//   },
+//   {
+//     nickname: "Nickname3",
+//     content: "리뷰 이벤트 참여합니다",
+//     date: "2025-01-01T12:10:00",
+//   },
+// ];
 
 const Review = () => {
   const scrollbarContainerRef = useRef<HTMLDivElement>(null);
   const scrollMoveBarRef = useRef<HTMLDivElement>(null);
   const scrollTargetRef = useRef<HTMLDivElement>(null);
 
-  const [reviews] = useState<Review[]>(mockReviews);
+  const [reviews] = useState<Review[]>([]);
 
   useEffect(() => {
+    dbGetUserReviews(createDBClient())
+      .then((reviews) => {
+        console.log("reviews", reviews);
+      })
+      .catch((error) => {
+        console.error("Error fetching reviews:", error);
+        // Mock data 사용
+      });
     //  스크롤 타겟의 갯수 계산 (reviews.length)
     //  스크롤 컨테이너에서 이동바의 크기를 전체 스크롤 컨테이너를 타겟의 갯수로 나누어 계산
     //  스크롤 이동바의 현재 비율만큼 스크롤 타겟의 높이를 이동
@@ -74,7 +84,7 @@ const Review = () => {
         e.stopPropagation();
       });
     };
-  }, [reviews]);
+  }, []);
 
   useEffect(() => {
     const moveEl = scrollMoveBarRef.current;
@@ -128,7 +138,7 @@ const Review = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, []);
+  }, [reviews]);
 
   useEffect(() => {
     // reviews container wheel 이벤트 리스너 추가
@@ -169,8 +179,8 @@ const Review = () => {
           color="bg-review-light dark:bg-review-dark"
         />
         <div className="tab:mt-[5.75rem] pc:mt-[8rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:px-0 tab:py-2 z-[100] mt-[5.5rem] flex h-[calc(100%-6rem)] w-full shrink-0 justify-center">
-          <div className="pc:h-[calc(100%-13rem)] pc:flex-row tab:px-[10%] pc:px-[6%] flex h-[calc(100%-9rem)] w-full shrink-0 flex-col items-center gap-10 px-2">
-            <div className="tab:mt-10 pc:mt-0 mt-3 flex h-fit w-full">
+          <div className="pc:h-[calc(100%-13rem)] pc:flex-row tab:px-[10%] pc:px-[6%] pc:mt-20 flex h-[calc(100%-9rem)] w-full shrink-0 flex-col items-center gap-5 px-2 md:gap-10">
+            <div className="tab:mt-10 pc:mt-0 mt-0 flex h-fit w-full">
               <div
                 ref={scrollbarContainerRef}
                 className="tab:h-[clamp(18rem,48vh,40rem)] pc:h-[clamp(22rem,60vh,40rem)] bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[24rem] w-4"

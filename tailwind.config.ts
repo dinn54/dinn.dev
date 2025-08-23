@@ -50,7 +50,7 @@ const config: Config = {
 
         "yellow-100-dark": "#625842",
         "blue-100-dark": "#003b5a",
-        "fuchsia-100-dark": "#5c003b",
+        "lime-100-dark": "#365314",
       },
       fontFamily: {
         inter: ["var(--font-inter)", "sans-serif"],

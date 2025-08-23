@@ -58,7 +58,7 @@ const Header = () => {
   }, [darkMode]);
 
   return (
-    <header className="tab:h-[4.25rem] pc:h-[5rem] fixed top-0 z-[10] flex h-[3.5rem] w-full max-w-[1440px] shrink-0 justify-center bg-transparent px-8 backdrop-blur-sm">
+    <header className="tab:h-[4.25rem] pc:h-[5rem] tab:px-6 pc:px-8 fixed top-0 z-[10] flex h-[3.5rem] w-full max-w-[1440px] shrink-0 justify-center bg-transparent px-4 backdrop-blur-sm">
       <div className="flex h-full w-full items-center justify-between">
         <nav className="flex h-full w-fit items-center">
           <Link href="/" className="group">
@@ -83,11 +83,11 @@ const Header = () => {
               type="button"
               id="darkmode-toggle"
               onClick={handleToggle}
-              className={`tab:w-16 tab:justify-start flex h-8 w-8 items-center justify-center ${dark ? "bg-[#1B2433] ring-2 ring-[#192232]" : "bg-[#ffe8ab] ring-2 ring-[#ffe396]"} rounded-2xl transition duration-300 ease-out focus:outline-none`}
+              className={`tab:w-16 tab:justify-start flex h-8 w-8 items-center justify-center ${dark ? "bg-[#1B2433] ring-2 ring-[#192232]" : "bg-[#ffe8ab] ring-2 ring-[#ffe396]"} rounded-2xl transition duration-300 ease-out hover:cursor-pointer hover:ring-amber-300 focus:outline-none dark:hover:ring-blue-900`}
             >
               <div
                 ref={translateXRef}
-                className={`tab:translate-x-[2px] h-7 w-7 rounded-2xl ${dark ? "bg-blue-100" : "bg-amber-100"} flex items-center justify-center transition duration-300 ease-out`}
+                className={`tab:translate-x-[2px] h-7 w-7 rounded-2xl ${dark ? "bg-blue-200" : "bg-amber-100"} flex items-center justify-center transition duration-300 ease-out`}
               >
                 <div
                   ref={spinRef}

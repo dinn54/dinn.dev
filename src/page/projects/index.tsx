@@ -105,7 +105,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                     {projectMetadata?.contents.optimizations.map(
                       (optimization, index) => (
                         <div key={index} className="py-2">
-                          <B3F className="dark:bg-fuchsia-100-dark bg-fuchsia-100 font-medium">
+                          <B3F className="dark:bg-lime-100-dark bg-lime-100 font-medium">
                             {optimization.title}
                           </B3F>
                           <p className="pt-2 pl-2 leading-6 whitespace-pre-wrap">

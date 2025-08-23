@@ -20,7 +20,7 @@ const About = () => {
         {/* pageHeader 높이 - 네비게이션 헤더 높이 만큼 margin-top 추가 */}
         {/* h-[3.5rem] tab:h-[4.25rem] pc:h-[5rem */}
         <div className="tab:pt-[11vh] pc:pt-[8rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:pb-[10vh] pc:pb-[15vh] z-[1] flex h-[calc(100%-6rem)] w-full items-center px-[8.8%] pt-[5.5rem]">
-          <div className="tab:pt-[clamp(0px,3vh,8rem)] tab:grid-cols-2 pc:grid-cols-16 grid h-fit max-h-full w-full">
+          <div className="tab:pt-[clamp(0px,10vh,20rem)] tab:grid-cols-2 pc:grid-cols-16 grid h-fit max-h-full w-full">
             <div className="tab:col-span-1 pc:col-span-4 h-full w-full">
               <div className="flex h-full w-full flex-col items-center justify-center">
                 <ProfileImage />
