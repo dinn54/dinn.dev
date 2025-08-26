@@ -3,7 +3,9 @@ import { createDBClient } from "@/shared/model/dbClient";
 
 export const readReview = async () => {
   try {
-    const data = await dbGetUserReviews(createDBClient());
+    const client = createDBClient();
+    if (!client) throw new Error("Failed to create DB client");
+    const data = await dbGetUserReviews(client);
     console.log("read", data);
     return data;
   } catch (e) {
