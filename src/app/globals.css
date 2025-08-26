@@ -250,6 +250,9 @@
     animation: slideDown 0.4s ease-in forwards;
   }
 
+  .animate-fade-down {
+    animation: fadeDown 3s ease forwards;
+  }
 
   @keyframes slideUp {
     from {
@@ -270,6 +273,17 @@
     to {
       transform: translateY(100%);
       opacity: 0;
+    }
+  }
+
+  @keyframes fadeDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 

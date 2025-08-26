@@ -1,8 +1,8 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
 import PageContainer from "./page_container";
 import { ProfileImage } from "./aboutSectionComponents";
-import { Globe, Github, ExternalLink } from "lucide-react";
-import { B3, B4, H3, H4 } from "@/shared/ui/text/text";
+import { Linkedin, Mail, Github, NotebookPen } from "lucide-react";
+import { B3, H3, H4 } from "@/shared/ui/text/text";
 import Link from "next/link";
 import { BaseButton } from "@/shared/ui/button";
 
@@ -29,38 +29,50 @@ const About = () => {
                     <Link
                       href="https://dinn.dev"
                       target="_blank"
+                      title="링크드인"
                       className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
                     >
-                      <Globe className="aspect-square h-full text-black dark:text-white" />
-                      <B4>Home</B4>
+                      <Linkedin className="aspect-square h-full text-black dark:text-white" />
+                      {/* <B4>LinkedIn</B4> */}
                     </Link>
                   </div>
                   <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
                     <Link
                       href="https://github.com/dinn54"
                       target="_blank"
+                      title="깃허브"
                       className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
                     >
                       <Github className="aspect-square h-[140%] text-black dark:text-white" />
-                      <B4>Github</B4>
+                      {/* <B4>Github</B4> */}
                     </Link>
                   </div>
-                  <button
-                    className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2"
-                    disabled
-                  >
+                  <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
                     <Link
-                      // href="https://dinn54.github.io"
-                      // target="_blank"
+                      target="_blank"
                       href={"#"}
-                      className="flex w-full items-center justify-center gap-1 hover:cursor-default"
+                      title="이메일"
+                      className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
                     >
-                      <ExternalLink className="aspect-square h-[140%] text-gray-400 dark:text-gray-400" />
-                      <B4 className="!text-gray-400 dark:text-gray-400">
-                        Blog
-                      </B4>
+                      <Mail className="aspect-square h-[140%]" />
+                      {/* <B4 className="!text-gray-400 dark:text-gray-400">
+                        Posts
+                      </B4> */}
                     </Link>
-                  </button>
+                  </div>
+                  <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
+                    <Link
+                      target="_blank"
+                      href={"#"}
+                      title="블로그"
+                      className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
+                    >
+                      <NotebookPen className="aspect-square h-[140%]" />
+                      {/* <B4 className="!text-gray-400 dark:text-gray-400">
+                        Posts
+                      </B4> */}
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

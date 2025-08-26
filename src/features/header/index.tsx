@@ -58,7 +58,7 @@ const Header = () => {
   }, [darkMode]);
 
   return (
-    <header className="tab:h-[4.25rem] pc:h-[5rem] tab:px-6 pc:px-8 fixed top-0 z-[10] flex h-[3.5rem] w-full max-w-[1440px] shrink-0 justify-center bg-transparent px-4 backdrop-blur-sm">
+    <header className="tab:h-[4.25rem] pc:h-[5rem] tab:px-6 pc:px-8 fixed top-0 z-10 z-[10] flex h-[3.5rem] w-full max-w-[1440px] shrink-0 justify-center bg-transparent px-4 backdrop-blur-sm">
       <div className="flex h-full w-full items-center justify-between">
         <nav className="flex h-full w-fit items-center">
           <Link href="/" className="group">
@@ -67,14 +67,22 @@ const Header = () => {
         </nav>
         <div className="tab:gap-5 pc:gap-8 flex h-full w-auto gap-2">
           <nav className="tab:gap-4 pc:gap-6 flex h-full items-center gap-1">
-            <Link href="/about" className="group px-2 py-1">
+            <Link href="/about" className="group px-2 py-1" title="내 소개">
               <B4F className="underline-animate">About</B4F>
             </Link>
-            <Link href="/projects/1" className="group px-2 py-1">
+            <Link
+              href="/projects/1"
+              className="group px-2 py-1"
+              title="프로젝트"
+            >
               <B4F className="underline-animate">Projects</B4F>
             </Link>
-            <Link href="#blog" className="group px-2 py-1">
-              <B4F className="underline-animate">Blog</B4F>
+            <Link
+              href="/"
+              title="준비중"
+              className="group pointer-events-none px-2 py-1 text-gray-500"
+            >
+              <B4F className="underline-animate text-center whitespace-pre-line">{`Posts`}</B4F>
             </Link>
           </nav>
 

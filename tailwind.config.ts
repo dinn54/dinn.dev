@@ -112,6 +112,7 @@ const config: Config = {
       },
     },
   },
+
   plugins: [
     scrollbarHide,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

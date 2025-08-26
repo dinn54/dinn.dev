@@ -9,7 +9,7 @@ export const PageHeader = ({
   color: string;
 }) => {
   return (
-    <div className="absolute inset-0 flex w-full shrink-0 justify-center overflow-x-hidden">
+    <div className="absolute inset-0 flex h-fit w-full shrink-0 justify-center overflow-x-hidden">
       <div
         className={`tab:h-[10rem] pc:h-[13rem] relative flex h-[9rem] w-full ${color} darkMode-animate max-w-[1440px]`}
       >

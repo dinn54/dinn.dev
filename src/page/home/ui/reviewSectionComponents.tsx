@@ -1,19 +1,33 @@
 "use client";
 import { B3, H4, H6 } from "@/shared/ui/text/text";
-import { useEffect, useState } from "react";
-import { Review } from "./reviewSection";
+import { useEffect, useState, useTransition } from "react";
 import { BaseButton, LongButton } from "@/shared/ui/button";
-import { createDBClient } from "@/shared/model/dbClient";
-import { dbGetUserReviews, dbInsertUserReview } from "@/shared/model/dbActions";
+import { UserReview } from "@/shared/model/dbTypes";
+import { writeReview } from "../model/writeReview";
+import { makeRandomNumber } from "@/shared/model/makeRandom";
+import { formSchema } from "@/features/textValidation/model/emailValidate";
+import dynamic from "next/dynamic";
+const Toast = dynamic(() => import("@/shared/ui/toast/toast"), { ssr: false });
 
-export const ReviewCard = ({ review }: { review: Review }) => {
-  useEffect(() => {}, []);
+export const ReviewCard = ({
+  review,
+  className,
+}: {
+  review: UserReview;
+  className?: string;
+}) => {
   return (
-    <div className="bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl">
+    <div
+      className={`bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl ${className}`}
+    >
       <div className="dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white">
         <div className="flex h-full w-full flex-col gap-1 p-4 px-6">
-          <H6>{review.nickname}</H6>
-          <B3 className="pl-1">{review.content}</B3>
+          <H6>
+            {review.nickname.length >= 1
+              ? review.nickname
+              : "User" + makeRandomNumber(Object.values(review).join())}
+          </H6>
+          <B3 className="line-clamp-2 truncate pl-1">{review.contents}</B3>
         </div>
       </div>
     </div>
@@ -53,11 +67,57 @@ export const ReviewModalButton = ({
 export const ReviewModal = ({
   reviewModalOpen,
   setReviewModalOpen,
+  setAddReviewRow,
 }: {
   reviewModalOpen: boolean;
   setReviewModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setReviews: React.Dispatch<React.SetStateAction<UserReview[]>>;
+  setAddReviewRow: React.Dispatch<React.SetStateAction<UserReview | undefined>>;
 }) => {
   const [visible, setVisible] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const [toastOpen, setToastOpen] = useState(false);
+  const [textValidationMessage, setTextValidationMessage] = useState<string>();
+
+  const resetFormData = (form: HTMLFormElement) => {
+    form.reset();
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isPending) return;
+    const formData = new FormData(e.currentTarget);
+    const review = {
+      nickname: formData.get("nickname") as string,
+      email: formData.get("email") as string,
+      contents: formData.get("contents") as string,
+    };
+    const { data, error } = formSchema.safeParse(review);
+    const errorMessage = error?.issues[0].message ?? "에러 없음";
+
+    console.log("zod", data, errorMessage);
+    if (error) {
+      // alert(error.message);
+      setToastOpen(true);
+      setTextValidationMessage(errorMessage);
+      return;
+    }
+    try {
+      startTransition(async () => {
+        const { error } = await writeReview(review);
+        if (!error) {
+          setAddReviewRow(review);
+        }
+        // const updatedReviews = await readReview();
+        // if (updatedReviews?.reviews) {
+        //   setReviews(updatedReviews.reviews.reverse());
+        // }
+      });
+      resetFormData(e.currentTarget);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (window.innerWidth > 1024) {
@@ -72,40 +132,44 @@ export const ReviewModal = ({
   }, [reviewModalOpen]);
 
   return (
-    <>
+    <form
+      className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[20px]"
+      onSubmit={async (e) => await onSubmit(e)}
+    >
+      <Toast
+        open={toastOpen}
+        setOpen={setToastOpen}
+        message={textValidationMessage}
+      />
       {visible ? (
-        <div className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[20px]">
+        <>
+          {/* <div className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[20px]"> */}
           <H4 className="flex h-10 items-center">리뷰 작성하기</H4>
 
           <input
+            name="nickname"
             type="text"
             placeholder="이름"
             className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark text-util placeholder:text-util-input-text w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
           <input
+            name="email"
             type="text"
             placeholder="이메일"
             className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark placeholder:text-util-input-text w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
           <textarea
+            name="contents"
             placeholder="메세지"
             className="pc:h-[clamp(100px,18vh,169px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark placeholder:text-util-input-text h-[113px] w-full shrink-0 rounded-[10px] px-5 py-[14px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
 
           <LongButton
+            type="submit"
             color="blue"
             rounded="rounded-p24"
             className="pc:pt-4"
-            onClick={async () => {
-              await dbInsertUserReview(createDBClient(), {
-                content: "좋아요~~",
-              });
-              console.log(
-                "review write",
-                await dbGetUserReviews(createDBClient()),
-              );
-              setReviewModalOpen(false);
-            }}
+            onClick={() => setToastOpen(false)}
           >
             <span className="text-p18">리뷰 남기기</span>
           </LongButton>
@@ -120,8 +184,9 @@ export const ReviewModal = ({
           >
             <span className="text-p16">닫기</span>
           </BaseButton>
-        </div>
+          {/* </div> */}
+        </>
       ) : null}
-    </>
+    </form>
   );
 };

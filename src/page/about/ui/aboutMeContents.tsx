@@ -34,8 +34,8 @@ const Depth1ListElement = ({
 };
 const RowElement = ({ contents }: { contents: string[] }) => {
   return (
-    <div className="flex gap-2">
-      <B4F>•</B4F>
+    <div className="flex items-center gap-2">
+      <B4F className="mt-1.5">•</B4F>
       <li className="space-x-1">
         {contents.map((content, index) => (
           <B4F
@@ -81,17 +81,10 @@ export const AboutSkillsets = () => {
         />
 
         <Depth1ListElement
-          contents={[
-            "Git",
-            "Github",
-            "Gitbook",
-            "VS Code, Cursor",
-            "Figma",
-            "Jira",
-            "Slack",
-            "Notion",
-            "Remix IDE",
-          ]}
+          contents={["Git", "Github", "VS Code, Cursor", "Remix IDE"]}
+        />
+        <Depth1ListElement
+          contents={["Jira", "Slack", "Figma", "Notion", "Gitbook"]}
         />
       </ul>
     </div>
