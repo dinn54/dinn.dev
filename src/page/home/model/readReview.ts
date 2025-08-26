@@ -6,7 +6,6 @@ export const readReview = async () => {
     const client = createDBClient();
     if (!client) throw new Error("Failed to create DB client");
     const data = await dbGetUserReviews(client);
-    console.log("read", data);
     return data;
   } catch (e) {
     console.log(e);

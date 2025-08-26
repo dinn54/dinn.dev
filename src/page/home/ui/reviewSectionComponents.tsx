@@ -93,7 +93,7 @@ export const ReviewModal = ({
       contents: formData.get("contents") as string,
     };
     const { data, error } = formSchema.safeParse(review);
-    const errorMessage = error?.issues[0].message ?? "에러 없음";
+    const errorMessage = error?.issues[0].message ?? "데이터 유효성 통과";
 
     console.log("zod", data, errorMessage);
     if (error) {
@@ -102,21 +102,17 @@ export const ReviewModal = ({
       setTextValidationMessage(errorMessage);
       return;
     }
-    try {
-      startTransition(async () => {
+    startTransition(async () => {
+      try {
         const { error } = await writeReview(review);
         if (!error) {
           setAddReviewRow(review);
         }
-        // const updatedReviews = await readReview();
-        // if (updatedReviews?.reviews) {
-        //   setReviews(updatedReviews.reviews.reverse());
-        // }
-      });
-      resetFormData(e.currentTarget);
-    } catch (error) {
-      console.log(error);
-    }
+      } catch (error) {
+        console.log(error);
+      }
+    });
+    resetFormData(e.currentTarget);
   };
 
   useEffect(() => {
