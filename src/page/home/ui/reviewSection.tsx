@@ -121,10 +121,14 @@ const Review = () => {
   }, [reviews]);
 
   useEffect(() => {
-    readReview().then((data) => {
-      if (!data) return;
-      setReviews(data.reviews.reverse());
-    });
+    readReview()
+      .then((data) => {
+        if (!data) return;
+        setReviews(data.reviews.reverse());
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
     const targetEl = scrollTargetRef.current;
     const moveEl = scrollMoveBarRef.current;
