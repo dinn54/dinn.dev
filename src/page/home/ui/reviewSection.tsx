@@ -20,6 +20,16 @@ const Review = () => {
   const [addReviewRow, setAddReviewRow] = useState<UserReview>();
 
   useEffect(() => {
+    readReview()
+      .then((data) => {
+        if (!data) return;
+        setReviews(data.reviews.reverse());
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+  useEffect(() => {
     //  스크롤 타겟의 갯수 계산 (reviews.length)
     //  스크롤 컨테이너에서 이동바의 크기를 전체 스크롤 컨테이너를 타겟의 갯수로 나누어 계산
     //  스크롤 이동바의 현재 비율만큼 스크롤 타겟의 높이를 이동
@@ -121,15 +131,6 @@ const Review = () => {
   }, [reviews]);
 
   useEffect(() => {
-    readReview()
-      .then((data) => {
-        if (!data) return;
-        setReviews(data.reviews.reverse());
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-
     const targetEl = scrollTargetRef.current;
     const moveEl = scrollMoveBarRef.current;
     const containerEl = scrollbarContainerRef.current;
