@@ -384,14 +384,14 @@ const Introduction = () => {
       <div className="relative h-full w-full items-center justify-center">
         {/* Tree interaction section */}
         <div className="pc:px-[10%] flex h-full w-full items-center justify-center gap-10">
-          <div className="pc:justify-center pc:w-1/2 pc:h-fit animate-fade-down z-[2] flex h-full w-full shrink-0">
+          <div className="pc:justify-center pc:w-1/2 pc:h-fit animate-fade-down-slow z-[2] flex h-full w-full shrink-0">
             <IntroductionText moveControlRef={moveControlRef} />
           </div>
           <div className="tab:h-[60%] tab:opacity-30 pc:opacity-0 absolute right-0 h-full opacity-10">
             <Image
               src={TreeImage}
               alt="tree"
-              className="block h-full w-full object-contain object-left"
+              className="animate-fade-down-slow block h-full w-full object-contain object-left"
               priority
             />
           </div>

@@ -219,7 +219,7 @@ const Review = () => {
                   {addReviewRow && (
                     <ReviewCard
                       review={addReviewRow}
-                      className="animate-fade-down"
+                      className="animate-fade-down-slower"
                     />
                   )}
                   {reviews.map((review, index) => (

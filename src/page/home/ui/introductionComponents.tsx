@@ -23,7 +23,7 @@ export const Tree = ({
   return (
     <div
       ref={TreeContainerRef}
-      className="pc:h-full flex w-full justify-center"
+      className="pc:h-full animate-fade-down-slow flex w-full justify-center"
     >
       <div className="relative z-[1] h-full w-full">
         <Image
