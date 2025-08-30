@@ -1,5 +1,5 @@
 "use client";
-import { B3, H4, H6 } from "@/shared/ui/text/text";
+import { B4, H5, H6 } from "@/shared/ui/text/text";
 import { useEffect, useState, useTransition } from "react";
 import { BaseButton, LongButton } from "@/shared/ui/button";
 import { UserReview } from "@/shared/model/dbTypes";
@@ -18,16 +18,23 @@ export const ReviewCard = ({
 }) => {
   return (
     <div
-      className={`bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl ${className}`}
+      className={`bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl shadow-md ${className}`}
     >
-      <div className="dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white">
-        <div className="flex h-full w-full flex-col gap-1 p-4 px-6">
-          <H6>
+      <div className="dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white shadow-md">
+        <div className="flex h-full w-full flex-col gap-1 p-3 px-6">
+          <H6 className="!font-medium">
             {review.nickname.length >= 1
               ? review.nickname
               : "User" + makeRandomNumber(Object.values(review).join())}
           </H6>
-          <B3 className="line-clamp-2 truncate pl-1">{review.contents}</B3>
+          <B4 className="line-clamp-2 truncate pl-1 !font-normal whitespace-pre-line">
+            {review.contents} {review.contents}
+            {review.contents}
+            {review.contents} {review.contents} {review.contents}
+            {review.contents}
+            {review.contents}
+            {review.contents}
+          </B4>
         </div>
       </div>
     </div>
@@ -92,10 +99,9 @@ export const ReviewModal = ({
       email: formData.get("email") as string,
       contents: formData.get("contents") as string,
     };
-    const { data, error } = formSchema.safeParse(review);
+    const { error } = formSchema.safeParse(review);
     const errorMessage = error?.issues[0].message ?? "데이터 유효성 통과";
 
-    console.log("zod", data, errorMessage);
     if (error) {
       // alert(error.message);
       setToastOpen(true);
@@ -140,7 +146,7 @@ export const ReviewModal = ({
       {visible ? (
         <>
           {/* <div className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[20px]"> */}
-          <H4 className="flex h-10 items-center">리뷰 작성하기</H4>
+          <H5 className="flex h-10 items-center">리뷰 작성하기</H5>
 
           <input
             name="nickname"

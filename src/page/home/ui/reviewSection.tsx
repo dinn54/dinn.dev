@@ -239,7 +239,7 @@ const Review = () => {
                 reviewModalOpen={reviewModalOpen}
                 setReviewModalOpen={setReviewModalOpen}
               />
-              <div className="pc:flex dark:bg-util-container-bg-dark tab:h-[clamp(18rem,40vh,40rem)] pc:h-[clamp(20rem,60vh,40rem)] relative hidden w-full shrink-0 flex-col rounded-[20px] bg-white px-10 pt-[20px] shadow-lg">
+              <div className="pc:flex dark:bg-util-container-bg-dark tab:h-[clamp(18rem,40vh,40rem)] pc:h-[clamp(20rem,60vh,30rem)] relative hidden w-full shrink-0 flex-col rounded-[20px] bg-white px-10 pt-[20px] shadow-lg">
                 <ReviewModal
                   reviewModalOpen={reviewModalOpen}
                   setReviewModalOpen={setReviewModalOpen}

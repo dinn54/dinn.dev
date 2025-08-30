@@ -48,7 +48,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
                 {data.description}
               </B4>
             </div>
-            <div className="mt-2 flex w-full">
+            <div className="z-0 mt-2 flex w-full">
               <div className="bg-util-tech-stack-orange-bg dark:bg-util-tech-stack-orange-bg-dark flex rounded-3xl px-3 py-1">
                 <B5 className="!text-util-tech-stack-orange-text">React</B5>
               </div>

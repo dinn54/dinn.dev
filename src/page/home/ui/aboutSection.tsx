@@ -1,7 +1,10 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
 import PageContainer from "./page_container";
 import { ProfileImage } from "./aboutSectionComponents";
-import { Linkedin, Mail, Github, NotebookPen } from "lucide-react";
+import { LuNotebook } from "react-icons/lu";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { IoMailOutline } from "react-icons/io5";
+
 import { B3, H3, H4 } from "@/shared/ui/text/text";
 import Link from "next/link";
 import { BaseButton } from "@/shared/ui/button";
@@ -25,54 +28,50 @@ const About = () => {
               <div className="flex h-full w-full flex-col items-center justify-center">
                 <ProfileImage />
                 <div className="flex w-full justify-center gap-[clamp(1rem,1.5vw,8rem)]">
-                  <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
-                    <Link
-                      href="https://dinn.dev"
-                      target="_blank"
-                      title="링크드인"
-                      className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
-                    >
-                      <Linkedin className="aspect-square h-full text-black dark:text-white" />
-                      {/* <B4>LinkedIn</B4> */}
-                    </Link>
-                  </div>
-                  <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
-                    <Link
-                      href="https://github.com/dinn54"
-                      target="_blank"
-                      title="깃허브"
-                      className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
-                    >
-                      <Github className="aspect-square h-[140%] text-black dark:text-white" />
-                      {/* <B4>Github</B4> */}
-                    </Link>
-                  </div>
-                  <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
-                    <Link
-                      target="_blank"
-                      href={"#"}
-                      title="이메일"
-                      className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
-                    >
-                      <Mail className="aspect-square h-[140%]" />
-                      {/* <B4 className="!text-gray-400 dark:text-gray-400">
-                        Posts
-                      </B4> */}
-                    </Link>
-                  </div>
-                  <div className="tab:h-[1rem] pc:h-[2rem] z-[1] flex items-center justify-center py-2">
-                    <Link
-                      target="_blank"
-                      href={"#"}
-                      title="블로그"
-                      className="flex w-full items-center justify-center gap-1 hover:cursor-pointer"
-                    >
-                      <NotebookPen className="aspect-square h-[140%]" />
-                      {/* <B4 className="!text-gray-400 dark:text-gray-400">
-                        Posts
-                      </B4> */}
-                    </Link>
-                  </div>
+                  <Link
+                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    href="https://dinn.dev"
+                    target="_blank"
+                    title="링크드인"
+                  >
+                    <FaLinkedin
+                      size={"75%"}
+                      className="text-black dark:text-white"
+                    />
+                  </Link>
+                  <Link
+                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    href="https://github.com/dinn54"
+                    target="_blank"
+                    title="깃허브"
+                  >
+                    <FaGithub
+                      size={"75%"}
+                      className="text-black dark:text-white"
+                    />
+                  </Link>
+                  <Link
+                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    target="_blank"
+                    href={"#"}
+                    title="이메일"
+                  >
+                    <IoMailOutline
+                      size={"75%"}
+                      className="text-black dark:text-white"
+                    />
+                  </Link>
+                  <Link
+                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    target="_blank"
+                    href={"#"}
+                    title="블로그"
+                  >
+                    <LuNotebook
+                      size={"75%"}
+                      className="text-black dark:text-white"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>
