@@ -77,13 +77,13 @@ const Header = () => {
             >
               <B4F className="underline-animate">Projects</B4F>
             </Link>
-            <Link
+            {/* <Link
               href="/"
               title="준비중"
               className="group pointer-events-none px-2 py-1 text-gray-500"
             >
               <B4F className="underline-animate text-center whitespace-pre-line">{`Posts`}</B4F>
-            </Link>
+            </Link> */}
           </nav>
 
           <div className="flex items-center justify-center">

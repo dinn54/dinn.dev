@@ -7,6 +7,20 @@ import { IoMailOutline } from "react-icons/io5";
 import Link from "next/link";
 
 export const LinkTab = ({ name, link }: { name: string; link: string }) => {
+  const getTitle = (name: string) => {
+    switch (name) {
+      case "LinkedIn":
+        return "링크드인";
+      case "Github":
+        return "깃허브";
+      case "Email":
+        return "이메일";
+      case "Resume":
+        return "이력서";
+      default:
+        return "새창으로 이동";
+    }
+  };
   const getIcon = (name: string) => {
     switch (name) {
       case "LinkedIn":
@@ -21,7 +35,7 @@ export const LinkTab = ({ name, link }: { name: string; link: string }) => {
         return (
           <IoMailOutline className="h-full w-full text-black dark:text-white" />
         );
-      case "Posts":
+      case "Resume":
         return (
           <LuNotebook className="h-full w-full text-black dark:text-white" />
         );
@@ -36,9 +50,10 @@ export const LinkTab = ({ name, link }: { name: string; link: string }) => {
     <Link
       href={link}
       target="_blank"
-      className="group tab:h-[2rem] pc:h-[2.5rem] mx-auto flex h-[1.5rem] w-full max-w-1/3 items-start justify-center hover:cursor-pointer"
+      title={getTitle(name)}
+      className="tab:h-[2rem] pc:h-[2.5rem] mx-auto flex h-[1.5rem] w-fit max-w-1/3 items-start justify-center hover:cursor-default"
     >
-      <div className="tab:gap-1 flex h-full w-full items-center justify-center gap-0.5 p-2 no-underline group-hover:underline group-hover:underline-offset-4 hover:underline">
+      <div className="tab:gap-1 flex h-full w-auto items-center justify-center gap-0.5 p-2 hover:cursor-pointer">
         {getIcon(name)}
       </div>
     </Link>

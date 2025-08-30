@@ -35,7 +35,7 @@ const AboutPage = () => {
               <LinkTab name="LinkedIn" link="https://dinn.dev" />
               <LinkTab name="Github" link="https://github.com/dinn54" />
               <LinkTab name="Email" link="mailTo:joodinner@gmail.com" />
-              <LinkTab name="Posts" link="https://dinn54.github.io" />
+              <LinkTab name="Resume" link="/dinn_resume_2506.pdf" />
             </div>
           </div>
 

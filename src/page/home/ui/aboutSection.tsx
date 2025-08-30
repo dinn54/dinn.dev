@@ -53,7 +53,7 @@ const About = () => {
                   <Link
                     className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
                     target="_blank"
-                    href={"#"}
+                    href={"mailTo:joodinner@gmail.com"}
                     title="이메일"
                   >
                     <IoMailOutline
@@ -64,8 +64,8 @@ const About = () => {
                   <Link
                     className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
                     target="_blank"
-                    href={"#"}
-                    title="블로그"
+                    href={"/dinn_resume_2506.pdf"}
+                    title="이력서"
                   >
                     <LuNotebook
                       size={"75%"}
