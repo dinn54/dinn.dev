@@ -8,6 +8,7 @@ import { IoMailOutline } from "react-icons/io5";
 import { B3, H3, H4 } from "@/shared/ui/text/text";
 import Link from "next/link";
 import { BaseButton } from "@/shared/ui/button";
+import { getStorageLink } from "@/shared/model/getStorageLink";
 
 const About = () => {
   return (
@@ -64,7 +65,7 @@ const About = () => {
                   <Link
                     className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
                     target="_blank"
-                    href={"/dinn_resume_2506.pdf"}
+                    href={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
                     title="이력서"
                   >
                     <LuNotebook

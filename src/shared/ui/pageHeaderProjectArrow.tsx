@@ -5,12 +5,13 @@ import tippy from "tippy.js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getProjectNameByNo } from "../model/getProjectName";
+import { projecstMetaData } from "@/page/projects/model/projectMetaData";
 
 export const PageHeaderProjectArrow = () => {
   const pathname = usePathname();
 
+  const MAX_PROJECT_NO = projecstMetaData.length;
   const currentProjectNo = Number(pathname.split("/projects/")[1]);
-
   const leftArrowRef = useRef<HTMLDivElement>(null);
   const rightArrowRef = useRef<HTMLDivElement>(null);
 
@@ -83,12 +84,12 @@ export const PageHeaderProjectArrow = () => {
               : "/projects/1"
           }
           onClick={(e) => {
-            if (Number(currentProjectNo) === 3) {
+            if (Number(currentProjectNo) === MAX_PROJECT_NO) {
               e.preventDefault();
             }
           }}
           onMouseOver={(e) => {
-            if (Number(currentProjectNo) === 3) {
+            if (Number(currentProjectNo) === MAX_PROJECT_NO) {
               e.currentTarget.style.cursor = "default";
             }
           }}
@@ -99,7 +100,10 @@ export const PageHeaderProjectArrow = () => {
           >
             <FaArrowRight
               className="h-full w-full fill-black dark:fill-white"
-              style={{ fill: Number(currentProjectNo) === 3 ? "#9CA3AF" : "" }}
+              style={{
+                fill:
+                  Number(currentProjectNo) === MAX_PROJECT_NO ? "#9CA3AF" : "",
+              }}
             />
           </div>
         </Link>

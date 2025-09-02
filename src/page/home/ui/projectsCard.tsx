@@ -1,9 +1,9 @@
 "use client";
 import { B3, B4, B5, H6 } from "@/shared/ui/text/text";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { ProjectData } from "./projectsSection";
 import Link from "next/link";
+import NextImageClient from "@/shared/ui/image/nextImageClient";
 
 const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
   const detailLinkRef = useRef<HTMLDivElement>(null);
@@ -29,8 +29,8 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
           }}
         >
           <div className="group relative flex h-3/5 w-full rounded-t-2xl">
-            <Image
-              src={data.image}
+            <NextImageClient
+              filePath={data.image}
               alt="dinn.dev"
               className="h-full w-full rounded-t-2xl bg-center object-cover"
               fill

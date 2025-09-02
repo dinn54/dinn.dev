@@ -6,6 +6,7 @@ import { B3F, B4F, H6F } from "@/shared/ui/text/text";
 import Link from "next/link";
 import { ExternalLinkIcon } from "lucide-react";
 import ProjectThumbnailLinks from "./ui/projectThunbnailLinks";
+import ImageClient from "@/shared/ui/image/imageClient";
 
 const Project = ({ projectNum }: { projectNum: string }) => {
   const projectMetadata: ProjectMetaData | undefined =
@@ -21,9 +22,9 @@ const Project = ({ projectNum }: { projectNum: string }) => {
         <div className="pc:flex-row tab:mt-[8.25rem] pc:mt-[10rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] pc:items-start max:px-[calc((100vw-90.063rem)*0.2)] pc:pt-5 mt-[5.5rem] flex h-[calc(100%-5.5rem)] w-full">
           <div className="tab:flex-row tab:items-start tab: pc:gap-22 mt-4 flex h-full w-full flex-col items-center gap-6">
             <div className="tab:w-[30%] tab:mt-0 relative flex h-full w-[50%] flex-col items-center gap-4">
-              <img
+              <ImageClient
+                filePath={projectMetadata.imageUrl}
                 id="ThumbnailImage"
-                src={projectMetadata?.imageUrl ?? "/photo.png"}
                 alt={projectMetadata?.name ?? ""}
                 style={{ width: "100%" }}
                 className="max-h-[450px] object-contain"

@@ -1,10 +1,8 @@
 "use client";
 import { animate } from "animejs";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { MdRefresh } from "react-icons/md";
-import ProfileDrawing from "@public/profileDrawing.png";
-import ProfilePicture from "@public/profilePicture3.png";
+import NextImageClient from "@/shared/ui/image/nextImageClient";
 
 export const ProfileImage = () => {
   const [isRealMyPicture, setIsRealMyPicture] = useState(false);
@@ -28,11 +26,18 @@ export const ProfileImage = () => {
         ref={profileImageRef}
         className="tab:w-[calc(14vh+12vw)] tab:min-w-[10rem] relative flex aspect-square w-full max-w-full flex-col items-center rounded-t-2xl rounded-b-2xl"
       >
-        <Image
-          src={isRealMyPicture ? ProfilePicture : ProfileDrawing}
-          alt="toggle"
-          className="object max-h-full w-[90%] rounded-2xl object-cover"
-        />
+        <div className="relative h-full max-h-full w-[90%] rounded-2xl">
+          <NextImageClient
+            key={isRealMyPicture ? "real" : "drawing"}
+            filePath={
+              isRealMyPicture ? "/profilePicture3.png" : "/profileDrawing.png"
+            }
+            alt="My Picture"
+            className="rounded-2xl object-cover object-center"
+            fill
+          />
+        </div>
+
         <button
           className="absolute right-0 bottom-0 mr-3 aspect-square w-7 pb-1"
           onClick={() => {

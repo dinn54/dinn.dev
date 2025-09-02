@@ -4,14 +4,13 @@ import { useRef } from "react";
 // import { animate } from "animejs";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import TreeImage from "@public/tree.png";
 import PageContainer from "./page_container";
 import {
   Character,
   IntroductionText,
   // PlayGuide,
 } from "./introductionComponents";
+import NextImageClient from "@/shared/ui/image/nextImageClient";
 
 const Tree = dynamic(
   () => import("./introductionComponents").then((mod) => mod.Tree),
@@ -388,11 +387,12 @@ const Introduction = () => {
             <IntroductionText moveControlRef={moveControlRef} />
           </div>
           <div className="tab:h-[60%] tab:opacity-30 pc:opacity-0 absolute right-0 h-full opacity-10">
-            <Image
-              src={TreeImage}
+            <NextImageClient
+              filePath={"/tree.png"}
               alt="tree"
               className="animate-fade-down-slow block h-full w-full object-contain object-left"
               priority
+              fill
             />
           </div>
           <div

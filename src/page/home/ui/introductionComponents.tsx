@@ -1,13 +1,10 @@
 "use client";
 import { animate } from "animejs";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-// import LeafImage from "@public/leaf.svg";
-import TreeImage from "@public/tree.png";
-import CharacterImage from "@public/character2.svg";
 import { B1, B3, H2 } from "@/shared/ui/text/text";
 import { BaseButton } from "@/shared/ui/button";
 import { LeafConfig } from "./introductionSection";
+import NextImageClient from "@/shared/ui/image/nextImageClient";
 
 export const Tree = ({
   // leafConfigs,
@@ -26,11 +23,12 @@ export const Tree = ({
       className="pc:h-full animate-fade-down-slow flex w-full justify-center"
     >
       <div className="relative z-[1] h-full w-full">
-        <Image
-          src={TreeImage}
+        <NextImageClient
+          filePath={"/tree.png"}
           alt="tree"
           className="pc:opacity-100 h-full object-contain object-left opacity-0"
           priority
+          fill
         />
       </div>
 
@@ -171,9 +169,14 @@ export const Character = ({
   return (
     <div
       ref={characterRef}
-      className="pc:block pc:right-10 absolute bottom-[2rem] z-[1] hidden aspect-square w-[4rem] transform"
+      className="pc:block pc:right-10 absolute bottom-[2rem] z-[1] hidden aspect-square w-[7rem] transform"
     >
-      <Image src={CharacterImage} alt="character" className="scale-x-[-1]" />
+      <NextImageClient
+        filePath={"/character2.svg"}
+        alt="character"
+        className="scale-x-[-1] object-contain"
+        fill
+      />
     </div>
   );
 };
