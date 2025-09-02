@@ -26,11 +26,11 @@ const About = () => {
         <div className="tab:pt-[11vh] pc:pt-[8rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:pb-[10vh] pc:pb-[15vh] z-[1] flex h-[calc(100%-6rem)] w-full items-center px-[8.8%] pt-[5.5rem]">
           <div className="tab:pt-[clamp(0px,10vh,20rem)] tab:grid-cols-2 pc:grid-cols-16 grid h-fit max-h-full w-full">
             <div className="tab:col-span-1 pc:col-span-4 h-full w-full">
-              <div className="flex h-full w-full flex-col items-center justify-center">
+              <div className="tab:gap-0 flex h-full w-full flex-col items-center justify-center gap-2">
                 <ProfileImage />
                 <div className="flex w-full justify-center gap-[clamp(1rem,1.5vw,8rem)]">
                   <Link
-                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
                     href="https://dinn.dev"
                     target="_blank"
                     title="링크드인"
@@ -41,7 +41,7 @@ const About = () => {
                     />
                   </Link>
                   <Link
-                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
                     href="https://github.com/dinn54"
                     target="_blank"
                     title="깃허브"
@@ -52,7 +52,7 @@ const About = () => {
                     />
                   </Link>
                   <Link
-                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
                     target="_blank"
                     href={"mailTo:joodinner@gmail.com"}
                     title="이메일"
@@ -63,7 +63,7 @@ const About = () => {
                     />
                   </Link>
                   <Link
-                    className="tab:w-[1rem] pc:w-[2rem] z-[1] aspect-square self-start"
+                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
                     target="_blank"
                     href={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
                     title="이력서"

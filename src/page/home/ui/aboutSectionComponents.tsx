@@ -24,7 +24,7 @@ export const ProfileImage = () => {
     <div className="pc:w-full tab:max-w-full tab:min-w-[14rem] pc:min-w-[17rem] tab:p-5 pc:p-5 flex h-fit max-w-[12rem] flex-col">
       <div
         ref={profileImageRef}
-        className="tab:w-[calc(14vh+12vw)] tab:min-w-[10rem] relative flex aspect-square w-full max-w-full flex-col items-center rounded-t-2xl rounded-b-2xl"
+        className="tab:w-[calc(14vh+12vw)] tab:min-w-[10rem] relative flex aspect-square w-[50vw] max-w-full flex-col items-center rounded-t-2xl rounded-b-2xl"
       >
         <div className="relative h-full max-h-full w-[90%] rounded-2xl">
           <NextImageClient
