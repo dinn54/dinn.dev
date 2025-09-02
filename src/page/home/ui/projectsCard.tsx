@@ -12,7 +12,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
   return (
     <div
       id={`project-card-${index}`}
-      className="tab:w-[75%] pc:w-[20rem] tab:max-w-[24rem] flex h-full w-[calc((100%-24vw))] shrink-0 flex-col py-0.5"
+      className="tab:w-[75%] pc:w-[22rem] tab:max-w-[22rem] flex h-full w-[calc((100%-24vw))] shrink-0 flex-col py-0.5"
     >
       <Link
         href={`/projects/${index + 1}`}
