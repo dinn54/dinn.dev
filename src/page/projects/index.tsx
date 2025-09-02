@@ -32,7 +32,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
               <ProjectThumbnailLinks links={projectMetadata?.contents.link} />
             </div>
 
-            <div className="h-ful flex w-[70%] flex-col gap-12 py-5 pb-20">
+            <div className="h-ful pc:w-[70%] flex flex-col gap-12 py-5 pb-20">
               <ProjectContentsContainer>
                 <H6F className="font-semibold">프로젝트명</H6F>
                 <B3F className="pl-1 !font-bold">
@@ -140,37 +140,37 @@ const Project = ({ projectNum }: { projectNum: string }) => {
               </ProjectContentsContainer>
               <ProjectContentsContainer>
                 <H6F className="font-semibold">배포 정보</H6F>
-                <div className="flex items-stretch gap-4">
+                <div className="pc:gap-4 tab:gap-2 flex items-stretch gap-1.5">
                   <B4F className="pl-1">🚀 배포 사이트:</B4F>
                   <Link
                     href={projectMetadata?.contents.link.deploy[0] ?? ""}
                     target="_blank"
                     className="relative flex items-stretch gap-0.5 hover:text-blue-500 hover:underline"
                   >
-                    <B4F>
+                    <B4F className="truncate">
                       {projectMetadata?.contents.link.deploy[0]
                         .split("/")
                         .pop()}
                     </B4F>
-                    <div className="flex h-auto w-auto">
-                      <ExternalLinkIcon className="h-[80%]" />
+                    <div className="relative">
+                      <ExternalLinkIcon className="absolute bottom-[-4px] aspect-square w-[1.2em]" />
                     </div>
                   </Link>
                 </div>
-                <div className="flex items-stretch gap-4">
+                <div className="pc:gap-4 tab:gap-2 mt-1 flex items-stretch gap-1.5">
                   <B4F className="pl-1">🔗 Github Link:</B4F>
                   <Link
                     href={projectMetadata?.contents.link.github ?? ""}
                     target="_blank"
-                    className="flex items-stretch gap-0.5 hover:text-blue-500 hover:underline"
+                    className="relative flex items-stretch gap-0.5 hover:text-blue-500 hover:underline"
                   >
                     <B4F>
                       {projectMetadata?.contents.link.github
                         .split("github.com/")
                         .pop()}
                     </B4F>
-                    <div className="flex h-auto w-auto">
-                      <ExternalLinkIcon className="h-[80%]" />
+                    <div className="relative">
+                      <ExternalLinkIcon className="absolute bottom-[-4px] aspect-square w-[1.2em]" />
                     </div>
                   </Link>
                 </div>
