@@ -36,7 +36,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
               fill
             />
             <div
-              className={`absolute top-0 left-0 h-full w-full rounded-t-2xl ${isHover ? "bg-none" : "bg-black/40 dark:bg-black/30"}`}
+              className={`darkMode-animate absolute top-0 left-0 h-full w-full rounded-t-2xl ${isHover ? "bg-none" : "bg-black/40 dark:bg-black/30"}`}
             />
           </div>
           <div className="darkMode-animate dark:bg-util-container-bg-dark flex h-2/5 w-full flex-col rounded-b-2xl bg-white px-6 pt-6 pb-2">
@@ -49,7 +49,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
               </B4>
             </div>
             <div className="z-0 mt-2 flex w-full">
-              <div className="bg-util-tech-stack-orange-bg dark:bg-util-tech-stack-orange-bg-dark flex rounded-3xl px-3 py-1">
+              <div className="bg-util-tech-stack-orange-bg darkMode-animate dark:bg-util-tech-stack-orange-bg-dark flex rounded-3xl px-3 py-1">
                 <B5 className="!text-util-tech-stack-orange-text">React</B5>
               </div>
             </div>

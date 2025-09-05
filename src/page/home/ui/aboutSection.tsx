@@ -37,7 +37,7 @@ const About = () => {
                   >
                     <FaLinkedin
                       size={"75%"}
-                      className="text-black dark:text-white"
+                      className="darkMode-animate text-black dark:text-white"
                     />
                   </Link>
                   <Link
@@ -48,7 +48,7 @@ const About = () => {
                   >
                     <FaGithub
                       size={"75%"}
-                      className="text-black dark:text-white"
+                      className="darkMode-animate text-black dark:text-white"
                     />
                   </Link>
                   <Link
@@ -59,7 +59,7 @@ const About = () => {
                   >
                     <IoMailOutline
                       size={"75%"}
-                      className="text-black dark:text-white"
+                      className="darkMode-animate text-black dark:text-white"
                     />
                   </Link>
                   <Link
@@ -70,7 +70,7 @@ const About = () => {
                   >
                     <LuNotebook
                       size={"75%"}
-                      className="text-black dark:text-white"
+                      className="darkMode-animate text-black dark:text-white"
                     />
                   </Link>
                 </div>

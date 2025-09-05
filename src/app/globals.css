@@ -215,9 +215,8 @@
     transform: translateY(-50%);
     animation: updown-infinite 1s infinite;
   }
-  
   .darkMode-animate{
-    transition: all 0.4s ease-in-out;
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
   }
   .multi-drop-shadow {
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.03)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.02));

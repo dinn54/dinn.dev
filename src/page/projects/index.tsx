@@ -99,26 +99,29 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                   </div>
                 </B4F>
               </ProjectContentsContainer>
-              <ProjectContentsContainer>
-                <H6F className="font-semibold">성능 최적화 및 DX 개선 사항</H6F>
-                <B4F className="pl-1">
-                  <div className="space-y-3">
-                    {projectMetadata?.contents.optimizations.map(
-                      (optimization, index) => (
-                        <div key={index} className="py-2">
-                          <B3F className="dark:bg-lime-100-dark bg-lime-100 font-medium">
-                            {optimization.title}
-                          </B3F>
-                          <p className="pt-2 pl-2 leading-6 whitespace-pre-wrap">
-                            <B4F>{optimization.description}</B4F>
-                          </p>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </B4F>
-              </ProjectContentsContainer>
-
+              {projectMetadata?.contents.optimizations.length > 0 && (
+                <ProjectContentsContainer>
+                  <H6F className="font-semibold">
+                    성능 최적화 및 DX 개선 사항
+                  </H6F>
+                  <B4F className="pl-1">
+                    <div className="space-y-3">
+                      {projectMetadata?.contents.optimizations.map(
+                        (optimization, index) => (
+                          <div key={index} className="py-2">
+                            <B3F className="dark:bg-lime-100-dark bg-lime-100 font-medium">
+                              {optimization.title}
+                            </B3F>
+                            <p className="pt-2 pl-2 leading-6 whitespace-pre-wrap">
+                              <B4F>{optimization.description}</B4F>
+                            </p>
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </B4F>
+                </ProjectContentsContainer>
+              )}
               <ProjectContentsContainer>
                 <H6F className="font-semibold">새로운 시도 및 결과</H6F>
                 <B4F className="pl-1">

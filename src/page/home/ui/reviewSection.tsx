@@ -204,11 +204,11 @@ const Review = () => {
             <div className="tab:mt-10 pc:mt-0 mt-0 flex h-fit w-full">
               <div
                 ref={scrollbarContainerRef}
-                className="tab:h-[clamp(18rem,48vh,40rem)] pc:h-[clamp(22rem,60vh,40rem)] bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[24rem] w-4"
+                className="tab:h-[clamp(18rem,48vh,40rem)] pc:h-[clamp(22rem,60vh,40rem)] darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[24rem] w-4"
               >
                 <div
                   ref={scrollMoveBarRef}
-                  className="bg-util-scrollbar-blue-light dark:bg-util-scrollbar-blue-dark absolute flex h-[3rem] w-full"
+                  className="bg-util-scrollbar-blue-light darkMode-animate dark:bg-util-scrollbar-blue-dark absolute flex h-[3rem] w-full"
                 />
               </div>
               <div className="tab:max-h-[clamp(18rem,48vh,40rem)] pc:max-h-[clamp(22rem,60vh,40rem)] pointer-events-none flex max-h-[24rem] w-full flex-col overflow-y-hidden">
@@ -239,7 +239,7 @@ const Review = () => {
                 reviewModalOpen={reviewModalOpen}
                 setReviewModalOpen={setReviewModalOpen}
               />
-              <div className="pc:flex dark:bg-util-container-bg-dark tab:h-[clamp(18rem,40vh,40rem)] pc:h-[clamp(20rem,60vh,30rem)] relative hidden w-full shrink-0 flex-col rounded-[20px] bg-white px-10 pt-[20px] shadow-lg">
+              <div className="pc:flex darkMode-animate dark:bg-util-container-bg-dark tab:h-[clamp(18rem,40vh,40rem)] pc:h-[clamp(20rem,60vh,30rem)] relative hidden w-full shrink-0 flex-col rounded-[20px] bg-white px-10 pt-[20px] shadow-lg">
                 <ReviewModal
                   reviewModalOpen={reviewModalOpen}
                   setReviewModalOpen={setReviewModalOpen}
@@ -250,7 +250,7 @@ const Review = () => {
             </div>
           </div>
           <div
-            className={`pc:hidden tab:w-[80%] tab:mx-[10%] dark:bg-util-container-bg-dark absolute bottom-0 left-0 z-[1] flex h-[28rem] w-full rounded-[20px] bg-white ${reviewModalOpen ? "animate-slide-up" : "animate-slide-down"} shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1),0_-4px_6px_-4px_rgba(0,0,0,0.1)]`}
+            className={`pc:hidden tab:w-[80%] tab:mx-[10%] darkMode-animate dark:bg-util-container-bg-dark absolute bottom-0 left-0 z-[1] flex h-[28rem] w-full rounded-[20px] bg-white ${reviewModalOpen ? "animate-slide-up" : "animate-slide-down"} shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1),0_-4px_6px_-4px_rgba(0,0,0,0.1)]`}
           >
             <ReviewModal
               reviewModalOpen={reviewModalOpen}

@@ -25,23 +25,23 @@ export const LinkTab = ({ name, link }: { name: string; link: string }) => {
     switch (name) {
       case "LinkedIn":
         return (
-          <FaLinkedin className="h-full w-full text-black dark:text-white" />
+          <FaLinkedin className="darkMode-animate h-full w-full text-black dark:text-white" />
         );
       case "Github":
         return (
-          <FaGithub className="h-full w-full text-black dark:text-white" />
+          <FaGithub className="darkMode-animate h-full w-full text-black dark:text-white" />
         );
       case "Email":
         return (
-          <IoMailOutline className="h-full w-full text-black dark:text-white" />
+          <IoMailOutline className="darkMode-animate h-full w-full text-black dark:text-white" />
         );
       case "Resume":
         return (
-          <LuNotebook className="h-full w-full text-black dark:text-white" />
+          <LuNotebook className="darkMode-animate h-full w-full text-black dark:text-white" />
         );
       default:
         return (
-          <ArrowUpRight className="h-full w-full text-black dark:text-white" />
+          <ArrowUpRight className="darkMode-animate h-full w-full text-black dark:text-white" />
         );
     }
   };

@@ -102,7 +102,7 @@ export const Text = ({
 }) => {
   return (
     <span
-      className={`font-inter font-noto-sans-kr leading-[1.2] dark:text-white ${className}`}
+      className={`font-inter font-noto-sans-kr darkMode-animate leading-[1.2] dark:text-white ${className}`}
     >
       {children}
     </span>

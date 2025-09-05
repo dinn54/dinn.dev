@@ -40,10 +40,7 @@ const ProjectThumbnailLinks = ({
 
   return (
     <div className="flex w-full items-center justify-center">
-      <FloatingDock
-        mobileClassName="translate-y-20" // only for demo, remove for production
-        items={linkList}
-      />
+      <FloatingDock items={linkList} />
     </div>
   );
 };

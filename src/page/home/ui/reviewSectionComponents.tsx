@@ -18,9 +18,9 @@ export const ReviewCard = ({
 }) => {
   return (
     <div
-      className={`bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl shadow-md ${className}`}
+      className={`darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl shadow-md ${className}`}
     >
-      <div className="dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white shadow-md">
+      <div className="darkMode-animate dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white shadow-md">
         <div className="flex h-full w-full flex-col gap-1 p-3 px-6">
           <H6 className="!font-medium">
             {review.nickname.length >= 1
@@ -43,7 +43,7 @@ export const ReviewCard = ({
 
 export const ReviewCardSkeleton = () => {
   return (
-    <div className="bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl"></div>
+    <div className="bg-util-scrollbar-gray-light darkMode-animate dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl"></div>
   );
 };
 
@@ -137,6 +137,7 @@ export const ReviewModal = ({
     <form
       className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[20px]"
       onSubmit={async (e) => await onSubmit(e)}
+      autoComplete="off"
     >
       <Toast
         open={toastOpen}
@@ -152,18 +153,18 @@ export const ReviewModal = ({
             name="nickname"
             type="text"
             placeholder="이름"
-            className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark text-util placeholder:text-util-input-text w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
+            className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark text-util placeholder:text-util-input-text darkMode-animate w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
           <input
             name="email"
             type="text"
             placeholder="이메일"
-            className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark placeholder:text-util-input-text w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
+            className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark placeholder:text-util-input-text darkMode-animate w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
           <textarea
             name="contents"
             placeholder="메세지"
-            className="pc:h-[clamp(100px,18vh,169px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark placeholder:text-util-input-text h-[113px] w-full shrink-0 rounded-[10px] px-5 py-[14px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
+            className="pc:h-[clamp(100px,18vh,169px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark placeholder:text-util-input-text darkMode-animate h-[113px] w-full shrink-0 rounded-[10px] px-5 py-[14px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
 
           <LongButton
