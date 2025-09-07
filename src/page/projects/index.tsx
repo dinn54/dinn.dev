@@ -21,7 +21,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
         />
         <div className="pc:flex-row tab:mt-[8.25rem] pc:mt-[10rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] pc:items-start max:px-[calc((100vw-90.063rem)*0.2)] pc:pt-5 mt-[5.5rem] flex h-[calc(100%-5.5rem)] w-full">
           <div className="tab:flex-row tab:items-start tab: pc:gap-22 tab:gap-12 mt-4 flex h-full w-full flex-col items-center gap-6">
-            <div className="tab:w-[30%] tab:mt-0 relative flex h-full w-[50%] flex-col items-center gap-4">
+            <div className="tab:w-[30%] tab:min-w-[11rem] tab:mt-0 relative flex h-full w-[50%] flex-col items-center gap-4">
               <ImageClient
                 filePath={projectMetadata.imageUrl}
                 id="ThumbnailImage"
@@ -32,7 +32,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
               <ProjectThumbnailLinks links={projectMetadata?.contents.link} />
             </div>
 
-            <div className="h-ful pc:w-[70%] tab:gap-9 pc:gap-10 flex flex-col gap-8 py-5 pb-20">
+            <div className="pc:w-[70%] tab:gap-9 pc:gap-10 flex h-full flex-col gap-8 py-5 pb-20">
               <ProjectContentsContainer>
                 <H6F className="font-semibold">프로젝트명</H6F>
                 <B3F className="pl-1 !font-bold">

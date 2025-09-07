@@ -12,14 +12,14 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
   return (
     <div
       id={`project-card-${index}`}
-      className="tab:w-[85%] pc:w-[22rem] tab:max-w-[23rem] flex h-full w-[calc((100%-24vw))] shrink-0 flex-col py-0.5"
+      className="tab:w-[85%] pc:w-[22rem] tab:max-w-[23rem] flex h-full w-[calc((100%-24vw))] shrink-0 flex-col py-5"
     >
       <Link
         href={`/projects/${index + 1}`}
         className="flex h-full w-full flex-col"
       >
         <div
-          className="flex h-full w-full max-w-[91.2%] shrink-0 flex-col rounded-2xl shadow-lg transition-all hover:shadow-xl"
+          className="flex h-full w-full max-w-[91.2%] shrink-0 flex-col rounded-2xl shadow-md transition-all hover:shadow-lg"
           ref={detailLinkRef}
           onMouseOver={() => {
             setIsHover(true);
