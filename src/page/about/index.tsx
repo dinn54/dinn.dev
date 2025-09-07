@@ -30,7 +30,7 @@ const AboutPage = () => {
                 className="rounded-3xl object-cover object-center outline-black"
               />
             </div>
-            <div className="tab::w-full flex w-[80%]">
+            <div className="tab::w-full tab:w-[80%] flex w-[60%] items-center justify-center">
               <LinkTab name="LinkedIn" link="https://dinn.dev" />
               <LinkTab name="Github" link="https://github.com/dinn54" />
               <LinkTab name="Email" link="mailTo:joodinner@gmail.com" />

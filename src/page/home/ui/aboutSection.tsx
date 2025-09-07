@@ -30,7 +30,7 @@ const About = () => {
                 <ProfileImage />
                 <div className="flex w-full justify-center gap-[clamp(1rem,1.5vw,8rem)]">
                   <Link
-                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
+                    className="z-[1] aspect-square w-[2.1rem] self-start"
                     href="https://dinn.dev"
                     target="_blank"
                     title="링크드인"
@@ -41,7 +41,7 @@ const About = () => {
                     />
                   </Link>
                   <Link
-                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
+                    className="z-[1] aspect-square w-[2.1rem] self-start"
                     href="https://github.com/dinn54"
                     target="_blank"
                     title="깃허브"
@@ -52,7 +52,7 @@ const About = () => {
                     />
                   </Link>
                   <Link
-                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
+                    className="z-[1] aspect-square w-[2.1rem] self-start"
                     target="_blank"
                     href={"mailTo:joodinner@gmail.com"}
                     title="이메일"
@@ -63,7 +63,7 @@ const About = () => {
                     />
                   </Link>
                   <Link
-                    className="tab:w-[2rem] pc:w-[2rem] z-[1] aspect-square w-[2.3rem] self-start"
+                    className="z-[1] aspect-square w-[2.1rem] self-start"
                     target="_blank"
                     href={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
                     title="이력서"

@@ -33,6 +33,21 @@ const ImageClient = ({
     }
   }, [isLoaded]);
 
+  useEffect(() => {
+    const preloadHref = getStorageLink(filePath) ?? defaultImage;
+
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
+    link.href = preloadHref;
+
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, [filePath, defaultImage]);
+
   const outlineColor = darkMode ? "#636363" : "#e0e0e0";
 
   return (

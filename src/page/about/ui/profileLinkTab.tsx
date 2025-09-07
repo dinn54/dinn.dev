@@ -51,7 +51,7 @@ export const LinkTab = ({ name, link }: { name: string; link: string }) => {
       href={link}
       target="_blank"
       title={getTitle(name)}
-      className="tab:h-[2rem] pc:h-[2.5rem] mx-auto flex h-[1.5rem] w-fit max-w-1/3 items-start justify-center hover:cursor-default"
+      className="tab:h-[2.8rem] mx-auto flex h-[2.4rem] w-fit max-w-1/4 hover:cursor-default"
     >
       <div className="tab:gap-1 flex h-full w-auto items-center justify-center gap-0.5 p-2 hover:cursor-pointer">
         {getIcon(name)}
