@@ -17,6 +17,8 @@ export const BaseButton = ({
   children,
   className,
   rounded,
+  nonBorder,
+  square,
   ...props
 }: CustonButton) => {
   const colorMapping = {
@@ -29,7 +31,7 @@ export const BaseButton = ({
 
   return (
     <Button
-      className={`text-p18 h-p44 tab:h-p47 pc:h-p50 tracking-mp5 darkMode-animate hover:cursor-pointer ${rounded ? rounded : "rounded-p12"} ${colorMapping[color]} ${className}`}
+      className={`text-p18 h-p44 tab:h-p47 pc:h-p50 tracking-mp5 darkMode-animate hover:cursor-pointer ${rounded ? rounded : "rounded-p12"} ${colorMapping[color]} ${className} ${nonBorder ? "border-inside-none" : ""} ${square ? "!w-p44 tab:!w-p47 pc:!w-p50" : ""}`}
       {...props}
     >
       {children}

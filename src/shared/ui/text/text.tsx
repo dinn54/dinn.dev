@@ -278,9 +278,7 @@ export const H6 = ({
   className?: string;
 }) => {
   return (
-    <Text
-      className={`text-[clamp(1.125rem,2vw,1.25rem)] font-bold ${className}`}
-    >
+    <Text className={`text-[clamp(0.9rem,2vw,1.25rem)] font-bold ${className}`}>
       {children}
     </Text>
   );
@@ -439,7 +437,7 @@ export const B5 = ({
 }) => {
   return (
     <Text
-      className={`text-[clamp(0.5rem,2.9vw,0.675rem)] font-medium ${className}`}
+      className={`text-[clamp(0.5rem,2.9vw,0.9rem)] font-medium ${className}`}
     >
       {children}
     </Text>
@@ -456,6 +454,22 @@ export const B5F = ({
   return (
     <Text
       className={`text-p8 tab:text-p9 pc:text-p10 font-medium ${className}`}
+    >
+      {children}
+    </Text>
+  );
+};
+
+export const B6 = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <Text
+      className={`text-[clamp(0.4rem,2.5vw,0.7rem)] font-medium ${className}`}
     >
       {children}
     </Text>

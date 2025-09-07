@@ -30,47 +30,47 @@ const About = () => {
                 <ProfileImage />
                 <div className="flex w-full justify-center gap-[clamp(1rem,1.5vw,8rem)]">
                   <Link
-                    className="z-[1] aspect-square w-[2.1rem] self-start"
+                    className="z-[1] grid aspect-square w-[2.1rem]"
                     href="https://dinn.dev"
                     target="_blank"
                     title="링크드인"
                   >
                     <FaLinkedin
                       size={"75%"}
-                      className="darkMode-animate text-black dark:text-white"
+                      className="darkMode-animate place-self-center text-black dark:text-white"
                     />
                   </Link>
                   <Link
-                    className="z-[1] aspect-square w-[2.1rem] self-start"
+                    className="z-[1] grid aspect-square w-[2.1rem]"
                     href="https://github.com/dinn54"
                     target="_blank"
                     title="깃허브"
                   >
                     <FaGithub
                       size={"75%"}
-                      className="darkMode-animate text-black dark:text-white"
+                      className="darkMode-animate place-self-center text-black dark:text-white"
                     />
                   </Link>
                   <Link
-                    className="z-[1] aspect-square w-[2.1rem] self-start"
+                    className="z-[1] grid aspect-square w-[2.1rem]"
                     target="_blank"
                     href={"mailTo:joodinner@gmail.com"}
                     title="이메일"
                   >
                     <IoMailOutline
                       size={"75%"}
-                      className="darkMode-animate text-black dark:text-white"
+                      className="darkMode-animate place-self-center text-black dark:text-white"
                     />
                   </Link>
                   <Link
-                    className="z-[1] aspect-square w-[2.1rem] self-start"
+                    className="z-[1] grid aspect-square w-[2.1rem]"
                     target="_blank"
                     href={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
                     title="이력서"
                   >
                     <LuNotebook
                       size={"75%"}
-                      className="darkMode-animate text-black dark:text-white"
+                      className="darkMode-animate place-self-center text-black dark:text-white"
                     />
                   </Link>
                 </div>

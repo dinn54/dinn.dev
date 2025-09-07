@@ -10,7 +10,6 @@ export const ProfileImage = () => {
 
   useEffect(() => {
     if (profileImageRef.current) {
-      console.log("isRealMyPicture changed:", isRealMyPicture); // 디버깅용
       profileImageRef.current.style.backgroundColor = "transparent";
 
       animate(profileImageRef.current, {

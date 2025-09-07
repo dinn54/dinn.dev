@@ -188,7 +188,6 @@ const Review = () => {
 
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
 
-  console.log("reviews", reviews);
   return (
     <PageContainer
       id="review-section"
@@ -199,19 +198,19 @@ const Review = () => {
           title="Review"
           color="bg-review-light dark:bg-review-dark"
         />
-        <div className="tab:mt-[5.75rem] pc:mt-[8rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:px-0 tab:py-2 z-[100] mt-[5.5rem] flex h-[calc(100%-6rem)] w-full shrink-0 justify-center">
+        <div className="tab:mt-[5.75rem] pc:mt-[8rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] tab:px-0 tab:py-2 z-[100] mt-[5.5rem] flex h-[calc(100%-6rem)] w-full max-w-[100vw] shrink-0 justify-center">
           <div className="pc:h-[calc(100%-13rem)] pc:flex-row tab:px-[10%] pc:px-[6%] pc:mt-20 flex h-[calc(100%-9rem)] w-full shrink-0 flex-col items-center gap-5 px-2 md:gap-10">
-            <div className="tab:mt-10 pc:mt-0 mt-0 flex h-fit w-full">
+            <div className="tab:mt-10 pc:-mt-2 tab:h-fit mt-4 flex h-full w-full">
               <div
                 ref={scrollbarContainerRef}
-                className="tab:h-[clamp(18rem,48vh,40rem)] pc:h-[clamp(22rem,60vh,40rem)] darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[24rem] w-4"
+                className="tab:h-[clamp(18rem,48vh,40rem)] pc:h-[clamp(22rem,60vh,40rem)] darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-full w-4"
               >
                 <div
                   ref={scrollMoveBarRef}
                   className="bg-util-scrollbar-blue-light darkMode-animate dark:bg-util-scrollbar-blue-dark absolute flex h-[3rem] w-full"
                 />
               </div>
-              <div className="tab:max-h-[clamp(18rem,48vh,40rem)] pc:max-h-[clamp(22rem,60vh,40rem)] pointer-events-none flex max-h-[24rem] w-full flex-col overflow-y-hidden">
+              <div className="tab:max-h-[clamp(18rem,48vh,40rem)] pc:max-h-[clamp(22rem,60vh,40rem)] pointer-events-none flex w-full flex-col overflow-y-hidden">
                 <div
                   ref={scrollTargetRef}
                   className="scrollbar-hide pointer-events-auto flex h-full w-full flex-col gap-4 overflow-y-auto px-4 py-3"

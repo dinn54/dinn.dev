@@ -100,6 +100,10 @@ const config: Config = {
         p194: "12.125rem", // 194px
         p180: "11.25rem", // 180px
         p166: "10.375rem", // 166px
+        p38: "2.375rem", // 38px
+        p50: "3.125rem", // 50px
+        p47: "2.9375rem", // 47px
+        p44: "2.75rem", // 44px
       },
       height: {
         p38: "2.375rem", // 38px

@@ -1,5 +1,5 @@
 "use client";
-import { B4, H5, H6 } from "@/shared/ui/text/text";
+import { B5, H5, H6 } from "@/shared/ui/text/text";
 import { useEffect, useState, useTransition } from "react";
 import { BaseButton, LongButton } from "@/shared/ui/button";
 import { UserReview } from "@/shared/model/dbTypes";
@@ -18,23 +18,32 @@ export const ReviewCard = ({
 }) => {
   return (
     <div
-      className={`darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl shadow-md ${className}`}
+      className={`darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[clamp(5rem,11vh,7.5rem)] w-full shrink-0 rounded-2xl shadow-md ${className}`}
     >
       <div className="darkMode-animate dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white shadow-md">
-        <div className="flex h-full w-full flex-col gap-1 p-3 px-6">
+        <div className="tab:gap-1.5 flex h-full w-full flex-col gap-1 p-3 px-6 pt-4">
           <H6 className="!font-medium">
             {review.nickname.length >= 1
               ? review.nickname
               : "User" + makeRandomNumber(Object.values(review).join())}
           </H6>
-          <B4 className="line-clamp-2 truncate pl-1 !font-normal whitespace-pre-line">
+          <B5
+            className={`line-clamp-2 truncate pl-1 !font-normal whitespace-pre-line`}
+          >
             {review.contents} {review.contents}
             {review.contents}
+            {review.contents} {review.contents}
+            {review.contents}
+            {review.contents} {review.contents}
+            {review.contents} {review.contents} {review.contents}
+            {review.contents}
+            {review.contents} {review.contents}
             {review.contents} {review.contents} {review.contents}
             {review.contents}
             {review.contents}
             {review.contents}
-          </B4>
+            {review.contents}
+          </B5>
         </div>
       </div>
     </div>
@@ -43,7 +52,7 @@ export const ReviewCard = ({
 
 export const ReviewCardSkeleton = () => {
   return (
-    <div className="bg-util-scrollbar-gray-light darkMode-animate dark:bg-util-scrollbar-gray-dark relative flex h-[6rem] w-full shrink-0 rounded-2xl"></div>
+    <div className="bg-util-scrollbar-gray-light darkMode-animate dark:bg-util-scrollbar-gray-dark relative flex h-[clamp(5rem,10vh,8rem)] w-full shrink-0 rounded-2xl"></div>
   );
 };
 
@@ -178,6 +187,7 @@ export const ReviewModal = ({
           </LongButton>
 
           <BaseButton
+            type="button"
             color="none"
             rounded="rounded-p24"
             className="border-inside-none pc:hidden mt-2"

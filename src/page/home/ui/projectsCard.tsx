@@ -1,5 +1,5 @@
 "use client";
-import { B3, B4, B5, H6 } from "@/shared/ui/text/text";
+import { B5, B6, H6 } from "@/shared/ui/text/text";
 import { useRef, useState } from "react";
 import { ProjectData } from "./projectsSection";
 import Link from "next/link";
@@ -12,7 +12,7 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
   return (
     <div
       id={`project-card-${index}`}
-      className="tab:w-[75%] pc:w-[22rem] tab:max-w-[22rem] flex h-full w-[calc((100%-24vw))] shrink-0 flex-col py-0.5"
+      className="tab:w-[85%] pc:w-[22rem] tab:max-w-[23rem] flex h-full w-[calc((100%-24vw))] shrink-0 flex-col py-0.5"
     >
       <Link
         href={`/projects/${index + 1}`}
@@ -39,26 +39,26 @@ const ProjectCard = ({ index, data }: { index: number; data: ProjectData }) => {
               className={`darkMode-animate absolute top-0 left-0 h-full w-full rounded-t-2xl ${isHover ? "bg-none" : "bg-black/40 dark:bg-black/30"}`}
             />
           </div>
-          <div className="darkMode-animate dark:bg-util-container-bg-dark flex h-2/5 w-full flex-col rounded-b-2xl bg-white px-6 pt-6 pb-2">
-            <div className="flex w-full">
-              <H6 className="">{data.title}</H6>
-            </div>
-            <div className="mt-2 flex w-full px-0.5">
-              <B4 className="line-clamp-3 min-h-[3.2rem]">
-                {data.description}
-              </B4>
-            </div>
-            <div className="z-0 mt-2 flex w-full">
-              <div className="bg-util-tech-stack-orange-bg darkMode-animate dark:bg-util-tech-stack-orange-bg-dark flex rounded-3xl px-3 py-1">
-                <B5 className="!text-util-tech-stack-orange-text">React</B5>
+          <div className="darkMode-animate dark:bg-util-container-bg-dark tab:pt-6 tab:px-6 flex h-2/5 w-full flex-col rounded-b-2xl bg-white px-5 pt-4 pb-2">
+            <div className="flex h-full w-full flex-col overflow-hidden">
+              <div className="flex w-full">
+                <H6 className="!font-semibold">{data.title}</H6>
+              </div>
+              <div className="flex w-full px-0.5 pt-2">
+                <B5 className="line-clamp-3 min-h-[2.5rem] truncate whitespace-pre-wrap">
+                  {data.description}
+                </B5>
+              </div>
+              <div className="tab:pt-3 flex w-full pt-2">
+                <div className="bg-util-tech-stack-orange-bg darkMode-animate dark:bg-util-tech-stack-orange-bg-dark tab:px-3 flex rounded-3xl px-2 py-1">
+                  <B6 className="!text-util-tech-stack-orange-text">React</B6>
+                </div>
               </div>
             </div>
             <div
               className={`mt-1 flex w-full justify-end text-black decoration-[1px] underline-offset-4 dark:text-white ${isHover ? "underline" : ""}`}
             >
-              <div className="px-[3%] py-[2%]">
-                <B3 className="whitespace-nowrap">{"자세히 보기"}</B3>
-              </div>
+              <B5 className="whitespace-nowrap">{"자세히 보기"}</B5>
             </div>
           </div>
         </div>
