@@ -7,15 +7,46 @@ import { writeReview } from "../model/writeReview";
 import { makeRandomNumber } from "@/shared/model/makeRandom";
 import { formSchema } from "@/features/textValidation/model/emailValidate";
 import dynamic from "next/dynamic";
+import tippy, { followCursor } from "tippy.js";
+
 const Toast = dynamic(() => import("@/shared/ui/toast/toast"), { ssr: false });
 
 export const ReviewCard = ({
+  id,
   review,
   className,
 }: {
+  id: string;
   review: UserReview;
   className?: string;
 }) => {
+  useEffect(() => {
+    const descriptionEl = document.getElementById(id);
+    if (descriptionEl) {
+      const tooltipContent = document.createElement("div");
+      tooltipContent.style.maxWidth = "48vw";
+      tooltipContent.style.whiteSpace = "pre-wrap";
+      tooltipContent.textContent = review.contents;
+
+      const style = getComputedStyle(descriptionEl);
+      const lineHeight = parseFloat(style.lineHeight);
+      const height = descriptionEl.getBoundingClientRect().height;
+      const lines = Math.floor(height / lineHeight) + 1;
+
+      if (lines === 2) {
+        tippy(descriptionEl, {
+          theme: "rounded",
+          hideOnClick: true,
+          allowHTML: true,
+          content: tooltipContent,
+          followCursor: true,
+          plugins: [followCursor],
+          maxWidth: "50vw",
+        });
+      }
+    }
+  }, []);
+
   return (
     <div
       className={`darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[clamp(5rem,11vh,7.5rem)] w-full shrink-0 rounded-2xl shadow-md ${className}`}
@@ -27,23 +58,24 @@ export const ReviewCard = ({
               ? review.nickname
               : "User" + makeRandomNumber(Object.values(review).join())}
           </H6>
-          <B5
-            className={`line-clamp-2 truncate pl-1 !font-normal whitespace-pre-line`}
-          >
-            {review.contents} {review.contents}
-            {review.contents}
-            {review.contents} {review.contents}
-            {review.contents}
-            {review.contents} {review.contents}
-            {review.contents} {review.contents} {review.contents}
-            {review.contents}
-            {review.contents} {review.contents}
-            {review.contents} {review.contents} {review.contents}
-            {review.contents}
-            {review.contents}
-            {review.contents}
-            {review.contents}
-          </B5>
+          <div id={id}>
+            <B5
+              className={`line-clamp-2 pl-1 !font-normal text-ellipsis whitespace-pre-line`}
+            >
+              {review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents +
+                review.contents}
+            </B5>
+          </div>
         </div>
       </div>
     </div>

@@ -217,12 +217,17 @@ const Review = () => {
                 >
                   {addReviewRow && (
                     <ReviewCard
+                      id={"review-card-new"}
                       review={addReviewRow}
                       className="animate-fade-down-slower"
                     />
                   )}
                   {reviews.map((review, index) => (
-                    <ReviewCard key={index} review={review} />
+                    <ReviewCard
+                      id={`review-card-${index + 1}`}
+                      key={index}
+                      review={review}
+                    />
                   ))}
                   {reviews.length < 5 &&
                     Array.from({
