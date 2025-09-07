@@ -16,9 +16,7 @@ const NextImageClient = ({
 }: NextImageClientProps) => {
   const [src, setSrc] = useState(getStorageLink(filePath) ?? defaultImage);
 
-  return (
-    <Image priority src={src} onError={() => setSrc(defaultImage)} {...props} />
-  );
+  return <Image src={src} onError={() => setSrc(defaultImage)} {...props} />;
 };
 
 export default NextImageClient;
