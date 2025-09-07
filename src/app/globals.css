@@ -246,7 +246,7 @@
     animation: fadeDown 2s ease forwards;
   }
   .animate-linear {
-    transition: all 0.3s linear
+    transition: all 0.1s linear
   }
 
   @keyframes slideUp {

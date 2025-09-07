@@ -49,7 +49,7 @@ export const ReviewCard = ({
 
   return (
     <div
-      className={`darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark relative flex h-[clamp(5rem,11vh,7.5rem)] w-full shrink-0 rounded-2xl shadow-md ${className}`}
+      className={`darkMode-animate bg-util-scrollbar-gray-light dark:bg-util-scrollbar-gray-dark pc:h-[6rem] tab:h-[clamp(6rem,11vh,7.5rem)] relative flex h-[clamp(5.5rem,11vh,7.5rem)] w-full shrink-0 rounded-2xl shadow-md ${className}`}
     >
       <div className="darkMode-animate dark:bg-util-container-bg-dark absolute -top-1.5 -left-1.5 flex h-full w-full rounded-2xl bg-white shadow-md">
         <div className="tab:gap-1.5 flex h-full w-full flex-col gap-1 p-3 px-6 pt-4">
@@ -62,18 +62,7 @@ export const ReviewCard = ({
             <B5
               className={`line-clamp-2 pl-1 !font-normal text-ellipsis whitespace-pre-line`}
             >
-              {review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents +
-                review.contents}
+              {review.contents}
             </B5>
           </div>
         </div>
@@ -84,7 +73,7 @@ export const ReviewCard = ({
 
 export const ReviewCardSkeleton = () => {
   return (
-    <div className="bg-util-scrollbar-gray-light darkMode-animate dark:bg-util-scrollbar-gray-dark relative flex h-[clamp(5rem,10vh,8rem)] w-full shrink-0 rounded-2xl"></div>
+    <div className="bg-util-scrollbar-gray-light darkMode-animate dark:bg-util-scrollbar-gray-dark pc:h-[6rem] relative flex h-[clamp(5rem,11vh,7.5rem)] w-full shrink-0 rounded-2xl"></div>
   );
 };
 

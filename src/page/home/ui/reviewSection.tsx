@@ -29,14 +29,8 @@ const Review = () => {
         console.log(e);
       });
   }, []);
+
   useEffect(() => {
-    //  스크롤 타겟의 갯수 계산 (reviews.length)
-    //  스크롤 컨테이너에서 이동바의 크기를 전체 스크롤 컨테이너를 타겟의 갯수로 나누어 계산
-    //  스크롤 이동바의 현재 비율만큼 스크롤 타겟의 높이를 이동
-
-    // 스크롤 타겟이 스크롤 컨테이너의 높이랑 같거나 작으면 스크롤 무브 컨테이너의 크기는 스크롤 컨테이너 전체의 크기를 가짐
-    // 만약 스크롤 타겟이 더 크면, 리뷰 갯수 만큼 스크롤 컨테이너 높이를 나누어 스크롤 무브 컨테이너의 크기를 계산
-
     const moveEl = scrollMoveBarRef.current;
     const containerEl = scrollbarContainerRef.current;
     const targetEl = scrollTargetRef.current;
@@ -58,7 +52,6 @@ const Review = () => {
     const observer = new ResizeObserver(() => {
       updateScrollbarSize();
     });
-    // observer.observe(reviewSectionEl);
     observer.observe(moveEl);
     observer.observe(containerEl);
     observer.observe(targetEl);
@@ -67,9 +60,9 @@ const Review = () => {
     targetEl.addEventListener("wheel", (e) => {
       e.stopPropagation();
     });
+
     return () => {
       observer.disconnect();
-
       targetEl.removeEventListener("wheel", (e) => {
         e.stopPropagation();
       });
@@ -90,7 +83,6 @@ const Review = () => {
       isMouseDown = true;
       startY = e.clientY;
 
-      // 현재 top 값 파싱 (px 제거)
       const computedTop = parseFloat(getComputedStyle(moveEl).top) || 0;
       startTop = computedTop;
     };
@@ -137,35 +129,56 @@ const Review = () => {
     if (!targetEl || !moveEl || !containerEl) return;
 
     let isAnimating = false;
+    const rafId: number | null = null;
 
-    const syncScroll = (e: WheelEvent) => {
+    // 스크롤바 위치 업데이트 함수
+    const updateScrollbarPosition = () => {
+      const moveElHeight = moveEl.offsetHeight;
+      const containerElHeight = containerEl.offsetHeight;
+      const maxTop = containerElHeight - moveElHeight;
+
+      const scrollMax = targetEl.scrollHeight - targetEl.clientHeight;
+      const scrollRatio = scrollMax > 0 ? targetEl.scrollTop / scrollMax : 0;
+      const newTop = scrollRatio * maxTop;
+
+      moveEl.style.top = `${newTop}px`;
+    };
+
+    // wheel 이벤트 핸들러
+    const syncWheelScroll = (e: WheelEvent) => {
       if (isAnimating) {
         e.preventDefault();
         e.stopPropagation();
         return;
       }
+
+      e.preventDefault(); // 브라우저 기본 스크롤 방지
       e.stopPropagation();
 
-      const moveElHeight = moveEl.offsetHeight;
-      const containerElHeight = containerEl.offsetHeight;
-      const maxTop = containerElHeight - moveElHeight;
-      const minTop = 0;
-
-      // 현재 bar 위치
-      const currentTop = moveEl.offsetTop;
-      const newTop = currentTop + e.deltaY;
-
-      // bar의 top 값 보정
-      const clampedTop = Math.max(minTop, Math.min(maxTop, newTop));
-      moveEl.style.top = `${clampedTop}px`;
-
-      // scrollTop도 동기화
+      // 현재 스크롤 위치 기준으로 새로운 스크롤 위치 계산
       const scrollMax = targetEl.scrollHeight - targetEl.clientHeight;
-      const scrollTop = (clampedTop / maxTop) * scrollMax;
-      targetEl.scrollTop = scrollTop;
+      const currentScrollTop = targetEl.scrollTop;
+      const newScrollTop = Math.max(
+        0,
+        Math.min(scrollMax, currentScrollTop + e.deltaY),
+      );
+
+      // 스크롤 위치 직접 설정 (smooth 애니메이션 제거)
+      targetEl.scrollTop = newScrollTop;
+
+      // 스크롤바 위치 업데이트
+      updateScrollbarPosition();
     };
 
-    targetEl.addEventListener("wheel", syncScroll);
+    // scroll 이벤트 핸들러 (모바일 터치 스크롤용)
+    const syncTouchScroll = () => {
+      if (isAnimating) return;
+      updateScrollbarPosition();
+    };
+
+    // 이벤트 리스너 등록
+    targetEl.addEventListener("wheel", syncWheelScroll);
+    targetEl.addEventListener("scroll", syncTouchScroll);
 
     // add Review 애니메이션
     let timeout: number | NodeJS.Timeout;
@@ -180,8 +193,13 @@ const Review = () => {
         isAnimating = false;
       }, 3000);
     }
+
     return () => {
-      targetEl.removeEventListener("wheel", syncScroll);
+      targetEl.removeEventListener("wheel", syncWheelScroll);
+      targetEl.removeEventListener("scroll", syncTouchScroll);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
       clearTimeout(timeout);
     };
   }, [addReviewRow]);
@@ -207,13 +225,13 @@ const Review = () => {
               >
                 <div
                   ref={scrollMoveBarRef}
-                  className="bg-util-scrollbar-blue-light darkMode-animate dark:bg-util-scrollbar-blue-dark animate-linear absolute flex h-[3rem] w-full"
+                  className="bg-util-scrollbar-blue-light darkMode-animate dark:bg-util-scrollbar-blue-dark absolute flex h-[3rem] w-full scroll-smooth"
                 />
               </div>
               <div className="tab:max-h-[clamp(18rem,48vh,40rem)] pc:max-h-[clamp(22rem,60vh,40rem)] pointer-events-none flex w-full flex-col overflow-y-hidden">
                 <div
                   ref={scrollTargetRef}
-                  className="scrollbar-hide pointer-events-auto flex h-full w-full flex-col gap-4 overflow-y-auto px-4 py-3"
+                  className="scrollbar-hide pointer-events-auto flex h-full w-full flex-col gap-4 overflow-y-auto scroll-smooth px-4 py-3"
                 >
                   {addReviewRow && (
                     <ReviewCard
