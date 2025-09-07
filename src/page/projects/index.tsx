@@ -143,38 +143,34 @@ const Project = ({ projectNum }: { projectNum: string }) => {
               </ProjectContentsContainer>
               <ProjectContentsContainer>
                 <H6F className="font-semibold">배포 정보</H6F>
-                <div className="pc:gap-4 tab:gap-2 flex items-stretch gap-1.5">
+                <div className="pc:gap-4 tab:gap-2 flex items-center gap-1.5">
                   <B4F className="pl-1">🚀 배포 사이트:</B4F>
                   <Link
                     href={projectMetadata?.contents.link.deploy[0] ?? ""}
                     target="_blank"
-                    className="relative flex items-stretch gap-0.5 hover:text-blue-500 hover:underline"
+                    className="relative flex items-center hover:text-blue-500 hover:underline"
                   >
-                    <B4F className="truncate">
+                    <B4F className="flex items-center">
                       {projectMetadata?.contents.link.deploy[0]
                         .split("/")
                         .pop()}
+                      <ExternalLinkIcon className="ml-0.5 inline-block aspect-square w-[1em]" />
                     </B4F>
-                    <div className="relative">
-                      <ExternalLinkIcon className="absolute bottom-[-4px] aspect-square w-[1.2em]" />
-                    </div>
                   </Link>
                 </div>
-                <div className="pc:gap-4 tab:gap-2 mt-1 flex items-stretch gap-1.5">
+                <div className="pc:gap-4 tab:gap-2 flex items-center gap-1.5">
                   <B4F className="pl-1">🔗 Github Link:</B4F>
                   <Link
                     href={projectMetadata?.contents.link.github ?? ""}
                     target="_blank"
-                    className="relative flex items-stretch gap-0.5 hover:text-blue-500 hover:underline"
+                    className="relative flex items-center gap-0.5 hover:text-blue-500 hover:underline"
                   >
-                    <B4F>
+                    <B4F className="flex items-center">
                       {projectMetadata?.contents.link.github
                         .split("github.com/")
                         .pop()}
+                      <ExternalLinkIcon className="ml-0.5 inline-block aspect-square w-[1em]" />
                     </B4F>
-                    <div className="relative">
-                      <ExternalLinkIcon className="absolute bottom-[-4px] aspect-square w-[1.2em]" />
-                    </div>
                   </Link>
                 </div>
               </ProjectContentsContainer>
