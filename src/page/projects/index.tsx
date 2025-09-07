@@ -148,9 +148,9 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                   <Link
                     href={projectMetadata?.contents.link.deploy[0] ?? ""}
                     target="_blank"
-                    className="relative flex items-center hover:text-blue-500 hover:underline"
+                    className="flex"
                   >
-                    <B4F className="flex items-center">
+                    <B4F className="flex items-center hover:text-blue-500 hover:underline hover:transition-none dark:hover:text-blue-500">
                       {projectMetadata?.contents.link.deploy[0]
                         .split("/")
                         .pop()}
@@ -163,9 +163,9 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                   <Link
                     href={projectMetadata?.contents.link.github ?? ""}
                     target="_blank"
-                    className="relative flex items-center gap-0.5 hover:text-blue-500 hover:underline"
+                    className="flex"
                   >
-                    <B4F className="flex items-center">
+                    <B4F className="flex items-center hover:text-blue-500 hover:underline hover:transition-none dark:hover:text-blue-500">
                       {projectMetadata?.contents.link.github
                         .split("github.com/")
                         .pop()}
