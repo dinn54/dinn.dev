@@ -207,7 +207,7 @@ const Review = () => {
               >
                 <div
                   ref={scrollMoveBarRef}
-                  className="bg-util-scrollbar-blue-light darkMode-animate dark:bg-util-scrollbar-blue-dark absolute flex h-[3rem] w-full"
+                  className="bg-util-scrollbar-blue-light darkMode-animate dark:bg-util-scrollbar-blue-dark animate-linear absolute flex h-[3rem] w-full"
                 />
               </div>
               <div className="tab:max-h-[clamp(18rem,48vh,40rem)] pc:max-h-[clamp(22rem,60vh,40rem)] pointer-events-none flex w-full flex-col overflow-y-hidden">

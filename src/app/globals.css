@@ -245,6 +245,9 @@
   .animate-fade-down-slow {
     animation: fadeDown 2s ease forwards;
   }
+  .animate-linear {
+    transition: all 0.3s linear
+  }
 
   @keyframes slideUp {
     from {

@@ -26,7 +26,7 @@ const AboutPage = () => {
               <NextImageClient
                 filePath="/profilePicture3.png"
                 alt="about-me"
-                fill
+                sizes="100%"
                 className="rounded-3xl object-cover object-center outline-black"
               />
             </div>
