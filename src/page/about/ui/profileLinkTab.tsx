@@ -5,6 +5,7 @@ import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
 
 import Link from "next/link";
+import { AboutIconHoverDescription } from "@/page/home/ui/aboutSectionComponents";
 
 export const LinkTab = ({ name, link }: { name: string; link: string }) => {
   const getTitle = (name: string) => {
@@ -51,10 +52,14 @@ export const LinkTab = ({ name, link }: { name: string; link: string }) => {
       href={link}
       target="_blank"
       title={getTitle(name)}
-      className="tab:h-[2.8rem] mx-auto flex h-[2.4rem] w-fit max-w-1/4 hover:cursor-default"
+      className="tab:h-[2.8rem] group mx-auto flex h-[2.4rem] w-fit max-w-1/4 transition-transform duration-150 hover:scale-110 hover:cursor-default"
     >
       <div className="tab:gap-1 flex h-full w-auto items-center justify-center gap-0.5 p-2 hover:cursor-pointer">
         {getIcon(name)}
+        <AboutIconHoverDescription
+          name={getTitle(name)}
+          className="!-top-[45%]"
+        />
       </div>
     </Link>
   );

@@ -51,3 +51,21 @@ export const ProfileImage = () => {
     </div>
   );
 };
+
+export const AboutIconHoverDescription = ({
+  name,
+  className,
+}: {
+  name: string;
+  className?: string;
+}) => {
+  return (
+    <div
+      className={`absolute -top-[60%] ${className} left-1/2 hidden -translate-x-1/2 rounded-md bg-gray-50 px-1 py-[1px] align-middle outline outline-gray-200 group-hover:grid dark:outline-gray-100`}
+    >
+      <span className="text-p9 text-foreground dark:text-foreground pt-0.5 text-center whitespace-nowrap">
+        {name}
+      </span>
+    </div>
+  );
+};

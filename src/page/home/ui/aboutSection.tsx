@@ -1,6 +1,9 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
 import PageContainer from "./page_container";
-import { ProfileImage } from "./aboutSectionComponents";
+import {
+  AboutIconHoverDescription,
+  ProfileImage,
+} from "./aboutSectionComponents";
 import { LuNotebook } from "react-icons/lu";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
@@ -30,7 +33,7 @@ const About = () => {
                 <ProfileImage />
                 <div className="flex w-full justify-center gap-[clamp(1rem,1.5vw,8rem)]">
                   <Link
-                    className="z-[1] grid aspect-square w-[2.1rem]"
+                    className="group z-[1] grid aspect-square w-[2.1rem] transition-transform duration-150 hover:scale-110"
                     href="https://dinn.dev"
                     target="_blank"
                     title="링크드인"
@@ -39,9 +42,10 @@ const About = () => {
                       size={"75%"}
                       className="darkMode-animate place-self-center text-black dark:text-white"
                     />
+                    <AboutIconHoverDescription name="링크드인" />
                   </Link>
                   <Link
-                    className="z-[1] grid aspect-square w-[2.1rem]"
+                    className="group z-[1] grid aspect-square w-[2.1rem] transition-transform duration-150 hover:scale-110"
                     href="https://github.com/dinn54"
                     target="_blank"
                     title="깃허브"
@@ -50,9 +54,10 @@ const About = () => {
                       size={"75%"}
                       className="darkMode-animate place-self-center text-black dark:text-white"
                     />
+                    <AboutIconHoverDescription name="깃허브" />
                   </Link>
                   <Link
-                    className="z-[1] grid aspect-square w-[2.1rem]"
+                    className="group z-[1] grid aspect-square w-[2.1rem] transition-transform duration-150 hover:scale-110"
                     target="_blank"
                     href={"mailTo:joodinner@gmail.com"}
                     title="이메일"
@@ -61,9 +66,10 @@ const About = () => {
                       size={"75%"}
                       className="darkMode-animate place-self-center text-black dark:text-white"
                     />
+                    <AboutIconHoverDescription name="이메일" />
                   </Link>
                   <Link
-                    className="z-[1] grid aspect-square w-[2.1rem]"
+                    className="group z-[1] grid aspect-square w-[2.1rem] transition-transform duration-150 hover:scale-110"
                     target="_blank"
                     href={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
                     title="이력서"
@@ -72,6 +78,7 @@ const About = () => {
                       size={"75%"}
                       className="darkMode-animate place-self-center text-black dark:text-white"
                     />
+                    <AboutIconHoverDescription name="이력서" />
                   </Link>
                 </div>
               </div>
