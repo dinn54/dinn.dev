@@ -87,11 +87,11 @@ const About = () => {
               <div className="tab:flex hidden h-full w-full flex-col justify-center gap-2 pl-[20%]">
                 <H4>#React</H4>
                 <H4>#Typescript</H4>
-                <H4>#디테일</H4>
+                <H4>#자동화</H4>
                 <H4>#최적화</H4>
                 <H4>#인터랙션</H4>
+                <H4>#블록체인</H4>
                 <H4>#커뮤니케이션</H4>
-                <H4>#Blockchain</H4>
               </div>
             </div>
             <div className="tab:pt-[2vh] pc:pt-1 tab:col-span-2 pc:col-span-8 tab:gap-[2vh] pc:gap-[calc(1vw+1vh)] flex h-full flex-col items-center justify-center gap-5 pt-4">
@@ -99,13 +99,14 @@ const About = () => {
                 <H3 weight="bold" className="text-[#52A61F]">
                   Introduce
                 </H3>
-                <B3 className="text-center">
-                  React, Typescript 기반의 UI 개발을 주로 하는 프론트엔드
-                  개발자입니다. 디테일한 UI와 사용자 중심의 인터페이스를
-                  구현합니다.비용 대비 성능이 최적화되는 방향으로 개발을
-                  진행합니다. 사용자와의 인터랙션으로 동작하는 웹을 구현할 수
-                  있습니다. 벡엔드와 디자인 등 다른 직무의 진행 방향과 의도를
-                  생각하며 커뮤니케이션하려고 노력합니다.
+                <B3 className="text-center whitespace-pre-line">
+                  React, Typescript 기반 2년차 프론트엔드 개발자 주정혁입니다.
+                  <br />
+                  <br /> 웹 클라이언트 서비스 개발과 i18n을 통한 국제화 서비스
+                  제공, 사내 관리 도 구 개발을 담당하였으며, 반응형 웹과 사용성
+                  좋은 UX를 제공하는 것을 추구 합니다. 24/7 CS 대응 및 사용자
+                  피드백 반영 과정을 통해 프로젝트 운영과 관리에 대해서도 경험을
+                  쌓았습니다.
                 </B3>
               </div>
               <Link href={"/about"}>
