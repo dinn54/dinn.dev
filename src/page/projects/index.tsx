@@ -158,7 +158,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                     </B4F>
                   </Link>
                 </div>
-                <div className="pc:gap-4 tab:gap-2 flex items-center gap-1.5">
+                <div className="pc:gap-4 tab:gap-2 flex items-center gap-1.5 pb-20">
                   <B4F className="pl-1">🔗 Github Link:</B4F>
                   <Link
                     href={projectMetadata?.contents.link.github ?? ""}
