@@ -32,26 +32,24 @@ export const projecstMetaData: ProjectMetaData[] = [
     name: "Studymate",
     imageUrl: "/study-mate-thumbnail.svg",
     contents: {
-      period: { startDate: "2025.02", endDate: "2025.08" },
+      period: { startDate: "2025.02", endDate: "2025.10" },
       person: "Frontend 2명, Backend 1명, Designer 1명",
       description:
         "Studymate는 개발자들을 위한 스터디 플랫폼입니다. 개발 역량 향상을 위한 문제 풀이 플랫폼입니다.",
       techStack: [
-        ["Next.js", "Typescript"],
-        ["Tailwind CSS", "Anime.js"],
+        ["Next.js", "React", "Typescript"],
+        ["TailwindCSS", "Anime.js"],
         ["Vercel", "Github Workflows"],
-        ["VS Code", "Cursor", "Figma"],
-        ["Git", "Jira", "Notion", "Gitbook"],
       ],
       features: [
         "구글 로그인",
-        "랜덤 문제 풀기",
+        "비밀번호 초기화 및 재설정",
         "카테고리별 문제 풀기",
-        "매일 활동 내역을 시각화하여 활동 기록을 확인하는 보드",
+        "활동 기록 보드",
         "풀이 이력 관리 및 오답 복습",
         "전체 사용자 랭킹과 내 순위를 확인하는 보드",
         "학습하는데 도움을 주는 상점 아이템 구매",
-        "관리자 페이지의 Markdown Text 미리 보기",
+        "문제 정보를 보기 위한 Markdown 뷰어",
       ],
       optimizations: [
         {

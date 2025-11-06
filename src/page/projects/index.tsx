@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ExternalLinkIcon } from "lucide-react";
 import ProjectThumbnailLinks from "./ui/projectThunbnailLinks";
 import ImageClient from "@/shared/ui/image/imageClient";
+import FeatureListToggle from "./ui/featureListToggle";
 
 const Project = ({ projectNum }: { projectNum: string }) => {
   const projectMetadata: ProjectMetaData | undefined =
@@ -70,15 +71,11 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                 </ul>
               </ProjectContentsContainer>
               <ProjectContentsContainer>
-                <H6F className="font-semibold">주요 기능</H6F>
-                <ul className="pc:space-y-1 list-inside list-none">
-                  {projectMetadata?.contents.features.map((feature, index) => (
-                    <li key={index} className="space-x-2 pl-1">
-                      <B4F>•</B4F>
-                      <B4F>{feature}</B4F>
-                    </li>
-                  ))}
-                </ul>
+                <H6F className="cursor-pointer font-semibold">기능 구현</H6F>
+
+                <FeatureListToggle
+                  featureData={projectMetadata.contents.features}
+                />
               </ProjectContentsContainer>
               <ProjectContentsContainer>
                 <H6F className="font-semibold">문제점 및 해결 방법</H6F>
