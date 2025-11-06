@@ -3,11 +3,10 @@ import PageContainer from "../home/ui/page_container";
 import { ProjectContentsContainer } from "./ui/projectContents";
 import { projecstMetaData, ProjectMetaData } from "./model/projectMetaData";
 import { B3F, B4F, H6F } from "@/shared/ui/text/text";
-import Link from "next/link";
-import { ExternalLinkIcon } from "lucide-react";
 import ProjectThumbnailLinks from "./ui/projectThunbnailLinks";
 import ImageClient from "@/shared/ui/image/imageClient";
 import FeatureListToggle from "./ui/featureListToggle";
+import ProjectExternalLinks from "./ui/externalLinks";
 
 const Project = ({ projectNum }: { projectNum: string }) => {
   const projectMetadata: ProjectMetaData | undefined =
@@ -72,10 +71,22 @@ const Project = ({ projectNum }: { projectNum: string }) => {
               </ProjectContentsContainer>
               <ProjectContentsContainer>
                 <H6F className="cursor-pointer font-semibold">기능 구현</H6F>
-
                 <FeatureListToggle
                   featureData={projectMetadata.contents.features}
                 />
+              </ProjectContentsContainer>
+              <ProjectContentsContainer>
+                <H6F className="cursor-pointer font-semibold">주요 기술</H6F>
+                <ul className="pc:space-y-1 list-inside list-none">
+                  {projectMetadata.contents.mainTechFeatures.map(
+                    (feature, index) => (
+                      <li key={index} className="space-x-2 pl-1">
+                        <B4F>•</B4F>
+                        <B4F>{feature}</B4F>
+                      </li>
+                    ),
+                  )}
+                </ul>
               </ProjectContentsContainer>
               <ProjectContentsContainer>
                 <H6F className="font-semibold">문제점 및 해결 방법</H6F>
@@ -139,37 +150,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                 </B4F>
               </ProjectContentsContainer>
               <ProjectContentsContainer>
-                <H6F className="font-semibold">배포 정보</H6F>
-                <div className="pc:gap-4 tab:gap-2 flex items-center gap-1.5">
-                  <B4F className="pl-1">🚀 배포 사이트:</B4F>
-                  <Link
-                    href={projectMetadata?.contents.link.deploy[0] ?? ""}
-                    target="_blank"
-                    className="flex"
-                  >
-                    <B4F className="flex items-center hover:text-blue-500 hover:underline hover:transition-none dark:hover:text-blue-500">
-                      {projectMetadata?.contents.link.deploy[0]
-                        .split("/")
-                        .pop()}
-                      <ExternalLinkIcon className="ml-0.5 inline-block aspect-square w-[1em]" />
-                    </B4F>
-                  </Link>
-                </div>
-                <div className="pc:gap-4 tab:gap-2 flex items-center gap-1.5 pb-20">
-                  <B4F className="pl-1">🔗 Github Link:</B4F>
-                  <Link
-                    href={projectMetadata?.contents.link.github ?? ""}
-                    target="_blank"
-                    className="flex"
-                  >
-                    <B4F className="flex items-center hover:text-blue-500 hover:underline hover:transition-none dark:hover:text-blue-500">
-                      {projectMetadata?.contents.link.github
-                        .split("github.com/")
-                        .pop()}
-                      <ExternalLinkIcon className="ml-0.5 inline-block aspect-square w-[1em]" />
-                    </B4F>
-                  </Link>
-                </div>
+                <ProjectExternalLinks projectMetadata={projectMetadata} />
               </ProjectContentsContainer>
             </div>
           </div>
