@@ -71,7 +71,7 @@ const About = () => {
                   <Link
                     className="group z-[1] grid aspect-square w-[2.1rem] transition-transform duration-150 hover:scale-110"
                     target="_blank"
-                    href={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
+                    href={getStorageLink("/dinn_resume_final.pdf") ?? "#"}
                     title="이력서"
                   >
                     <LuNotebook

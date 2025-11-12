@@ -36,7 +36,7 @@ const AboutPage = () => {
               <LinkTab name="Email" link="mailTo:joodinner@gmail.com" />
               <LinkTab
                 name="Resume"
-                link={getStorageLink("/dinn_resume_2506.pdf") ?? "#"}
+                link={getStorageLink("/dinn_resume_final.pdf") ?? "#"}
               />
             </div>
           </div>

@@ -55,14 +55,14 @@ export const AboutIntroduction = () => {
   return (
     <div className="pc:gap-3 flex w-full flex-col gap-2 pl-1">
       <H5F className="font-semibold">Introduction</H5F>
-      <B4F className="pl-1">
-        React, Typescript 기반 2년차 프론트엔드 개발자 주정혁입니다. <br />
-        <br />웹 클라이언트 서비스 개발과 i18n을 통한 국제화 서비스 제공, 사내
-        관리 도 구 개발을 담당하였으며, 반응형 웹과 사용성 좋은 UX를 제공하는
-        것을 추구 합니다. 팀원들과의 소통에서는 상호 존중을 바탕으로 상대방의
-        의도를 이해 하려 하며, 피드백에 대해서는 열린 마음으로 검토하면서 업무
-        생산성 개선을 위한 노력을 하고 있습니다. 24/7 CS 대응 및 사용자 피드백
-        반영 과정을 통해 프로젝트 운영과 관리에 대해서도 경험을 쌓았습니다.
+      <B4F className="pl-1 leading-[1.45] whitespace-pre-wrap">
+        {`  안녕하세요. 개발자 주정혁입니다.`}
+        <div className="h-2" />
+        {`  단순히 주어진 일을 처리하는 것이 아니라, 의미를 부여하고 더 좋은 개발 방법을 고민하며 프로덕트를 만들기 위해 노력합니다.`}
+        <div className="h-2" />
+        {`  다양한 포지션과의 원활한 협업이 곧 프로덕트 개선의 핵심이라고 생각합니다. 협업 과정에서 서로의 역할을 존중하며 소통하고, 그 안에서 함께 성장할 수 있는 긍정적인 시너지를 만들어내는 것을 중요하게 여깁니다.`}
+        <div className="h-2" />
+        {`  “사용자가 어떻게 쓰면 편하게 사용할 수 있을까?”라는 질문을 염두하며 설계 와 구현을 진행하며, 실제로 가치 있는 사용자 경험를 제공할 수 있는 개발을 지향합니다.`}
       </B4F>
     </div>
   );
@@ -76,24 +76,21 @@ export const AboutSkillsets = () => {
         <Depth1ListElement
           contents={["TypeScript", "JavaScript", "Solidity"]}
         />
+
         <Depth1ListElement contents={["React", "Next.js", "Expo"]} />
-        <Depth1ListElement contents={["HTML", "CSS", "TailwindCSS"]} />
+        <Depth1ListElement contents={["TailwindCSS"]} />
         <Depth1ListElement
           contents={["Tanstack Query", "Zustand", "Recoil", "Jotai"]}
         />
-        <Depth1ListElement contents={["Supabase", "Nest.js"]} />
-        <Depth1ListElement contents={["Vite", "Webpack"]} />
-        <Depth1ListElement contents={["ESLint", "Prettier", "Husky"]} />
+
+        <Depth1ListElement
+          contents={["Supabase", "Nest.js", "Vite", "Webpack"]}
+        />
         <Depth1ListElement
           contents={["Vercel", "Github Workflows", "Netlify", "AWS Amplify"]}
         />
 
-        <Depth1ListElement
-          contents={["Git", "Github", "VS Code, Cursor", "Remix IDE"]}
-        />
-        <Depth1ListElement
-          contents={["Jira", "Slack", "Figma", "Notion", "Gitbook"]}
-        />
+        <Depth1ListElement contents={["Git", "Github", "Jira", "Slack"]} />
       </ul>
     </div>
   );
@@ -132,7 +129,10 @@ export const AboutEducation = () => {
   return (
     <div className="flex w-full flex-col gap-3">
       <H5F className="font-semibold">Education</H5F>
-      <B3F className="pl-2">가톨릭대학교</B3F>
+      <B3F className="pl-2">가톨릭대학교(졸업)</B3F>
+      <B4F className="pl-4 whitespace-pre">
+        {"기간:  2019.03.04 ~ 2021.02.09"} <br />
+      </B4F>
     </div>
   );
 };
@@ -142,6 +142,9 @@ export const AboutCertificate = () => {
     <div className="flex w-full flex-col gap-3">
       <H5F className="font-semibold">Certificate</H5F>
       <B3F className="pl-2">정보처리기사</B3F>
+      <B4F className="pl-4 whitespace-pre">
+        {"취득일:  2020.08.28"} <br />
+      </B4F>
     </div>
   );
 };
