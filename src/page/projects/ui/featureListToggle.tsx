@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Triangle } from "lucide-react";
 
 const FeatureListToggle = ({ featureData }: { featureData: string[] }) => {
-  const [isFeaturesVisible, setIsFeaturesVisible] = useState(false);
+  const [isFeaturesVisible, setIsFeaturesVisible] = useState(true);
   return (
     <>
       <button

@@ -39,7 +39,7 @@ export const projecstMetaData: ProjectMetaData[] = [
       description:
         "Studymate는 개발자들을 위한 스터디 플랫폼입니다. 개발 역량 향상을 위한 문제 풀이 플랫폼입니다.",
       techStack: [
-        ["Next.js", "React", "Typescript"],
+        ["Next.js", "React", "Typescript", "Zustand"],
         ["TailwindCSS", "Anime.js"],
         ["Vercel", "Github Workflows"],
       ],
@@ -144,11 +144,16 @@ export const projecstMetaData: ProjectMetaData[] = [
       description:
         "개인 포트폴리오 사이트입니다. 소개, 이력서, 프로젝트를 확인할 수 있습니다.",
       techStack: [
-        ["Next.js", "Typescript"],
-        ["Zustand"],
-        ["Tailwind CSS", "Material UI", "Anime.js", "Tippy.js", "BProgress"],
-        ["Supabase", "Zod"],
-        ["Vercel"],
+        ["Next.js", "Typescript", "Zustand"],
+        [
+          "Tailwind CSS",
+          "Material UI",
+          "Anime.js",
+          "Tippy.js",
+          "BProgress",
+          "Zod",
+        ],
+        ["Vercel", "Supabase"],
       ],
       features: [
         "랜딩 섹션 소개",
@@ -163,12 +168,12 @@ export const projecstMetaData: ProjectMetaData[] = [
         {
           title: "반응협 웹 설계",
           description:
-            "랜딩 페이지의 컨텐츠는 브라우저의 사이즈에 맞춰 보여지도록 구현하였습니다. 브라우저의 사이즈는 유동적으로 변할 수 있기 때문에 너비 기준으로 미디어쿼리를 설정하여 레아아웃이 변하도록 하였습니다. Mobile, Tablet, PC 레이아웃을 너비 기준으로 나누었고, 최소 높이를 600px으로 두어 실제로 사용자가 사용하는 최소 높이로 설정하였습니다. \n\n이 과정에서 풀 스크린 컨텐츠의 비율을 유지하며 높이와 너비를 조절하는데 어려움이 있었습니다. 이를 해결하기 위해 CSS의 clamp() 함수를 사용하여 높이와 너비의 최소값, 기본값, 최대값을 설정하였습니다. 이를 통해 다양한 화면 크기에서 컨텐츠가 비율을 유지하며 보여지도록 하였습니다.",
+            "랜딩 페이지의 컨텐츠는 브라우저의 사이즈에 맞춰 보여지도록 구현하였습니다. 이 과정에서 풀 스크린 컨텐츠의 비율을 유지하며 높이와 너비를 조절하는데 어려움이 있었습니다. 이를 해결하기 위해 CSS의 clamp() 함수를 사용하여 높이와 너비의 최소값, 기본값, 최대값을 설정하였습니다. 이를 통해 다양한 화면 크기에서 컨텐츠가 비율을 유지하며 보여지도록 하였습니다.",
         },
         {
           title: "UI 리사이즈",
           description:
-            "Web API를 사용하여 컴포넌트의 사이즈를 지정하는 경우, 리사이즈 이벤트를 탐지하고 있지 않으면 브라우저의 사이즈 변화에 따른 UI 렌더링이 정상적으로 이루어지지 않는 문제가 발생할 수 있습니다. \n\n이 문제를 해결하기 위해 ResizeObserver를 사용하여 컴포넌트의 크기 변화를 감지하고, 상태를 업데이트하여 UI가 올바르게 렌더링되도록 하였습니다. ",
+            "Web API를 사용하여 컴포넌트의 사이즈를 지정하는 경우, 리사이즈 이벤트를 탐지하고 있지 않으면 브라우저의 사이즈 변화에 따른 UI 렌더링이 정상적으로 이루어지지 않는 문제가 발생합니다. \n이 문제를 해결하기 위해 ResizeObserver를 사용하여 컴포넌트의 크기 변화를 감지하고, 상태를 업데이트하여 UI가 올바르게 렌더링되도록 하였습니다. ",
         },
       ],
       newAttempt: [
