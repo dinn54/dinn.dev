@@ -126,7 +126,7 @@ export const projecstMetaData: ProjectMetaData[] = [
       link: {
         deploy: [
           "https://developer-dev.study-mate.academy",
-          "https://study-mate-fe.vercel.app",
+          // "https://study-mate-fe.vercel.app",
         ],
         github: "https://github.com/night-shift-team/study-mate-fe",
         portfolio:

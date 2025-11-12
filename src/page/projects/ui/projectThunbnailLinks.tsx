@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { IconBrandGithub, IconHome, IconClockShare } from "@tabler/icons-react";
+import { IconBrandGithub, IconHome } from "@tabler/icons-react";
 
 const ProjectThumbnailLinks = ({
   links,
@@ -19,15 +19,15 @@ const ProjectThumbnailLinks = ({
     },
   ];
   const makeLinkList = (list: typeof linkList) => {
-    if (links.deploy.length > 1) {
-      list.push({
-        title: "Old ver.",
-        icon: (
-          <IconClockShare className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-        ),
-        href: links.deploy[1],
-      });
-    }
+    // if (links.deploy.length > 1) {
+    //   list.push({
+    //     title: "Old ver.",
+    //     icon: (
+    //       <IconClockShare className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+    //     ),
+    //     href: links.deploy[1],
+    //   });
+    // }
     list.push({
       title: "GitHub",
       icon: (
