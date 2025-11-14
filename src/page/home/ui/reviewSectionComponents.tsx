@@ -153,15 +153,17 @@ export const ReviewModal = ({
   };
 
   useEffect(() => {
-    if (window.innerWidth > 1024) {
-      setVisible(true);
-      return;
-    }
-    if (reviewModalOpen) {
-      setTimeout(() => setVisible(true), 0); // show when open
-    } else {
-      setTimeout(() => setVisible(false), 400); // show when open
-    }
+    setVisible(reviewModalOpen);
+    const observer = new ResizeObserver(() => {
+      if (window.innerWidth > 1024) {
+        setVisible(true);
+        return;
+      }
+    });
+    observer.observe(document.body);
+    return () => {
+      observer.disconnect();
+    };
   }, [reviewModalOpen]);
 
   return (
