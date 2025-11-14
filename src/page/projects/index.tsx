@@ -32,7 +32,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
               <ProjectThumbnailLinks links={projectMetadata?.contents.link} />
             </div>
 
-            <div className="pc:w-[70%] tab:gap-9 pc:gap-10 flex h-full flex-col gap-8 py-5 pb-20">
+            <div className="pc:w-[70%] tab:gap-9 pc:gap-10 flex h-full w-full flex-col gap-8 py-5 pb-20">
               <ProjectContentsContainer>
                 <H6F className="font-semibold">프로젝트명</H6F>
                 <B3F className="pl-1 !font-bold">
