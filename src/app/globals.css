@@ -66,54 +66,7 @@
   }
 
   /* font 설정 */
-  @font-face {
-    font-family: "KoreanPretendard";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/PyeojinGothic-Light.woff2") format("woff2");
-    font-weight: 300;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "KoreanPretendard";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/PyeojinGothic-Medium.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "KoreanPretendard";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/PyeojinGothic-Regular.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "KoreanPretendard";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/PyeojinGothic-SemiBold.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "KoreanPretendard";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/PyeojinGothic-Bold.woff2") format("woff2");
-    font-weight: 700;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "GmarketSans";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/GmarketSansTTFLight.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "GmarketSans";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/GmarketSansTTFMedium.ttf") format("truetype");
-    font-weight: 500;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: "GmarketSans";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/GmarketSansTTFBold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-  }
+
   @font-face {
     font-family: GowunDodum;
     src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/GowunDodum-Regular.ttf") format("truetype");
@@ -122,12 +75,13 @@
   }
   @font-face {
     font-family: "rubik";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/Rubik-VariableFont_wght.ttf")
-      format("truetype");
+    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/Rubik-VariableFont_wght.woff2") format('woff2');
+    font-display: swap;
   }
   @font-face {
-    font-family: "rubik";
-    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/Rubik-Italic-VariableFont_wght.ttf");
+    font-family: "rubik-italic";
+    src: url("https://mowzqxruruhcvjgpzzdb.supabase.co/storage/v1/object/public/dinn_dev/fonts/Rubik-Italic-VariableFont_wght.woff2") format('woff2');
+    font-display: swap;
     font-style: italic;
   }
   .font-k-pretendard {
@@ -146,10 +100,10 @@
 		font-family: "Noto Sans KR";
 	}
   .font-rubik {
-    font-family: "rubik";
+    font-family: "rubik", sans-serif;
   }
   .font-rubik-italic {
-    font-family: "rubik-italic";
+    font-family: "rubik-italic", sans-serif;
   }
 
   /* 폰트 stroke 두께 */

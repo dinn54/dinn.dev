@@ -32,7 +32,7 @@ export const projecstMetaData: ProjectMetaData[] = [
   {
     no: 1,
     name: "Studymate",
-    imageUrl: "/study-mate-thumbnail.svg",
+    imageUrl: "/study-mate-thumbnail.png",
     contents: {
       period: { startDate: "2025.02", endDate: "2025.10" },
       person: "Frontend 2명, Backend 1명, Designer 1명",
@@ -137,7 +137,7 @@ export const projecstMetaData: ProjectMetaData[] = [
   {
     no: 2,
     name: "Dinn.dev",
-    imageUrl: "/dinn-dev-thumbnail.svg",
+    imageUrl: "/dinn-dev-thumbnail.png",
     contents: {
       period: { startDate: "2025.06", endDate: "2025.09" },
       person: "1명(본인)",

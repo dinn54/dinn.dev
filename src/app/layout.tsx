@@ -3,14 +3,14 @@ import "./globals.css";
 import "tippy.js/dist/tippy.css";
 
 // layout.tsx
-import { Noto_Sans_KR } from "next/font/google";
+import { Inter, Noto_Sans_KR } from "next/font/google";
 import Header from "@/features/header";
 import ClientSideWrapper from "@/shared/ui/pageProgressBar";
 
-// const inter = Inter({
-//   subsets: ["latin"],
-//   variable: "--font-inter",
-// });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 const noto = Noto_Sans_KR({
   subsets: ["latin"],
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`font-rubik relative ${noto.variable} darkMode-animate flex h-[clamp(600px,100vh,1440px)] w-screen justify-center antialiased`}
+        className={`font-rubik relative ${noto.variable} ${inter.variable} darkMode-animate flex h-[clamp(600px,100vh,1440px)] w-screen justify-center antialiased`}
       >
         <Header />
         <ClientSideWrapper>
