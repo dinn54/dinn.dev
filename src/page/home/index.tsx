@@ -1,15 +1,12 @@
 "use client";
-// import About from "@/pages/home/about"
-// import Contact from "@/pages/home/contact"
-// import Introduction from "@/pages/home/introduction"
-// import Projects from "@/pages/home/projects"
+const About = dynamic(() => import("./ui/aboutSection"));
+const Projects = dynamic(() => import("./ui/projectsSection"));
+const Review = dynamic(() => import("./ui/reviewSection"));
 
-import Review from "./ui/reviewSection";
-import Projects from "./ui/projectsSection";
-import About from "./ui/aboutSection";
 import Introduction from "./ui/introductionSection";
 import { useEffect, useState } from "react";
 import FixedLiftUpIcon from "./ui/fixedLiftUpIcon";
+import dynamic from "next/dynamic";
 
 const Home = () => {
   const [isSizeChanged, setIsSizeChanged] = useState(false);
