@@ -19,6 +19,7 @@ export const Tree = ({
           className="pc:opacity-100 h-full object-contain object-left opacity-0"
           priority
           fill
+          fetchPriority="high"
         />
       </div>
     </div>

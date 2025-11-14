@@ -1,16 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-// import { animate } from "animejs";
-
-import dynamic from "next/dynamic";
 import PageContainer from "./page_container";
-import { Character, IntroductionText } from "./introductionComponents";
+import { Character, IntroductionText, Tree } from "./introductionComponents";
 import NextImageClient from "@/shared/ui/image/nextImageClient";
-
-const Tree = dynamic(() =>
-  import("./introductionComponents").then((mod) => mod.Tree),
-);
 
 export interface LeafConfig {
   startX: number;
