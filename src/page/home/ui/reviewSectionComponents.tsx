@@ -8,6 +8,7 @@ import { makeRandomNumber } from "@/shared/model/makeRandom";
 import { formSchema } from "@/features/textValidation/model/emailValidate";
 import dynamic from "next/dynamic";
 import tippy, { followCursor } from "tippy.js";
+import { LucideX } from "lucide-react";
 
 const Toast = dynamic(() => import("@/shared/ui/toast/toast"), { ssr: false });
 
@@ -165,7 +166,7 @@ export const ReviewModal = ({
 
   return (
     <form
-      className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[20px]"
+      className="pc:px-0 pc:py-4 pc:gap-[2vh] pc:justify-start relative flex h-full w-full flex-col items-center justify-between rounded-[20px] px-[30px] py-[30px]"
       onSubmit={async (e) => await onSubmit(e)}
       autoComplete="off"
     >
@@ -211,12 +212,14 @@ export const ReviewModal = ({
             type="button"
             color="none"
             rounded="rounded-p24"
-            className="border-inside-none pc:hidden mt-2"
+            className="border-inside-none pc:hidden absolute top-2 right-2 mt-2"
             onClick={() => {
               setReviewModalOpen(false);
             }}
           >
-            <span className="text-p16">닫기</span>
+            <span className="">
+              <LucideX />
+            </span>
           </BaseButton>
           {/* </div> */}
         </>
