@@ -9,6 +9,7 @@ import Projects from "./ui/projectsSection";
 import About from "./ui/aboutSection";
 import Introduction from "./ui/introductionSection";
 import { useEffect, useState } from "react";
+import FixedLiftUpIcon from "./ui/fixedLiftUpIcon";
 
 const Home = () => {
   const [isSizeChanged, setIsSizeChanged] = useState(false);
@@ -96,6 +97,7 @@ const Home = () => {
       <About />
       <Projects />
       <Review />
+      <FixedLiftUpIcon />
     </div>
   );
 };

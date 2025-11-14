@@ -61,7 +61,7 @@ const Header = () => {
     <header className="tab:h-[4.25rem] pc:h-[5rem] tab:px-6 pc:px-8 fixed top-0 z-10 flex h-[3.5rem] w-full max-w-[1440px] shrink-0 justify-center bg-transparent px-4 backdrop-blur-sm">
       <div className="flex h-full w-full items-center justify-between">
         <nav className="flex h-full w-fit items-center">
-          <Link href="/" className="group">
+          <Link href="/#introduction-section" className="group">
             <B3F className="underline-animate">Dinn.dev</B3F>
           </Link>
         </nav>
