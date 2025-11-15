@@ -19,6 +19,8 @@ const Review = () => {
   const [reviews, setReviews] = useState<UserReview[]>([]);
   const [addReviewRow, setAddReviewRow] = useState<UserReview>();
 
+  const isDraggingRef = useRef(false);
+
   useEffect(() => {
     readReview()
       .then((data) => {
@@ -30,6 +32,7 @@ const Review = () => {
       });
   }, []);
 
+  // 스크롤바 사이즈 업데이트 및 이벤트리스너 재설정
   useEffect(() => {
     const moveEl = scrollMoveBarRef.current;
     const containerEl = scrollbarContainerRef.current;
@@ -69,18 +72,18 @@ const Review = () => {
     };
   }, [reviews]);
 
+  // 스크롤바로 이동 시에 동기화되도록 하는 이벤트리스너
   useEffect(() => {
     const moveEl = scrollMoveBarRef.current;
     const containerEl = scrollbarContainerRef.current;
     const targetEl = scrollTargetRef.current;
     if (!moveEl || !containerEl || !targetEl) return;
 
-    let isMouseDown = false;
     let startY = 0;
     let startTop = 0;
 
     const handleMouseDown = (e: MouseEvent) => {
-      isMouseDown = true;
+      isDraggingRef.current = true;
       startY = e.clientY;
 
       const computedTop = parseFloat(getComputedStyle(moveEl).top) || 0;
@@ -88,27 +91,32 @@ const Review = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isMouseDown) return;
-
-      const deltaY = e.clientY - startY;
-      const newTop = startTop + deltaY;
+      if (!isDraggingRef.current) return;
 
       const containerHeight = containerEl.offsetHeight;
       const barHeight = moveEl.offsetHeight;
-
       const minTop = 0;
       const maxTop = containerHeight - barHeight;
 
+      // 마우스가 움직인 거리 (절대 좌표 차이)
+      const deltaY = e.clientY - startY;
+
+      // 바의 새 위치
+      const newTop = startTop + deltaY;
       const clampedTop = Math.max(minTop, Math.min(maxTop, newTop));
+
+      // 1) 바 위치를 직접 이동
       moveEl.style.top = `${clampedTop}px`;
-      targetEl.scrollTo({
-        top: (clampedTop / maxTop) * targetEl.scrollHeight,
-        behavior: "smooth",
-      });
+
+      // 2) 바 위치 비율을 실제 스크롤 가능 범위에 매핑
+      const scrollMax = targetEl.scrollHeight - targetEl.clientHeight;
+      const scrollRatio = maxTop > 0 ? clampedTop / maxTop : 0;
+
+      targetEl.scrollTop = scrollRatio * scrollMax;
     };
 
     const handleMouseUp = () => {
-      isMouseDown = false;
+      isDraggingRef.current = false;
     };
 
     moveEl.addEventListener("mousedown", handleMouseDown);
@@ -133,6 +141,8 @@ const Review = () => {
 
     // 스크롤바 위치 업데이트 함수
     const updateScrollbarPosition = () => {
+      if (isDraggingRef.current) return;
+
       const moveElHeight = moveEl.offsetHeight;
       const containerElHeight = containerEl.offsetHeight;
       const maxTop = containerElHeight - moveElHeight;
@@ -177,7 +187,7 @@ const Review = () => {
     };
 
     // 이벤트 리스너 등록
-    targetEl.addEventListener("wheel", syncWheelScroll);
+    // targetEl.addEventListener("wheel", syncWheelScroll);
     targetEl.addEventListener("scroll", syncTouchScroll);
 
     // add Review 애니메이션
@@ -231,7 +241,7 @@ const Review = () => {
               <div className="tab:max-h-[clamp(18rem,48vh,40rem)] pc:max-h-[clamp(22rem,60vh,40rem)] pointer-events-none flex w-full flex-col overflow-y-hidden">
                 <div
                   ref={scrollTargetRef}
-                  className="scrollbar-hide pointer-events-auto flex h-full w-full flex-col gap-4 overflow-y-auto scroll-smooth px-4 py-3"
+                  className={`scrollbar-hide pointer-events-auto flex h-full w-full flex-col gap-4 overflow-y-auto ${isDraggingRef.current ? "scroll-smooth" : ""} px-4 py-3`}
                 >
                   {addReviewRow && (
                     <ReviewCard

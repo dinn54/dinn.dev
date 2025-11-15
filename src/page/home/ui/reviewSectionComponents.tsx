@@ -185,7 +185,7 @@ export const ReviewModal = ({
           <input
             name="nickname"
             type="text"
-            placeholder="이름"
+            placeholder="닉네임"
             className="h-p38 pc:h-[clamp(40px,5vh,56px)] text-p14 pc:text-[clamp(12px,2.5vh,18px)] bg-util-input-light dark:bg-util-input-dark text-util placeholder:text-util-input-text darkMode-animate w-full shrink-0 rounded-[10px] px-5 py-[5px] text-black focus:ring dark:text-white dark:focus:ring-white dark:focus:outline-none"
           />
           <input
