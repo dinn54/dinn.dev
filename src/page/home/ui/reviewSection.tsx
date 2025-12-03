@@ -61,12 +61,14 @@ const Review = () => {
 
     if (!targetEl) return;
     targetEl.addEventListener("wheel", (e) => {
+      console.log("wheel event in review section");
       e.stopPropagation();
     });
 
     return () => {
       observer.disconnect();
       targetEl.removeEventListener("wheel", (e) => {
+        console.log("wheel event in review section");
         e.stopPropagation();
       });
     };
@@ -187,14 +189,21 @@ const Review = () => {
     };
 
     // 이벤트 리스너 등록
-    // targetEl.addEventListener("wheel", syncWheelScroll);
-    targetEl.addEventListener("scroll", syncTouchScroll);
+    targetEl.addEventListener("scroll", (e)=>{
+        e.stopPropagation();
+        syncTouchScroll()
+      });
 
+    targetEl.addEventListener("wheel", (e)=>{
+    if (window && window.innerWidth > 1024){
+      e.preventDefault();
+    }})
+    
     // add Review 애니메이션
     let timeout: number | NodeJS.Timeout;
     if (addReviewRow) {
       isAnimating = true;
-      timeout = setTimeout(() => {
+      timeout = setTimeout(() => { 
         setAddReviewRow(undefined);
 
         setReviews((prev) =>
@@ -205,8 +214,15 @@ const Review = () => {
     }
 
     return () => {
-      targetEl.removeEventListener("wheel", syncWheelScroll);
-      targetEl.removeEventListener("scroll", syncTouchScroll);
+      
+      targetEl.removeEventListener("scroll", (e)=>{
+        e.stopPropagation();
+        syncTouchScroll()
+      });
+      targetEl.removeEventListener("wheel", (e)=>{
+    if (window && window.innerWidth > 1024){
+      e.preventDefault();
+    }})
       if (rafId) {
         cancelAnimationFrame(rafId);
       }

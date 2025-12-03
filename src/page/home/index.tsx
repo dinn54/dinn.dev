@@ -78,12 +78,13 @@ const Home = () => {
       };
     };
 
-    container.addEventListener("wheel", handleWheel, {
-      passive: false,
-    });
+    container.addEventListener("wheel", (e)=>{
+      handleWheel(e)
+  });
 
     return () => {
-      container.removeEventListener("wheel", handleWheel);
+      container.removeEventListener("wheel",(e)=>{
+       handleWheel(e)});
     };
   }, [isSizeChanged, isTopMoved]);
 
