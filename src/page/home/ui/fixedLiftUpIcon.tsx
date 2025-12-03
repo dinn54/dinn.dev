@@ -1,7 +1,12 @@
 "use client";
 import { LucideArrowUpCircle } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
-const FixedLiftUpIcon = () => {
+const FixedLiftUpIcon = ({
+  setIsTopMoved,
+}: {
+  setIsTopMoved: Dispatch<SetStateAction<boolean>>;
+}) => {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
 
@@ -12,6 +17,7 @@ const FixedLiftUpIcon = () => {
       top: 0,
       behavior: "smooth",
     });
+    setIsTopMoved(true);
   };
 
   return (

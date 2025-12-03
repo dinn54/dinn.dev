@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 
 const Home = () => {
   const [isSizeChanged, setIsSizeChanged] = useState(false);
+  const [isTopMoved, setIsTopMoved] = useState(false);
 
   useEffect(() => {
     const element = document.getElementById("page-container");
@@ -64,9 +65,10 @@ const Home = () => {
       }
       const targetSection = sections[targetSectionIndex];
       container.scrollTo({
-        top: targetSection.offsetTop,
+        top: isTopMoved ? sections[0].offsetTop : targetSection.offsetTop,
         behavior: "smooth",
       });
+      setIsTopMoved(false);
 
       scrollingTimeout = setTimeout(() => {
         isScrolling = false;
@@ -83,7 +85,7 @@ const Home = () => {
     return () => {
       container.removeEventListener("wheel", handleWheel);
     };
-  }, [isSizeChanged]);
+  }, [isSizeChanged, isTopMoved]);
 
   return (
     <div
@@ -94,7 +96,7 @@ const Home = () => {
       <About />
       <Projects />
       <Review />
-      <FixedLiftUpIcon />
+      <FixedLiftUpIcon setIsTopMoved={setIsTopMoved} />
     </div>
   );
 };
