@@ -162,7 +162,11 @@ export const projecstMetaData: ProjectMetaData[] = [
         "리뷰 작성 ",
         "다크 모드 지원",
       ],
-      mainTechFeatures: [],
+      mainTechFeatures: [
+        "Supabase를 활용한 리뷰 작성 기능",
+        "Bprogress를 이용한 로딩바 구현",
+        "Anime.js를 사용한 다크모드 Transition 효과",
+      ],
       optimizations: [],
       problemSolution: [
         {
@@ -177,14 +181,7 @@ export const projecstMetaData: ProjectMetaData[] = [
         },
       ],
       newAttempt: [
-        {
-          title: "다크 모드",
-          description: "",
-        },
-        {
-          title: "Client Side Database fetching",
-          description: "",
-        },
+
       ],
       link: {
         deploy: ["https://dinn.dev"],

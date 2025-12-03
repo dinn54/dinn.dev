@@ -130,6 +130,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                   </B4F>
                 </ProjectContentsContainer>
               )}
+              {projectMetadata?.contents.newAttempt.length > 0 && (
               <ProjectContentsContainer>
                 <H6F className="font-semibold">새로운 시도 및 결과</H6F>
                 <B4F className="pl-1">
@@ -149,6 +150,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
                   </div>
                 </B4F>
               </ProjectContentsContainer>
+              )}
               <ProjectContentsContainer>
                 <ProjectExternalLinks projectMetadata={projectMetadata} />
               </ProjectContentsContainer>
