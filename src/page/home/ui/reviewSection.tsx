@@ -61,14 +61,12 @@ const Review = () => {
 
     if (!targetEl) return;
     targetEl.addEventListener("wheel", (e) => {
-      console.log("wheel event in review section");
       e.stopPropagation();
     });
 
     return () => {
       observer.disconnect();
       targetEl.removeEventListener("wheel", (e) => {
-        console.log("wheel event in review section");
         e.stopPropagation();
       });
     };
