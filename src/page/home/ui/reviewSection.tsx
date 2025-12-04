@@ -155,30 +155,30 @@ const Review = () => {
     };
 
     // wheel 이벤트 핸들러
-    const syncWheelScroll = (e: WheelEvent) => {
-      if (isAnimating) {
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
+    // const syncWheelScroll = (e: WheelEvent) => {
+    //   if (isAnimating) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     return;
+    //   }
 
-      e.preventDefault(); // 브라우저 기본 스크롤 방지
-      e.stopPropagation();
+    //   e.preventDefault(); // 브라우저 기본 스크롤 방지
+    //   e.stopPropagation();
 
-      // 현재 스크롤 위치 기준으로 새로운 스크롤 위치 계산
-      const scrollMax = targetEl.scrollHeight - targetEl.clientHeight;
-      const currentScrollTop = targetEl.scrollTop;
-      const newScrollTop = Math.max(
-        0,
-        Math.min(scrollMax, currentScrollTop + e.deltaY),
-      );
+    //   // 현재 스크롤 위치 기준으로 새로운 스크롤 위치 계산
+    //   const scrollMax = targetEl.scrollHeight - targetEl.clientHeight;
+    //   const currentScrollTop = targetEl.scrollTop;
+    //   const newScrollTop = Math.max(
+    //     0,
+    //     Math.min(scrollMax, currentScrollTop + e.deltaY),
+    //   );
 
-      // 스크롤 위치 직접 설정 (smooth 애니메이션 제거)
-      targetEl.scrollTop = newScrollTop;
+    //   // 스크롤 위치 직접 설정 (smooth 애니메이션 제거)
+    //   targetEl.scrollTop = newScrollTop;
 
-      // 스크롤바 위치 업데이트
-      updateScrollbarPosition();
-    };
+    //   // 스크롤바 위치 업데이트
+    //   updateScrollbarPosition();
+    // };
 
     // scroll 이벤트 핸들러 (모바일 터치 스크롤용)
     const syncTouchScroll = () => {
