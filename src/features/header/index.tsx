@@ -62,7 +62,7 @@ const Header = () => {
       <div className="flex h-full w-full items-center justify-between">
         <nav className="flex h-full w-fit items-center">
           <Link href="/#introduction-section" className="group">
-            <B3F className="underline-animate">Dinn.dev</B3F>
+            <B3F className="underline-animate ">Dinn.dev</B3F>
           </Link>
         </nav>
         <div className="tab:gap-5 pc:gap-8 flex h-full w-auto gap-2">
@@ -77,13 +77,13 @@ const Header = () => {
             >
               <B4F className="underline-animate">Projects</B4F>
             </Link>
-            {/* <Link
-              href="/"
-              title="준비중"
-              className="group pointer-events-none px-2 py-1 text-gray-500"
+            <Link
+              href="/posts"
+              title="블로그"
+              className="group px-2 py-1"
             >
               <B4F className="underline-animate text-center whitespace-pre-line">{`Posts`}</B4F>
-            </Link> */}
+            </Link>
           </nav>
 
           <div className="flex items-center justify-center">

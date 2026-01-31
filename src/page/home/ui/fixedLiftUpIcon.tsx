@@ -3,21 +3,23 @@ import { LucideArrowUpCircle } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
 const FixedLiftUpIcon = ({
+  targetId,
   setIsTopMoved,
 }: {
-  setIsTopMoved: Dispatch<SetStateAction<boolean>>;
+  targetId?: string;
+  setIsTopMoved?: Dispatch<SetStateAction<boolean>>;
 }) => {
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
 
-    const container = document.getElementById("page-container");
+    const container = document.getElementById(targetId || "page-container");
     if (!container) return;
 
     container.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    setIsTopMoved(true);
+    if (setIsTopMoved) setIsTopMoved(true);
   };
 
   return (
