@@ -9,9 +9,14 @@ const nextConfig: NextConfig = {
         hostname: 'mowzqxruruhcvjgpzzdb.supabase.co',
         port: '',
         pathname: '/storage/v1/object/public/dinn_dev/**',
-        search: '',
-      
-		}]
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      }]
+
 	}
 };
 

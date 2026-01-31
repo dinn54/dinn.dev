@@ -25,6 +25,8 @@ const config: Config = {
         "projects-dark": "#5a5d50",
         "review-light": "#f4f6ff",
         "review-dark": "#454a5f",
+        "blog-light": "#e8f0fe",
+        "blog-dark": "#1e293b",
 
         "button-green-light": "#7A8D66",
         "button-green-dark": "#627A53",
@@ -56,6 +58,9 @@ const config: Config = {
         inter: ["var(--font-inter)", "sans-serif"],
         noto: ["var(--font-noto)", "sans-serif"],
         sans: ["var(--font-inter)", "var(--font-noto)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+        heading: ["Pretendard", "var(--font-inter)", "sans-serif"],
+        callout: ["Pretendard", "var(--font-inter)", "sans-serif"],
       },
       fontSize: {
         p8: "0.5rem", // 8px
