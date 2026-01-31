@@ -4,12 +4,18 @@ import "tippy.js/dist/tippy.css";
 import localFont from "next/font/local";
 
 // layout.tsx
-import { Inter, Noto_Sans_KR } from "next/font/google";
+import { Inter, Noto_Sans_KR, JetBrains_Mono } from "next/font/google";
 import Header from "@/features/header";
 import ClientSideWrapper from "@/shared/ui/pageProgressBar";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-code",
 });
 
 const noto = Noto_Sans_KR({
@@ -48,11 +54,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${rubik.variable} relative ${noto.variable} ${inter.variable} darkMode-animate flex h-[clamp(600px,100vh,1440px)] w-screen justify-center antialiased`}
+        className={`${rubik.variable} relative ${noto.variable} ${inter.variable} ${jetbrainsMono.variable} darkMode-animate flex h-[clamp(600px,100vh,1440px)] w-screen justify-center antialiased`}
       >
         <Header />
         <ClientSideWrapper>
-          <div className="scrollbar-hide flex h-full w-full animate-none flex-col overflow-x-hidden overflow-y-auto">
+          <div
+            id="app-scroll-container"
+            className="scrollbar-hide flex h-full w-full animate-none flex-col overflow-x-hidden overflow-y-auto"
+          >
             {children}
           </div>
         </ClientSideWrapper>
