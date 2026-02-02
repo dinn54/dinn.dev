@@ -5,10 +5,10 @@ import {
   Calendar,
   Clock,
   Share2,
-  Bookmark,
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
+import { SaveButton } from "./SaveButton";
 import PageContainer from "@/page/home/ui/page_container";
 import { Post } from "../api/posts";
 import LexicalRenderer, { LexicalNode } from "./LexicalRenderer";
@@ -65,7 +65,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
         </div>
 
         {/* Article Header */}
-        <header className="relative mb-5">
+        <header id="post-header" className="relative mb-5">
           {/* Decorative Blur Background for Title Emphasis */}
           <div className="animate-in fade-in absolute -top-10 -left-10 -z-10 h-32 w-32 rounded-full bg-teal-400/10 opacity-0 blur-3xl duration-1000 dark:opacity-20"></div>
 
@@ -108,18 +108,20 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
         </header>
 
         {/* Content Renderer */}
-        {post.contentJSON ? (
-          <LexicalRenderer nodes={post.contentJSON} />
-        ) : post.content ? (
-          <MarkdownRenderer markdown={post.content} />
-        ) : (
-          <div className="py-20 text-center text-slate-500">
-            <p>콘텐츠를 불러올 수 없습니다.</p>
-          </div>
-        )}
+        <div id="post-content">
+          {post.contentJSON ? (
+            <LexicalRenderer nodes={post.contentJSON} />
+          ) : post.content ? (
+            <MarkdownRenderer markdown={post.content} />
+          ) : (
+            <div className="py-20 text-center text-slate-500">
+              <p>콘텐츠를 불러올 수 없습니다.</p>
+            </div>
+          )}
+        </div>
 
         {/* Footer Actions & Navigation Combined */}
-        <div className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-800">
+        <div id="post-footer" className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-800">
           <div className="mb-10 flex flex-row items-center justify-between gap-4">
             {/* Author Profile & Updated Date */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -152,15 +154,8 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
 
             {/* Actions: Save & Share - Right Aligned */}
             <div className="flex flex-col items-end gap-2 pr-4 sm:flex-row sm:items-center sm:gap-3 sm:pr-0">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="gap-2 rounded-full text-slate-500 transition-colors hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
-              >
-                <Bookmark className="h-4 w-4" />
-                <span className="font-medium">저장하기</span>
-              </Button>
-              <div className="hidden h-4 w-px bg-slate-200 sm:block dark:bg-slate-700"></div>
+              <SaveButton postTitle={post.title} />
+              <div id="btn-save-divider" className="hidden h-4 w-px bg-slate-200 sm:block dark:bg-slate-700"></div>
               <Button
                 variant="ghost"
                 size="sm"
