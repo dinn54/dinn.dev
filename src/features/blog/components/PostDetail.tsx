@@ -157,6 +157,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
               <SaveButton postTitle={post.title} />
               <div id="btn-save-divider" className="hidden h-4 w-px bg-slate-200 sm:block dark:bg-slate-700"></div>
               <Button
+                id="btn-share"
                 variant="ghost"
                 size="sm"
                 className="gap-2 rounded-full text-slate-500 transition-colors hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
@@ -168,7 +169,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
           </div>
 
           {/* Bottom Navigation: Prev - List - Next */}
-          <div className="flex flex-col items-stretch gap-6 md:flex-row">
+          <div id="post-navigation" className="flex flex-col items-stretch gap-6 md:flex-row">
             {/* Previous Post */}
             {prevPost ? (
               <Link

@@ -84,12 +84,16 @@ export function SaveButton({ postTitle }: SaveButtonProps) {
       }
     );
 
-    // Prepare footer (remove save button and its divider)
+    // Prepare footer (remove unnecessary elements for download)
     const footerClone = footerElement.cloneNode(true) as HTMLElement;
     const saveButton = footerClone.querySelector("#btn-save");
-    const divider = footerClone.querySelector("#btn-save-divider");
+    const saveDivider = footerClone.querySelector("#btn-save-divider");
+    const shareButton = footerClone.querySelector("#btn-share");
+    const navigation = footerClone.querySelector("#post-navigation");
     if (saveButton) saveButton.remove();
-    if (divider) divider.remove();
+    if (saveDivider) saveDivider.remove();
+    if (shareButton) shareButton.remove();
+    if (navigation) navigation.remove();
 
     const htmlContent = `
 <!DOCTYPE html>
