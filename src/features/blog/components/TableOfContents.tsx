@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 interface TOCItem {
   key: string;
@@ -14,18 +14,54 @@ interface TableOfContentsProps {
 
 export function TableOfContents({ toc }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const observerActiveIdRef = useRef<string>("");
+
+  // 스크롤 최하단 감지
+  useEffect(() => {
+    const scrollContainer = document.getElementById("app-scroll-container");
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const isBottom = scrollTop + clientHeight >= scrollHeight - 1;
+      setIsAtBottom(isBottom);
+    };
+
+    scrollContainer.addEventListener("scroll", handleScroll);
+    handleScroll(); // 초기 상태 확인
+
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // 최하단일 때 마지막 항목 활성화, 아니면 IntersectionObserver 값 사용
+  useEffect(() => {
+    if (isAtBottom && toc.length > 0) {
+      setActiveId(toc[toc.length - 1].key);
+    } else {
+      setActiveId(observerActiveIdRef.current);
+    }
+  }, [isAtBottom, toc]);
 
   useEffect(() => {
+    const scrollContainer = document.getElementById("app-scroll-container");
+
     // Simple scroll spy to highlight active TOC item
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
+            observerActiveIdRef.current = entry.target.id;
+            if (!isAtBottom) {
+              setActiveId(entry.target.id);
+            }
           }
         });
       },
-      { rootMargin: "0px 0px -80% 0px" }, // Highlight when element is near top
+      {
+        root: scrollContainer,
+        rootMargin: "0px 0px -80% 0px",
+      },
     );
 
     const headings = document.querySelectorAll("h1, h2, h3");
@@ -34,7 +70,7 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
     });
 
     return () => observer.disconnect();
-  }, [toc]);
+  }, [toc, isAtBottom]);
 
   const handleTocClick = (e: React.MouseEvent, key: string) => {
     e.preventDefault();
