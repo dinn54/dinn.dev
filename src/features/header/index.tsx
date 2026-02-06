@@ -62,7 +62,7 @@ const Header = () => {
       <div className="flex h-full w-full items-center justify-between">
         <nav className="flex h-full w-fit items-center">
           <Link href="/#introduction-section" className="group">
-            <B3F className="underline-animate ">Dinn.dev</B3F>
+            <B3F className="underline-animate">Dinn.dev</B3F>
           </Link>
         </nav>
         <div className="tab:gap-5 pc:gap-8 flex h-full w-auto gap-2">
@@ -77,11 +77,7 @@ const Header = () => {
             >
               <B4F className="underline-animate">Projects</B4F>
             </Link>
-            <Link
-              href="/posts"
-              title="블로그"
-              className="group px-2 py-1"
-            >
+            <Link href="/posts" title="블로그" className="group px-2 py-1">
               <B4F className="underline-animate text-center whitespace-pre-line">{`Posts`}</B4F>
             </Link>
           </nav>
@@ -91,7 +87,7 @@ const Header = () => {
               type="button"
               id="darkmode-toggle"
               onClick={handleToggle}
-              className={`tab:w-16 tab:justify-start flex h-8 w-8 items-center justify-center ${dark ? "bg-[#1B2433] ring-2 ring-[#192232]" : "bg-[#ffe8ab] ring-2 ring-[#ffe396]"} rounded-2xl transition duration-300 ease-out hover:cursor-pointer hover:ring-amber-300 focus:outline-none dark:hover:ring-blue-900`}
+              className={`tab:w-16 tab:justify-start flex h-8 w-8 items-center justify-center ${dark ? "bg-[#1B2433] ring-[#192232]" : "bg-[#ffe8ab] ring-[#ffe396]"} rounded-2xl transition duration-300 ease-out hover:cursor-pointer hover:ring-amber-300 focus:outline-none dark:hover:ring-blue-900`}
             >
               <div
                 ref={translateXRef}
