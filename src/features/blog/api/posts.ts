@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { DinnPost } from "@/shared/lib/supabase/types";
 import { LexicalNode } from "../components/LexicalRenderer";
@@ -75,11 +76,11 @@ function transformPost(row: DinnPost): Post {
 export async function getPosts({
   limit = 10,
   offset = 0,
-  tags = [],
+  tag,
 }: {
   limit?: number;
   offset?: number;
-  tags?: string[];
+  tag?: string;
 } = {}): Promise<Post[]> {
   const supabase = createServerClient();
 
@@ -90,8 +91,8 @@ export async function getPosts({
     .order("published_at", { ascending: false, nullsFirst: false })
     .range(offset, offset + limit - 1);
 
-  if (tags.length > 0) {
-    query = query.contains("tags", tags);
+  if (tag) {
+    query = query.contains("tags", [tag]);
   }
 
   const { data, error } = await query;
@@ -103,7 +104,7 @@ export async function getPosts({
   return (data || []).map(transformPost);
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export const getPostBySlug = cache(async function getPostBySlug(slug: string): Promise<Post | null> {
   const supabase = createServerClient();
 
   const { data, error } = await supabase
@@ -119,9 +120,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 
   return transformPost(data);
-}
+});
 
-export async function getPostById(id: string): Promise<Post | null> {
+export const getPostById = cache(async function getPostById(id: string): Promise<Post | null> {
   const supabase = createServerClient();
 
   const { data, error } = await supabase
@@ -137,7 +138,7 @@ export async function getPostById(id: string): Promise<Post | null> {
   }
 
   return transformPost(data);
-}
+});
 
 const ADJACENT_POST_SELECT =
   "id, slug, title, description, published_at, created_at, updated_at, tags, image_url, author_name, author_avatar, author_role, read_time, view_count, like_count, is_visible" as const;

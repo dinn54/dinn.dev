@@ -164,7 +164,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             {/* Previous Post */}
             {prevPost ? (
               <Link
-                href={`/posts/${prevPost.id}`}
+                href={`/posts/${prevPost.slug}`}
                 className="group relative flex flex-1 cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-4 transition-all duration-300 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
               >
                 <ArrowLeft className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
@@ -189,7 +189,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             {/* Next Post */}
             {nextPost ? (
               <Link
-                href={`/posts/${nextPost.id}`}
+                href={`/posts/${nextPost.slug}`}
                 className="group relative flex flex-1 cursor-pointer items-center justify-end gap-4 rounded-xl border border-slate-200 p-4 text-right transition-all duration-300 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
               >
                 <div className="min-w-0 flex-1">

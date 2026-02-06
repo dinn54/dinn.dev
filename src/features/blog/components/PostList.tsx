@@ -11,13 +11,13 @@ const PAGE_SIZE = 8;
 interface PostListProps {
   initialPosts: Post[];
   allTags: string[];
-  initialSelectedTags?: string[];
+  selectedTag?: string;
 }
 
 export function PostList({
   initialPosts,
   allTags,
-  initialSelectedTags = [],
+  selectedTag,
 }: PostListProps) {
   const [posts, setPosts] = useState(initialPosts);
   const [hasMore, setHasMore] = useState(initialPosts.length >= PAGE_SIZE);
@@ -36,7 +36,7 @@ export function PostList({
 
     const newPosts = await fetchMorePosts({
       offset: posts.length,
-      tags: initialSelectedTags,
+      tag: selectedTag,
     });
 
     if (newPosts.length < PAGE_SIZE) {
@@ -45,7 +45,7 @@ export function PostList({
 
     setPosts((prev) => [...prev, ...newPosts]);
     setLoading(false);
-  }, [loading, hasMore, posts.length, initialSelectedTags]);
+  }, [loading, hasMore, posts.length, selectedTag]);
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
@@ -67,13 +67,13 @@ export function PostList({
   return (
     <>
       {/* Tag Filter */}
-      <TagFilter allTags={allTags} selectedTags={initialSelectedTags} />
+      <TagFilter allTags={allTags} selectedTag={selectedTag} />
 
       <div className="flex flex-col">
         {posts.map((post) => (
           <Link
             key={post.id}
-            href={`/posts/${post.id}`}
+            href={`/posts/${post.slug}`}
             className="group relative flex cursor-pointer flex-col items-start gap-2 border-b border-slate-100 py-5 transition-colors last:border-0 dark:border-slate-800"
           >
             {/* Content */}
