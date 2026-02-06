@@ -95,7 +95,6 @@ export async function getPosts({
   }
 
   const { data, error } = await query;
-
   if (error) {
     console.error("Error fetching posts:", error);
     return [];
@@ -141,7 +140,7 @@ export async function getPostById(id: string): Promise<Post | null> {
 }
 
 export async function getAdjacentPosts(
-  currentId: string
+  currentId: string,
 ): Promise<{ prev?: Post; next?: Post }> {
   const supabase = createServerClient();
 
@@ -189,8 +188,9 @@ export async function getAllTags(): Promise<string[]> {
 
   const { data, error } = await supabase
     .from("dinn_post_tags")
-    .select("name")
+    .select("name, count")
     .order("count", { ascending: false });
+  console.log(data, error);
 
   if (error) {
     console.error("Error fetching tags:", error);
