@@ -46,7 +46,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
   const toc = generateTOC(post.contentJSON);
 
   return (
-    <PageContainer>
+    <PageContainer className="!items-start">
       {/* 
            Article Container 
            Fixed width (max-w-[800px]) to ensure Title and Content are perfectly aligned.
