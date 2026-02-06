@@ -228,8 +228,8 @@ function NodeRenderer({ node }: { node: LexicalNode }) {
       return (
         <Link
           href={node.url || "#"}
-          target={node.target || "_self"}
-          rel={node.rel}
+          target="_blank"
+          rel={node.rel || "noopener noreferrer"}
           className={editorTheme.link}
         >
           {renderChildren(node)}
