@@ -88,13 +88,15 @@ export function PostList({
                 {post.title}
               </h2>
 
-              <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-in-out group-hover:grid-rows-[1fr]">
-                <div className="overflow-hidden">
-                  <p className="pt-2 text-sm text-slate-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100 dark:text-slate-400">
-                    {post.description}
-                  </p>
+              {post.description && (
+                <div className="grid grid-rows-[1fr] md:grid-rows-[0fr] md:transition-[grid-template-rows] md:duration-500 md:ease-in-out md:group-hover:grid-rows-[1fr]">
+                  <div className="overflow-hidden">
+                    <p className="pt-2 text-sm text-slate-500 md:opacity-0 md:transition-opacity md:duration-500 md:group-hover:opacity-100 dark:text-slate-400">
+                      {post.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </Link>
         ))}
