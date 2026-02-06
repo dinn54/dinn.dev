@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import { PostDetail } from "@/features/blog/components/PostDetail";
-import { getPostById, getAdjacentPosts } from "@/features/blog/api/posts";
+import {
+  getPostById,
+  getAdjacentPosts,
+  incrementViewCount,
+} from "@/features/blog/api/posts";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -8,13 +12,16 @@ interface PageProps {
 
 export default async function PostDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const post = await getPostById(id);
+  const [post, { prev, next }] = await Promise.all([
+    getPostById(id),
+    getAdjacentPosts(id),
+  ]);
 
   if (!post) {
     notFound();
   }
 
-  const { prev, next } = await getAdjacentPosts(id);
+  incrementViewCount(id);
 
   return <PostDetail post={post} prevPost={prev} nextPost={next} />;
 }

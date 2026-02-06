@@ -139,6 +139,9 @@ export async function getPostById(id: string): Promise<Post | null> {
   return transformPost(data);
 }
 
+const ADJACENT_POST_SELECT =
+  "id, slug, title, description, published_at, created_at, updated_at, tags, image_url, author_name, author_avatar, author_role, read_time, view_count, like_count, is_visible" as const;
+
 export async function getAdjacentPosts(
   currentId: string,
 ): Promise<{ prev?: Post; next?: Post }> {
@@ -157,29 +160,33 @@ export async function getAdjacentPosts(
 
   const currentDate = currentPost.published_at;
 
-  // 이전 글 (현재보다 오래된 글 중 가장 최신)
-  const { data: prevData } = await supabase
-    .from("dinn_posts")
-    .select("*")
-    .eq("is_visible", true)
-    .lt("published_at", currentDate)
-    .order("published_at", { ascending: false })
-    .limit(1)
-    .single();
-
-  // 다음 글 (현재보다 최신 글 중 가장 오래된)
-  const { data: nextData } = await supabase
-    .from("dinn_posts")
-    .select("*")
-    .eq("is_visible", true)
-    .gt("published_at", currentDate)
-    .order("published_at", { ascending: true })
-    .limit(1)
-    .single();
+  // 이전 글, 다음 글 병렬 조회
+  const [{ data: prevData }, { data: nextData }] = await Promise.all([
+    supabase
+      .from("dinn_posts")
+      .select(ADJACENT_POST_SELECT)
+      .eq("is_visible", true)
+      .lt("published_at", currentDate)
+      .order("published_at", { ascending: false })
+      .limit(1)
+      .single(),
+    supabase
+      .from("dinn_posts")
+      .select(ADJACENT_POST_SELECT)
+      .eq("is_visible", true)
+      .gt("published_at", currentDate)
+      .order("published_at", { ascending: true })
+      .limit(1)
+      .single(),
+  ]);
 
   return {
-    prev: prevData ? transformPost(prevData) : undefined,
-    next: nextData ? transformPost(nextData) : undefined,
+    prev: prevData
+      ? transformPost({ ...prevData, content: null } as DinnPost)
+      : undefined,
+    next: nextData
+      ? transformPost({ ...nextData, content: null } as DinnPost)
+      : undefined,
   };
 }
 
