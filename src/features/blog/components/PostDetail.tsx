@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "./ui/button";
 import {
   Calendar,
   Clock,
-  Share2,
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
 import { SaveButton } from "./SaveButton";
+import { ShareButton } from "./ShareButton";
+import { ScrollTopButton } from "./ScrollTopButton";
 import PageContainer from "@/page/home/ui/page_container";
 import { Post } from "../api/posts";
 import LexicalRenderer, { LexicalNode } from "./LexicalRenderer";
@@ -156,15 +156,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             <div className="flex flex-col items-end gap-2 pr-4 sm:flex-row sm:items-center sm:gap-3 sm:pr-0">
               <SaveButton postTitle={post.title} />
               <div id="btn-save-divider" className="hidden h-4 w-px bg-slate-200 sm:block dark:bg-slate-700"></div>
-              <Button
-                id="btn-share"
-                variant="ghost"
-                size="sm"
-                className="gap-2 rounded-full text-slate-500 transition-colors hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
-              >
-                <Share2 className="h-4 w-4" />
-                <span className="font-medium">공유하기</span>
-              </Button>
+              <ShareButton title={post.title} description={post.description} />
             </div>
           </div>
 
@@ -174,14 +166,14 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             {prevPost ? (
               <Link
                 href={`/posts/${prevPost.id}`}
-                className="group relative flex flex-1 cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-4 transition-all duration-300 hover:border-teal-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:border-teal-800 dark:hover:bg-slate-900"
+                className="group relative flex flex-1 cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-4 transition-all duration-300 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
               >
-                <ArrowLeft className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-teal-600 dark:group-hover:text-teal-400" />
+                <ArrowLeft className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                 <div className="min-w-0 flex-1">
                   <span className="mb-1 block text-xs font-medium text-slate-400">
                     이전 글
                   </span>
-                  <h4 className="truncate text-sm font-bold text-slate-900 transition-colors group-hover:text-teal-700 dark:text-white dark:group-hover:text-teal-300">
+                  <h4 className="truncate text-sm font-bold text-slate-900 dark:text-white">
                     {prevPost.title}
                   </h4>
                 </div>
@@ -190,37 +182,26 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
               <div className="flex-1"></div>
             )}
 
-            {/* List Button (Center) */}
+            {/* Scroll Top Button (Center) */}
             <div className="hidden items-center justify-center md:flex">
-              <Link
-                href="/posts"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all hover:border-teal-200 hover:text-teal-600 dark:border-slate-800 dark:hover:border-teal-800 dark:hover:text-teal-400"
-                title="목록으로"
-              >
-                <div className="grid grid-cols-2 gap-0.5">
-                  <span className="h-1 w-1 rounded-sm bg-current"></span>
-                  <span className="h-1 w-1 rounded-sm bg-current"></span>
-                  <span className="h-1 w-1 rounded-sm bg-current"></span>
-                  <span className="h-1 w-1 rounded-sm bg-current"></span>
-                </div>
-              </Link>
+              <ScrollTopButton />
             </div>
 
             {/* Next Post */}
             {nextPost ? (
               <Link
                 href={`/posts/${nextPost.id}`}
-                className="group relative flex flex-1 cursor-pointer items-center justify-end gap-4 rounded-xl border border-slate-200 p-4 text-right transition-all duration-300 hover:border-teal-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:border-teal-800 dark:hover:bg-slate-900"
+                className="group relative flex flex-1 cursor-pointer items-center justify-end gap-4 rounded-xl border border-slate-200 p-4 text-right transition-all duration-300 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
               >
                 <div className="min-w-0 flex-1">
                   <span className="mb-1 block text-xs font-medium text-slate-400">
                     다음 글
                   </span>
-                  <h4 className="truncate text-sm font-bold text-slate-900 transition-colors group-hover:text-teal-700 dark:text-white dark:group-hover:text-teal-300">
+                  <h4 className="truncate text-sm font-bold text-slate-900 dark:text-white">
                     {nextPost.title}
                   </h4>
                 </div>
-                <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-teal-600 dark:group-hover:text-teal-400" />
+                <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
               </Link>
             ) : (
               <div className="flex-1"></div>
