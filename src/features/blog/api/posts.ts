@@ -190,7 +190,6 @@ export async function getAllTags(): Promise<string[]> {
     .from("dinn_post_tags")
     .select("name, count")
     .order("count", { ascending: false });
-  console.log(data, error);
 
   if (error) {
     console.error("Error fetching tags:", error);

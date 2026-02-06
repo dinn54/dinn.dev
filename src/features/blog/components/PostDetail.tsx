@@ -19,7 +19,6 @@ interface PostDetailProps {
   post: Post;
   prevPost?: Post;
   nextPost?: Post;
-  onBack?: () => void;
 }
 
 function generateTOC(nodes?: LexicalNode[]) {
@@ -87,7 +86,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
 
             <div className="flex items-center gap-2 py-4">
               <Clock className="h-4 w-4" />
-              <span>5분</span>
+              <span>{post.readTime}분</span>
             </div>
 
             <div className="flex items-center gap-3">
