@@ -8,13 +8,13 @@ import { Post } from "@/features/blog/api/posts";
 interface PostsPageProps {
   initialPosts: Post[];
   allTags: string[];
-  initialSelectedTags: string[];
+  selectedTag?: string;
 }
 
 const PostsPage = ({
   initialPosts,
   allTags,
-  initialSelectedTags,
+  selectedTag,
 }: PostsPageProps) => {
   return (
     <>
@@ -26,7 +26,7 @@ const PostsPage = ({
               <PostList
                 initialPosts={initialPosts}
                 allTags={allTags}
-                initialSelectedTags={initialSelectedTags}
+                selectedTag={selectedTag}
               />
             </div>
           </div>

@@ -6,13 +6,13 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface TagFilterProps {
   allTags: string[];
-  selectedTags: string[];
+  selectedTag?: string;
   visibleCount?: number;
 }
 
 export function TagFilter({
   allTags,
-  selectedTags,
+  selectedTag,
   visibleCount = 5,
 }: TagFilterProps) {
   const [expanded, setExpanded] = useState(false);
@@ -27,7 +27,7 @@ export function TagFilter({
         <Link
           href="/posts"
           className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-            selectedTags.length === 0
+            !selectedTag
               ? "bg-blog-light dark:bg-blog-dark text-blue-700 shadow-sm dark:text-blue-300"
               : "hover:bg-blog-light dark:hover:bg-blog-dark text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
           }`}
@@ -36,7 +36,7 @@ export function TagFilter({
         </Link>
 
         {visibleTags.map((tag) => {
-          const isSelected = selectedTags.includes(tag);
+          const isSelected = selectedTag === tag;
 
           return (
             <Link

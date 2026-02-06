@@ -6,12 +6,10 @@ export default async function Posts({
 }: {
   searchParams?: Promise<{ tag: string }>;
 }) {
-  const tag = searchParams && (await searchParams).tag;
-
-  const initialTags = tag ? [tag] : [];
+  const tag = searchParams ? (await searchParams).tag : undefined;
 
   const [initialPosts, allTags] = await Promise.all([
-    getPosts({ limit: 8, tags: initialTags }),
+    getPosts({ limit: 8, tag }),
     getAllTags(),
   ]);
 
@@ -19,7 +17,7 @@ export default async function Posts({
     <PostsPage
       initialPosts={initialPosts}
       allTags={allTags}
-      initialSelectedTags={initialTags}
+      selectedTag={tag}
     />
   );
 }

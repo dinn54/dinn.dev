@@ -6,10 +6,10 @@ const PAGE_SIZE = 8;
 
 export async function fetchMorePosts({
   offset,
-  tags = [],
+  tag,
 }: {
   offset: number;
-  tags?: string[];
+  tag?: string;
 }): Promise<Post[]> {
-  return getPosts({ limit: PAGE_SIZE, offset, tags });
+  return getPosts({ limit: PAGE_SIZE, offset, tag });
 }
