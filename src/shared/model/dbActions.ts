@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { DBTableName, InsertUserReview, UserReviewDetail } from "./dbTypes";
+import { DBTableName, InsertUserReview, UserReview } from "./dbTypes";
 
 // GET
 export async function dbGetUserReviews(supabase: SupabaseClient) {
@@ -7,7 +7,7 @@ export async function dbGetUserReviews(supabase: SupabaseClient) {
     .from(DBTableName.UserReview)
     .select("nickname, contents, email");
 
-  const reviews = (data as UserReviewDetail[]) ?? [];
+  const reviews = (data as UserReview[]) ?? [];
   return { reviews, error, count };
 }
 

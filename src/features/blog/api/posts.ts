@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { createServerClient } from "@/shared/lib/supabase/server";
-import { DinnPost } from "@/shared/lib/supabase/types";
+import { Tables } from "@/shared/lib/supabase/types";
 import { LexicalNode } from "../components/LexicalRenderer";
 import { parseMarkdownToLexicalNodes } from "../lib/parseMarkdownServer";
 
@@ -25,7 +25,7 @@ export interface Post {
   likeCount: number;
 }
 
-function transformPost(row: DinnPost): Post {
+function transformPost(row: Tables<"dinn_posts">): Post {
   let contentJSON: LexicalNode[] | undefined;
 
   if (row.content) {
@@ -183,10 +183,10 @@ export async function getAdjacentPosts(
 
   return {
     prev: prevData
-      ? transformPost({ ...prevData, content: null } as DinnPost)
+      ? transformPost({ ...prevData, content: null } as Tables<"dinn_posts">)
       : undefined,
     next: nextData
-      ? transformPost({ ...nextData, content: null } as DinnPost)
+      ? transformPost({ ...nextData, content: null } as Tables<"dinn_posts">)
       : undefined,
   };
 }

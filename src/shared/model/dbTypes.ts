@@ -1,19 +1,14 @@
+import { Tables, TablesInsert } from "@/shared/lib/supabase/types";
+
 export enum DBTableName {
-  UserReview = "user_review",
+  UserReview = "dinn_reviews",
 }
 
-export type UserReviewDetail = {
-  id: number;
-  nickname: string;
-  contents: string;
-  email: string;
-  created_at: string;
-  deleted_at: string;
-};
+export type UserReviewDetail = Tables<"dinn_reviews">;
 
-export type InsertUserReview = Omit<
+export type InsertUserReview = TablesInsert<"dinn_reviews">;
+
+export type UserReview = Pick<
   UserReviewDetail,
-  "id" | "created_at" | "deleted_at"
+  "nickname" | "contents" | "email"
 >;
-
-export type UserReview = InsertUserReview;
