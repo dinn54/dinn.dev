@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { TagListScroller } from "./TagListScroller";
+import { TagFilter } from "./TagFilter";
 import FixedLiftUpIcon from "@/page/home/ui/fixedLiftUpIcon";
 import { Post } from "../api/posts";
 
@@ -17,40 +17,8 @@ export function PostList({
 }: PostListProps) {
   return (
     <>
-      {/* Tag Filter - Minimal Text Style */}
-      <div className="tab:pt-10 flex w-full items-center border-b border-slate-100 py-6 dark:border-slate-800">
-        <Link
-          href="/posts"
-          className={`mr-2 shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-            initialSelectedTags.length === 0
-              ? "bg-blog-light dark:bg-blog-dark text-blue-700 shadow-sm dark:text-blue-300"
-              : "hover:bg-blog-light dark:hover:bg-blog-dark text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
-          }`}
-        >
-          All
-        </Link>
-
-        {/* Client Scroller Wrapper */}
-        <TagListScroller>
-          {allTags.map((tag) => {
-            const isSelected = initialSelectedTags.includes(tag);
-
-            return (
-              <Link
-                key={tag}
-                href={isSelected ? "/posts" : `/posts?tag=${tag}`}
-                className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                  isSelected
-                    ? "bg-blog-light dark:bg-blog-dark text-blue-700 shadow-sm dark:text-blue-300"
-                    : "hover:bg-blog-light dark:hover:bg-blog-dark text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
-                }`}
-              >
-                {tag}
-              </Link>
-            );
-          })}
-        </TagListScroller>
-      </div>
+      {/* Tag Filter */}
+      <TagFilter allTags={allTags} selectedTags={initialSelectedTags} />
 
       <div className="flex flex-col">
         {initialPosts.map((post) => (
