@@ -14,10 +14,10 @@ interface TableOfContentsProps {
 
 export function TableOfContents({ toc }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
-  const [isAtBottom, setIsAtBottom] = useState(false);
+  const isAtBottomRef = useRef(false);
   const observerActiveIdRef = useRef<string>("");
 
-  // 스크롤 최하단 감지
+  // 스크롤 최하단 감지 + activeId 동기화
   useEffect(() => {
     const scrollContainer = document.getElementById("app-scroll-container");
     if (!scrollContainer) return;
@@ -25,34 +25,33 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
     const handleScroll = () => {
       const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
       const isBottom = scrollTop + clientHeight >= scrollHeight - 1;
-      setIsAtBottom(isBottom);
+      const wasAtBottom = isAtBottomRef.current;
+      isAtBottomRef.current = isBottom;
+
+      if (isBottom && toc.length > 0) {
+        setActiveId(toc[toc.length - 1].key);
+      } else if (wasAtBottom && !isBottom) {
+        // 최하단에서 벗어날 때 observer가 추적 중이던 ID 복원
+        setActiveId(observerActiveIdRef.current);
+      }
     };
 
     scrollContainer.addEventListener("scroll", handleScroll);
-    handleScroll(); // 초기 상태 확인
+    handleScroll();
 
     return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [toc]);
 
-  // 최하단일 때 마지막 항목 활성화, 아니면 IntersectionObserver 값 사용
-  useEffect(() => {
-    if (isAtBottom && toc.length > 0) {
-      setActiveId(toc[toc.length - 1].key);
-    } else {
-      setActiveId(observerActiveIdRef.current);
-    }
-  }, [isAtBottom, toc]);
-
+  // IntersectionObserver — isAtBottom과 독립적으로 동작
   useEffect(() => {
     const scrollContainer = document.getElementById("app-scroll-container");
 
-    // Simple scroll spy to highlight active TOC item
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             observerActiveIdRef.current = entry.target.id;
-            if (!isAtBottom) {
+            if (!isAtBottomRef.current) {
               setActiveId(entry.target.id);
             }
           }
@@ -70,7 +69,7 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
     });
 
     return () => observer.disconnect();
-  }, [toc, isAtBottom]);
+  }, [toc]);
 
   const handleTocClick = (e: React.MouseEvent, key: string) => {
     e.preventDefault();
