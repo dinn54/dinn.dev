@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { TagFilter } from "./TagFilter";
-import FixedLiftUpIcon from "@/page/home/ui/fixedLiftUpIcon";
 import { Post } from "../api/posts";
+import { fetchMorePosts } from "../api/actions";
+
+const PAGE_SIZE = 8;
 
 interface PostListProps {
   initialPosts: Post[];
@@ -15,13 +19,58 @@ export function PostList({
   allTags,
   initialSelectedTags = [],
 }: PostListProps) {
+  const [posts, setPosts] = useState(initialPosts);
+  const [hasMore, setHasMore] = useState(initialPosts.length >= PAGE_SIZE);
+  const [loading, setLoading] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Reset when initialPosts change (tag navigation)
+  useEffect(() => {
+    setPosts(initialPosts);
+    setHasMore(initialPosts.length >= PAGE_SIZE);
+  }, [initialPosts]);
+
+  const loadMore = useCallback(async () => {
+    if (loading || !hasMore) return;
+    setLoading(true);
+
+    const newPosts = await fetchMorePosts({
+      offset: posts.length,
+      tags: initialSelectedTags,
+    });
+
+    if (newPosts.length < PAGE_SIZE) {
+      setHasMore(false);
+    }
+
+    setPosts((prev) => [...prev, ...newPosts]);
+    setLoading(false);
+  }, [loading, hasMore, posts.length, initialSelectedTags]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [loadMore]);
+
   return (
     <>
       {/* Tag Filter */}
       <TagFilter allTags={allTags} selectedTags={initialSelectedTags} />
 
       <div className="flex flex-col">
-        {initialPosts.map((post) => (
+        {posts.map((post) => (
           <Link
             key={post.id}
             href={`/posts/${post.id}`}
@@ -51,13 +100,23 @@ export function PostList({
         ))}
       </div>
 
-      {initialPosts.length === 0 && (
+      {posts.length === 0 && (
         <div className="mt-12 flex h-20 w-full items-center justify-center text-slate-500">
           게시글이 없습니다.
         </div>
       )}
 
-      <FixedLiftUpIcon targetId="app-scroll-container" />
+      {/* Sentinel for IntersectionObserver */}
+      {hasMore && (
+        <div ref={sentinelRef} className="flex justify-center py-8">
+          {loading && (
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-slate-300 border-t-slate-600 dark:border-slate-600 dark:border-t-slate-300" />
+          )}
+        </div>
+      )}
+
+      {/* Bottom padding to prevent overlap with FixedLiftUpIcon */}
+      <div className="pb-20" />
     </>
   );
 }
