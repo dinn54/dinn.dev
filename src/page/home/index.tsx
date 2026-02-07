@@ -36,10 +36,23 @@ const Home = () => {
     ) as HTMLDivElement[];
     if (sections.length === 0) return;
 
-    let targetSectionIndex = 0;
     let accumulatedDeltaY = 0;
     let isScrolling = false;
     let scrollingTimeout: NodeJS.Timeout | number;
+
+    const getCurrentSectionIndex = () => {
+      const scrollTop = container.scrollTop;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      sections.forEach((section, index) => {
+        const distance = Math.abs(section.offsetTop - scrollTop);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+      return closestIndex;
+    };
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
@@ -48,16 +61,17 @@ const Home = () => {
       }
       accumulatedDeltaY += e.deltaY;
 
+      let targetSectionIndex: number;
       // 누적 deltaY가 150이상일때 한 화면 스크롤
       if (accumulatedDeltaY > 150) {
         targetSectionIndex = Math.min(
           sections.length - 1,
-          ++targetSectionIndex,
+          getCurrentSectionIndex() + 1,
         );
         isScrolling = true;
         accumulatedDeltaY = 0;
       } else if (accumulatedDeltaY < -150) {
-        targetSectionIndex = Math.max(0, --targetSectionIndex);
+        targetSectionIndex = Math.max(0, getCurrentSectionIndex() - 1);
         isScrolling = true;
         accumulatedDeltaY = 0;
       } else {
