@@ -1,6 +1,6 @@
 "use client";
 import { PageHeader } from "@/shared/ui/pageHeader";
-import PageContainer from "./page_container";
+import HomeSectionContainer from "./HomeSectionContainer";
 import ProjectCard from "./projectsCard";
 import { useEffect, useRef } from "react";
 import { projecstMetaData } from "@/page/projects/model/projectMetaData";
@@ -28,7 +28,7 @@ const Projects = () => {
   useEffect(() => {}, []);
 
   return (
-    <PageContainer
+    <HomeSectionContainer
       id="projects-section"
       className="bg-projects-light dark:bg-projects-dark overflow-x-hidden"
     >
@@ -100,7 +100,7 @@ const Projects = () => {
           </div>
         </div>
       </div>
-    </PageContainer>
+    </HomeSectionContainer>
   );
 };
 export default Projects;

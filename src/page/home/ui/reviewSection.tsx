@@ -1,6 +1,6 @@
 "use client";
 import { PageHeader } from "@/shared/ui/pageHeader";
-import PageContainer from "./page_container";
+import HomeSectionContainer from "./HomeSectionContainer";
 import {
   ReviewCard,
   ReviewCardSkeleton,
@@ -231,7 +231,7 @@ const Review = () => {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
 
   return (
-    <PageContainer
+    <HomeSectionContainer
       id="review-section"
       className="dark:bg-review-dark bg-[#f4f6ff] !px-0"
     >
@@ -307,7 +307,7 @@ const Review = () => {
           </div>
         </div>
       </div>
-    </PageContainer>
+    </HomeSectionContainer>
   );
 };
 export default Review;

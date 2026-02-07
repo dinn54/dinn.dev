@@ -1,5 +1,5 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
-import PageContainer from "./page_container";
+import HomeSectionContainer from "./HomeSectionContainer";
 import {
   AboutIconHoverDescription,
   ProfileImage,
@@ -15,7 +15,7 @@ import { getStorageLink } from "@/shared/model/getStorageLink";
 
 const About = () => {
   return (
-    <PageContainer
+    <HomeSectionContainer
       id="about-section"
       className="bg-about-light dark:bg-about-dark"
     >
@@ -116,7 +116,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </PageContainer>
+    </HomeSectionContainer>
   );
 };
 export default About;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import PageContainer from "./page_container";
+import HomeSectionContainer from "./HomeSectionContainer";
 import { Character, IntroductionText, Tree } from "./introductionComponents";
 import NextImageClient from "@/shared/ui/image/nextImageClient";
 
@@ -18,7 +18,7 @@ const Introduction = () => {
   const CharacterRef = useRef<HTMLDivElement>(null);
 
   return (
-    <PageContainer
+    <HomeSectionContainer
       id="introduction-section"
       className="bg-home-light dark:bg-home-dark"
     >
@@ -35,6 +35,7 @@ const Introduction = () => {
               className="animate-fade-down-slow h-full object-contain object-left"
               priority
               fill
+              sizes="(max-width: 768px) 100vw, 60vw"
             />
           </div>
           <div
@@ -47,7 +48,7 @@ const Introduction = () => {
           <Character characterRef={CharacterRef} />
         </div>
       </div>
-    </PageContainer>
+    </HomeSectionContainer>
   );
 };
 export default Introduction;
