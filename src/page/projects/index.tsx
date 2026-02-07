@@ -1,5 +1,5 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
-import PageContainer from "../home/ui/page_container";
+import StandalonePageContainer from "@/shared/ui/StandalonePageContainer";
 import { ProjectContentsContainer } from "./ui/projectContents";
 import { projecstMetaData, ProjectMetaData } from "./model/projectMetaData";
 import { B3F, B4F, H6F } from "@/shared/ui/text/text";
@@ -13,7 +13,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
     projecstMetaData[Number(projectNum) - 1];
 
   return (
-    <PageContainer>
+    <StandalonePageContainer>
       <div className="flex h-full w-full flex-col">
         <PageHeader
           title={projectMetadata?.name ?? "_"}
@@ -158,7 +158,7 @@ const Project = ({ projectNum }: { projectNum: string }) => {
           </div>
         </div>
       </div>
-    </PageContainer>
+    </StandalonePageContainer>
   );
 };
 export default Project;

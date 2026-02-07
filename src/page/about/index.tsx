@@ -1,5 +1,5 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
-import PageContainer from "../home/ui/page_container";
+import StandalonePageContainer from "@/shared/ui/StandalonePageContainer";
 import { LinkTab } from "./ui/profileLinkTab";
 import {
   AboutCertificate,
@@ -14,7 +14,7 @@ import { getStorageLink } from "@/shared/model/getStorageLink";
 
 const AboutPage = () => {
   return (
-    <PageContainer>
+    <StandalonePageContainer>
       <div className="flex h-full w-full flex-col">
         <PageHeader
           title="About me"
@@ -27,6 +27,7 @@ const AboutPage = () => {
                 filePath="/profilePicture3.png"
                 alt="about-me"
                 fill
+                sizes="(max-width: 768px) 60vw, 22rem"
                 className="rounded-3xl object-cover object-center outline-black"
               />
             </div>
@@ -51,7 +52,7 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-    </PageContainer>
+    </StandalonePageContainer>
   );
 };
 export default AboutPage;

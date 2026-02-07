@@ -9,7 +9,7 @@ import {
 import { SaveButton } from "./SaveButton";
 import { ShareButton } from "./ShareButton";
 import { ScrollTopButton } from "./ScrollTopButton";
-import PageContainer from "@/page/home/ui/page_container";
+import StandalonePageContainer from "@/shared/ui/StandalonePageContainer";
 import { Post } from "../api/posts";
 import LexicalRenderer, { LexicalNode } from "./LexicalRenderer";
 import MarkdownRenderer from "./MarkdownRenderer";
@@ -46,7 +46,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
   const toc = generateTOC(post.contentJSON);
 
   return (
-    <PageContainer className="!items-start">
+    <StandalonePageContainer>
       {/* 
            Article Container 
            Fixed width (max-w-[800px]) to ensure Title and Content are perfectly aligned.
@@ -217,6 +217,6 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
       <aside className="absolute top-16 left-[calc(50%+440px)] hidden h-full xl:block">
         <TableOfContents toc={toc} />
       </aside>
-    </PageContainer>
+    </StandalonePageContainer>
   );
 }

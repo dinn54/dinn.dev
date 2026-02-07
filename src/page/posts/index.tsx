@@ -1,5 +1,5 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
-import PageContainer from "@/page/home/ui/page_container";
+import StandalonePageContainer from "@/shared/ui/StandalonePageContainer";
 import { PostList } from "@/features/blog/components/PostList";
 import FixedLiftUpIcon from "@/page/home/ui/fixedLiftUpIcon";
 
@@ -18,7 +18,7 @@ const PostsPage = ({
 }: PostsPageProps) => {
   return (
     <>
-      <PageContainer>
+      <StandalonePageContainer>
         <PageHeader title="BLOG" color="bg-blog-light dark:bg-blog-dark" />
         <div className="flex h-full min-h-screen w-full flex-col">
           <div className="pc:flex-row tab:mt-[5.75rem] pc:mt-[10rem] tab:h-[calc(100%-6.25rem)] pc:h-[calc(100%-8.5rem)] pc:items-start pc:gap-22 max:px-[calc((100vw-90.063rem)*0.2)] mt-[5.5rem] flex h-[calc(100%-5.5rem)] w-full flex-col items-center gap-6">
@@ -31,7 +31,7 @@ const PostsPage = ({
             </div>
           </div>
         </div>
-      </PageContainer>
+      </StandalonePageContainer>
       <FixedLiftUpIcon targetId="app-scroll-container" />
     </>
   );
