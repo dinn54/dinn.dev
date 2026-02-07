@@ -19,6 +19,7 @@ export const Tree = ({
           className="pc:opacity-100 h-full object-contain object-left opacity-0"
           priority
           fill
+          sizes="50vw"
           fetchPriority="high"
         />
       </div>
@@ -41,6 +42,7 @@ export const Character = ({
         alt="character"
         className="scale-x-[-1] object-contain"
         fill
+        sizes="7rem"
       />
     </div>
   );
@@ -110,17 +112,11 @@ export const IntroductionText = () => {
                 리뷰 남기기
               </span>
             </BaseButton>
-            <BaseButton
-              color="none"
-              onClick={() => {
-                const target = document.getElementById("review-section");
-                if (target) {
-                  target.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              <span className="text-p12 tab:text-p14 pc:text-p16">Contact</span>
-            </BaseButton>
+            <a href="mailto:joodinner@gmail.com">
+              <BaseButton color="none">
+                <span className="text-p12 tab:text-p14 pc:text-p16">Contact</span>
+              </BaseButton>
+            </a>
           </div>
         </div>
       </div>
