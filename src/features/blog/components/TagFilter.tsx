@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -10,20 +10,68 @@ interface TagFilterProps {
   visibleCount?: number;
 }
 
+function getVisibleTags(
+  allTags: string[],
+  selectedTag: string | undefined,
+  limit: number,
+) {
+  const baseTags = allTags.slice(0, limit);
+  if (!selectedTag || baseTags.includes(selectedTag) || !allTags.includes(selectedTag)) {
+    return baseTags;
+  }
+
+  if (limit <= 1) {
+    return [selectedTag];
+  }
+
+  return [...allTags.slice(0, limit - 1), selectedTag];
+}
+
 export function TagFilter({
   allTags,
   selectedTag,
   visibleCount = 5,
 }: TagFilterProps) {
   const [expanded, setExpanded] = useState(false);
+  const [currentVisibleCount, setCurrentVisibleCount] = useState(visibleCount);
 
-  const hasMore = allTags.length > visibleCount;
-  const visibleTags = expanded ? allTags : allTags.slice(0, visibleCount);
-  const hiddenCount = allTags.length - visibleCount;
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      const width = window.innerWidth;
+      if (width >= 1280) {
+        setCurrentVisibleCount(7);
+      } else if (width >= 1024) {
+        setCurrentVisibleCount(6);
+      } else if (width >= 768) {
+        setCurrentVisibleCount(5);
+      } else if (width >= 640) {
+        setCurrentVisibleCount(4);
+      } else if (width >= 480) {
+        setCurrentVisibleCount(3);
+      } else {
+        setCurrentVisibleCount(2);
+      }
+    };
+
+    updateVisibleCount();
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
+  const visibleTagsBase = getVisibleTags(allTags, selectedTag, currentVisibleCount);
+  const hasMore = allTags.length > currentVisibleCount;
+  const visibleTags = expanded ? allTags : visibleTagsBase;
+  const hiddenCount = Math.max(0, allTags.length - currentVisibleCount);
 
   return (
     <div className="tab:pt-10 flex w-full flex-col border-b border-slate-100 py-6 dark:border-slate-800">
-      <div className="flex flex-wrap items-center gap-2">
+      <div
+        className={`flex items-center gap-2 ${
+          expanded
+            ? "flex-wrap overflow-visible"
+            : "flex-nowrap overflow-x-auto"
+        }`}
+      >
         <Link
           href="/posts"
           className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
@@ -65,7 +113,8 @@ export function TagFilter({
               </>
             ) : (
               <>
-                +{hiddenCount}개 더보기
+                <span className="sm:hidden">더보기</span>
+                <span className="hidden sm:inline">+{hiddenCount}개 더보기</span>
                 <ChevronDown className="h-4 w-4" />
               </>
             )}
