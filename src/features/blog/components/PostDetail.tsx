@@ -46,9 +46,13 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
   const toc = generateTOC(post.contentJSON);
 
   return (
-    <StandalonePageContainer>
-      <div className="mx-auto w-full max-w-[1440px] py-10">
-        <div className="relative mx-auto w-full max-w-[960px]">
+    <StandalonePageContainer
+      withHorizontalPadding={false}
+      innerClassName="max-w-none"
+    >
+      <div className="w-full px-6 py-10 md:px-8 lg:px-10 xl:px-0">
+        <div className="grid w-full grid-cols-1 xl:grid-cols-[minmax(0,1fr)_960px_minmax(0,1fr)] 2xl:grid-cols-[minmax(0,1fr)_1040px_minmax(0,1fr)]">
+        <div className="hidden xl:block" />
         <article className="min-w-0 w-full">
           {/* Top Back Navigation */}
           <div className="mb-8">
@@ -199,9 +203,8 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             </div>
           </div>
         </article>
-
         {toc.length > 0 && (
-          <aside className="absolute top-10 left-[calc(100%+3rem)] hidden xl:block">
+          <aside className="hidden xl:flex xl:justify-start xl:pl-8 xl:pr-2">
             <TableOfContents toc={toc} />
           </aside>
         )}

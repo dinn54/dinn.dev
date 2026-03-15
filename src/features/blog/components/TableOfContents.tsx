@@ -83,7 +83,7 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
   if (!toc || toc.length === 0) return null;
 
   return (
-    <div className="sticky top-32 w-64">
+    <div className="sticky top-24 mt-28 w-full self-start">
       <div className="border-l border-slate-200 pl-4 dark:border-slate-800">
         <h3 className="mb-4 text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
           목차
