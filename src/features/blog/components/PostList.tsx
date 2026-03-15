@@ -73,7 +73,7 @@ export function PostList({
         {posts.map((post) => (
           <Link
             key={post.id}
-            href={`/posts/${post.slug}`}
+            href={`/posts/${encodeURIComponent(post.slug)}`}
             className="group relative flex cursor-pointer flex-col items-start gap-2 border-b border-slate-100 py-5 transition-colors last:border-0 dark:border-slate-800"
           >
             {/* Content */}

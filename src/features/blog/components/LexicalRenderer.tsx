@@ -85,8 +85,12 @@ export const editorTheme = {
   placeholder: "editor-placeholder",
   // Modern: Ultra-compact text size (15px), relaxed leading
   paragraph: "mb-6 text-[15px] leading-[1.8] text-slate-700 dark:text-slate-300 tracking-normal",
-  // Modern: Rounded, soft container
-  quote: "not-prose relative block rounded-xl bg-zinc-100 dark:bg-zinc-800/50 px-4 py-3 my-8 text-[15px] font-medium leading-loose text-zinc-700 dark:text-zinc-300 font-callout",
+  quote:
+    "not-prose relative my-8 block py-2 pl-11 text-[15px] italic leading-[1.8] text-slate-600 dark:text-slate-300",
+  quoteMark:
+    "pointer-events-none absolute left-1 top-[-0.58rem] font-serif text-[4rem] leading-none text-slate-300 dark:text-slate-700",
+  quoteBody:
+    "relative z-10 min-w-0 [&_p:last-child]:mb-0 [&_p]:mb-3 [&_p]:leading-[1.8]",
   heading: {
     h1: "font-heading scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl mb-4 mt-10 md:mt-12 text-slate-900 dark:text-white first:mt-0",
     h2: "font-heading scroll-m-20 text-xl font-bold tracking-tight mb-3 mt-10 md:mt-12 text-slate-900 dark:text-white",
@@ -192,7 +196,10 @@ function NodeRenderer({ node }: { node: LexicalNode }) {
     case "quote":
       return (
         <blockquote className={editorTheme.quote}>
-          {renderChildren(node)}
+          <span aria-hidden="true" className={editorTheme.quoteMark}>
+            &ldquo;
+          </span>
+          <div className={editorTheme.quoteBody}>{renderChildren(node)}</div>
         </blockquote>
       );
 

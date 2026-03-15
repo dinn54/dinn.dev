@@ -4,8 +4,9 @@ export const theme = {
   placeholder: "editor-placeholder",
   // Modern: Ultra-compact text size (15px), relaxed leading
   paragraph: "mb-6 text-[15px] leading-[1.8] text-slate-700 dark:text-slate-300 tracking-normal",
-  // Modern: Rounded, soft container with NanumSquareRound.
-  quote: "not-prose relative block rounded-xl bg-zinc-100 dark:bg-zinc-800/50 px-4 py-3 my-8 text-[15px] font-medium leading-loose text-zinc-700 dark:text-zinc-300 font-callout",
+  // Compact quote card with subtle double-quote marks.
+  quote:
+    "not-prose relative my-8 block py-2 pl-11 text-[15px] italic leading-[1.8] text-slate-600 dark:text-slate-300 before:pointer-events-none before:absolute before:left-1 before:top-[-0.58rem] before:font-serif before:text-[4rem] before:leading-none before:text-slate-300 before:content-['“'] dark:before:text-slate-700",
   heading: {
     h1: "font-heading scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl mb-4 mt-10 md:mt-12 text-slate-900 dark:text-white first:mt-0",
     h2: "font-heading scroll-m-20 text-xl font-bold tracking-tight mb-3 mt-10 md:mt-12 text-slate-900 dark:text-white",

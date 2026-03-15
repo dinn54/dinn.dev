@@ -7,6 +7,50 @@ interface SaveButtonProps {
   postTitle: string;
 }
 
+function blobToDataUrl(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        resolve(reader.result);
+        return;
+      }
+      reject(new Error("Failed to convert blob to data URL."));
+    };
+    reader.onerror = () =>
+      reject(reader.error ?? new Error("FileReader failed."));
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function inlineImages(root: ParentNode) {
+  const images = Array.from(root.querySelectorAll("img[src]"));
+
+  await Promise.all(
+    images.map(async (img) => {
+      const src = img.getAttribute("src");
+      if (!src || src.startsWith("data:")) return;
+
+      try {
+        const response = await fetch(src, { cache: "force-cache" });
+        if (!response.ok) return;
+
+        const blob = await response.blob();
+        const dataUrl = await blobToDataUrl(blob);
+        img.setAttribute("src", dataUrl);
+      } catch {
+        // Leave the original URL in place when inlining is not possible.
+      } finally {
+        img.removeAttribute("srcset");
+        img.removeAttribute("sizes");
+        img.removeAttribute("loading");
+        img.removeAttribute("decoding");
+        img.removeAttribute("fetchpriority");
+      }
+    })
+  );
+}
+
 export function SaveButton({ postTitle }: SaveButtonProps) {
   const handleDownloadHtml = async () => {
     const contentElement = document.getElementById("post-content");
@@ -95,6 +139,28 @@ export function SaveButton({ postTitle }: SaveButtonProps) {
     if (shareButton) shareButton.remove();
     if (navigation) navigation.remove();
 
+    const exportRoot = document.createElement("div");
+    exportRoot.innerHTML = `
+      ${headerElement.outerHTML}
+      <div class="content">
+        ${sanitizedContent}
+      </div>
+      ${footerClone.outerHTML}
+    `;
+
+    const sourceImages = Array.from(contentElement.querySelectorAll("img"));
+    const exportImages = Array.from(exportRoot.querySelectorAll("img"));
+    exportImages.forEach((img, index) => {
+      const sourceImage = sourceImages[index];
+      const preferredSrc =
+        sourceImage?.currentSrc || sourceImage?.getAttribute("src");
+      if (preferredSrc) {
+        img.setAttribute("src", preferredSrc);
+      }
+    });
+
+    await inlineImages(exportRoot);
+
     const htmlContent = `
 <!DOCTYPE html>
 <html lang="ko">
@@ -130,11 +196,7 @@ export function SaveButton({ postTitle }: SaveButtonProps) {
 </head>
 <body>
     <article>
-      ${headerElement.outerHTML}
-      <div class="content">
-        ${sanitizedContent}
-      </div>
-      ${footerClone.outerHTML}
+      ${exportRoot.innerHTML}
     </article>
     <script>
       document.querySelector('button[id="btn-scroll-top"]')?.addEventListener('click', () => {

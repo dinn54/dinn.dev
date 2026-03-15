@@ -15,22 +15,24 @@ export async function POST(req: NextRequest) {
   switch (type) {
     case "INSERT": {
       const slug = body.record.slug;
-      revalidatePath(`/posts/${slug}`);
-      fetch(`${siteConfig.url}/posts/${slug}`).catch(() => {});
+      const encodedSlug = encodeURIComponent(slug);
+      revalidatePath(`/posts/${encodedSlug}`);
+      fetch(`${siteConfig.url}/posts/${encodedSlug}`).catch(() => {});
       break;
     }
     case "UPDATE": {
       const slug = body.record.slug;
       const oldSlug = body.old_record.slug;
-      revalidatePath(`/posts/${slug}`);
+      const encodedSlug = encodeURIComponent(slug);
+      revalidatePath(`/posts/${encodedSlug}`);
       if (oldSlug !== slug) {
-        revalidatePath(`/posts/${oldSlug}`);
+        revalidatePath(`/posts/${encodeURIComponent(oldSlug)}`);
       }
       break;
     }
     case "DELETE": {
       const slug = body.old_record.slug;
-      revalidatePath(`/posts/${slug}`);
+      revalidatePath(`/posts/${encodeURIComponent(slug)}`);
       break;
     }
   }

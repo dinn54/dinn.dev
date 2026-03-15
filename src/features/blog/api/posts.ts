@@ -25,6 +25,10 @@ export interface Post {
   likeCount: number;
 }
 
+function normalizeSlug(value: string): string {
+  return decodeURIComponent(value).trim().normalize("NFC");
+}
+
 function transformPost(row: Tables<"dinn_posts">): Post {
   let contentJSON: LexicalNode[] | undefined;
 
@@ -104,22 +108,28 @@ export async function getPosts({
   return (data || []).map(transformPost);
 }
 
-export const getPostBySlug = cache(async function getPostBySlug(slug: string): Promise<Post | null> {
+export const getPostBySlug = cache(async function getPostBySlug(rawSlug: string): Promise<Post | null> {
   const supabase = createServerClient();
+  const slug = normalizeSlug(rawSlug);
 
   const { data, error } = await supabase
     .from("dinn_posts")
     .select("*")
     .eq("slug", slug)
     .eq("is_visible", true)
-    .single();
+    .maybeSingle();
 
-  if (error || !data) {
-    console.error("Error fetching post:", error);
+  if (error) {
+    console.error("Error fetching post:", {
+      slug,
+      code: error.code,
+      message: error.message,
+      details: error.details,
+    });
     return null;
   }
 
-  return transformPost(data);
+  return data ? transformPost(data) : null;
 });
 
 export const getPostById = cache(async function getPostById(id: string): Promise<Post | null> {
@@ -130,14 +140,19 @@ export const getPostById = cache(async function getPostById(id: string): Promise
     .select("*")
     .eq("id", id)
     .eq("is_visible", true)
-    .single();
+    .maybeSingle();
 
-  if (error || !data) {
-    console.error("Error fetching post:", error);
+  if (error) {
+    console.error("Error fetching post by id:", {
+      id,
+      code: error.code,
+      message: error.message,
+      details: error.details,
+    });
     return null;
   }
 
-  return transformPost(data);
+  return data ? transformPost(data) : null;
 });
 
 const ADJACENT_POST_SELECT =
