@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { DetailLexicalViewer } from "dinn-lexical/server";
 import {
   Calendar,
   Clock,
@@ -11,8 +12,7 @@ import { ShareButton } from "./ShareButton";
 import { ScrollTopButton } from "./ScrollTopButton";
 import StandalonePageContainer from "@/shared/ui/StandalonePageContainer";
 import { Post } from "../api/posts";
-import LexicalRenderer, { LexicalNode } from "./LexicalRenderer";
-import MarkdownRenderer from "./MarkdownRenderer";
+import type { LexicalNode } from "./LexicalRenderer";
 import { TableOfContents } from "./TableOfContents";
 
 interface PostDetailProps {
@@ -109,10 +109,8 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
 
           {/* Content Renderer */}
           <div id="post-content">
-            {post.contentJSON ? (
-              <LexicalRenderer nodes={post.contentJSON} />
-            ) : post.content ? (
-              <MarkdownRenderer markdown={post.content} />
+            {post.content ? (
+              <DetailLexicalViewer content={post.content} width="100%" />
             ) : (
               <div className="py-20 text-center text-slate-500">
                 <p>콘텐츠를 불러올 수 없습니다.</p>
