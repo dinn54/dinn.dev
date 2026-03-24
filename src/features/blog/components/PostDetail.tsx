@@ -7,6 +7,7 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "lucide-react";
+import { LikeButton } from "./LikeButton";
 import { SaveButton } from "./SaveButton";
 import { ShareButton } from "./ShareButton";
 import { ScrollTopButton } from "./ScrollTopButton";
@@ -50,10 +51,10 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
       withHorizontalPadding={false}
       innerClassName="max-w-none"
     >
-      <div className="w-full px-6 py-10 md:px-8 lg:px-10 xl:px-0">
+      <div className="w-full px-4 pt-4 pb-10 sm:px-6 md:pb-14 xl:px-0">
         <div className="grid w-full grid-cols-1 xl:grid-cols-[minmax(0,1fr)_960px_minmax(0,1fr)] 2xl:grid-cols-[minmax(0,1fr)_1040px_minmax(0,1fr)]">
         <div className="hidden xl:block" />
-        <article className="min-w-0 w-full">
+        <article className="flex min-h-full w-full min-w-0 flex-col pt-2 pb-10">
           {/* Top Back Navigation */}
           <div className="mb-8">
             <Link
@@ -92,12 +93,12 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
 
               <div className="flex items-center gap-3">
                 <span className="h-3 w-px bg-slate-200 dark:bg-slate-700"></span>
-                <div className="flex gap-2">
+              <div className="flex gap-2">
                   {post.tags.map((tag) => (
                     <Link
                       key={tag}
                       href={`/posts?tag=${encodeURIComponent(tag)}`}
-                      className="cursor-pointer font-sans text-xs font-medium text-slate-500 transition-colors hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-300"
+                      className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-teal-100 hover:text-teal-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-teal-900/30 dark:hover:text-teal-300"
                     >
                       #{tag}
                     </Link>
@@ -118,8 +119,10 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             )}
           </div>
 
+          <LikeButton initialCount={post.likeCount} />
+
           {/* Footer Actions & Navigation Combined */}
-          <div id="post-footer" className="mt-16 border-t border-slate-200 pt-8 dark:border-slate-800">
+          <div id="post-footer" className="mt-10 border-t border-slate-200 pt-8 dark:border-slate-800">
             <div className="mb-10 flex flex-row items-center justify-between gap-4">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-3">
@@ -150,9 +153,13 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
               </div>
 
               <div className="flex flex-col items-end gap-2 pr-4 sm:flex-row sm:items-center sm:gap-3 sm:pr-0">
-                <SaveButton postTitle={post.title} />
+                <div id="btn-save">
+                  <SaveButton postTitle={post.title} />
+                </div>
                 <div id="btn-save-divider" className="hidden h-4 w-px bg-slate-200 sm:block dark:bg-slate-700"></div>
-                <ShareButton title={post.title} description={post.description} />
+                <div id="btn-share">
+                  <ShareButton title={post.title} description={post.description} />
+                </div>
               </div>
             </div>
 
