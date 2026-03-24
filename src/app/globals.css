@@ -208,6 +208,77 @@
 }
 
 @layer utilities {
+  #post-content .editor-code-block {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: pre;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.12);
+    background: #18181b;
+    color: #f9fafb;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-code), "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    letter-spacing: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #post-content .editor-code-pre,
+  #post-content .editor-code-content {
+    display: block;
+    white-space: inherit;
+    font: inherit;
+    color: inherit;
+  }
+
+  #post-content .editor-code-block .code-token-comment,
+  #post-content .editor-code-block .token.comment {
+    color: #637777;
+    font-style: italic;
+  }
+
+  #post-content .editor-code-block .code-token-keyword,
+  #post-content .editor-code-block .token.keyword,
+  #post-content .editor-code-block .code-token-operator,
+  #post-content .editor-code-block .token.operator,
+  #post-content .editor-code-block .code-token-atrule,
+  #post-content .editor-code-block .token.atrule {
+    color: #c792ea;
+  }
+
+  #post-content .editor-code-block .code-token-string,
+  #post-content .editor-code-block .token.string,
+  #post-content .editor-code-block .token.attr-value {
+    color: #ecc48d;
+  }
+
+  #post-content .editor-code-block .code-token-number,
+  #post-content .editor-code-block .token.number {
+    color: #f78c6c;
+  }
+
+  #post-content .editor-code-block .code-token-function,
+  #post-content .editor-code-block .token.function,
+  #post-content .editor-code-block .code-token-builtin,
+  #post-content .editor-code-block .token.builtin,
+  #post-content .editor-code-block .code-token-class-name,
+  #post-content .editor-code-block .token.class-name {
+    color: #82aaff;
+  }
+
+  #post-content .editor-code-block .code-token-property,
+  #post-content .editor-code-block .token.property,
+  #post-content .editor-code-block .token.punctuation {
+    color: #89ddff;
+  }
+
+  #post-content .editor-code-block .code-token-variable,
+  #post-content .editor-code-block .token.variable {
+    color: #d6deeb;
+  }
+
   .shake-animate:hover {
     animation: shake 0.2s ease-in-out;
   }
