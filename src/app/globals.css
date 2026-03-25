@@ -119,7 +119,9 @@
   /* 필요한 곳만 선택 허용 */
   input,
   textarea,
-  [contenteditable="true"] {
+  [contenteditable="true"],
+  #post-content,
+  #post-content * {
     user-select: auto;
     -webkit-user-select: auto;
   }
