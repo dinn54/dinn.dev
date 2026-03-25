@@ -39,8 +39,6 @@ function syncHeadingIds(toc: TOCItem[]): HTMLElement[] {
 
 export function TableOfContents({ toc }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
-  const isAtBottomRef = useRef(false);
-  const observerActiveIdRef = useRef<string>("");
 
   useEffect(() => {
     const postContent = document.getElementById("post-content");
@@ -60,58 +58,41 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
     return () => observer.disconnect();
   }, [toc]);
 
-  // 스크롤 최하단 감지 + activeId 동기화
   useEffect(() => {
     const scrollContainer = document.getElementById("app-scroll-container");
     if (!scrollContainer) return;
 
+    const headerOffset = 96;
     const handleScroll = () => {
+      const headings = syncHeadingIds(toc);
+      if (headings.length === 0) return;
+
       const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
       const isBottom = scrollTop + clientHeight >= scrollHeight - 1;
-      const wasAtBottom = isAtBottomRef.current;
-      isAtBottomRef.current = isBottom;
 
       if (isBottom && toc.length > 0) {
         setActiveId(createHeadingId(toc[toc.length - 1], toc.length - 1));
-      } else if (wasAtBottom && !isBottom) {
-        // 최하단에서 벗어날 때 observer가 추적 중이던 ID 복원
-        setActiveId(observerActiveIdRef.current);
+        return;
       }
+
+      const scrollContainerRect = scrollContainer.getBoundingClientRect();
+      const anchorY = scrollContainerRect.top + headerOffset;
+
+      let nextActiveId = headings[0]?.id ?? "";
+      headings.forEach((heading) => {
+        const headingTop = heading.getBoundingClientRect().top;
+        if (headingTop <= anchorY) {
+          nextActiveId = heading.id;
+        }
+      });
+
+      setActiveId(nextActiveId);
     };
 
-    scrollContainer.addEventListener("scroll", handleScroll);
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, [toc]);
-
-  // IntersectionObserver — isAtBottom과 독립적으로 동작
-  useEffect(() => {
-    const scrollContainer = document.getElementById("app-scroll-container");
-
-    const headings = syncHeadingIds(toc);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            observerActiveIdRef.current = entry.target.id;
-            if (!isAtBottomRef.current) {
-              setActiveId(entry.target.id);
-            }
-          }
-        });
-      },
-      {
-        root: scrollContainer,
-        rootMargin: "0px 0px -80% 0px",
-      },
-    );
-
-    headings.forEach((h) => {
-      if (h.id) observer.observe(h);
-    });
-
-    return () => observer.disconnect();
   }, [toc]);
 
   const handleTocClick = (e: React.MouseEvent, key: string) => {
