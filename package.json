@@ -41,7 +41,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "dinn-lexical": "git+https://github.com/dinn54/dinn-lexical.git#2512ee9eb41f272bc67ce33498b6dffa645fdf41",
+    "dinn-lexical": "git+https://github.com/dinn54/dinn-lexical.git#da00d1e49e404faecd709c55ce67fc442ee42537",
     "lexical": "^0.39.0",
     "lucide-react": "^0.525.0",
     "motion": "^12.23.12",
