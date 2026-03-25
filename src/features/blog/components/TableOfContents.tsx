@@ -23,21 +23,41 @@ function createHeadingId(item: TOCItem, index: number) {
   return `toc-${index}-${slug || "section"}`;
 }
 
+function syncHeadingIds(toc: TOCItem[]): HTMLElement[] {
+  const headings = Array.from(
+    document.querySelectorAll<HTMLElement>("#post-content h2, #post-content h3")
+  );
+
+  headings.forEach((heading, index) => {
+    const item = toc[index];
+    if (!item) return;
+    heading.id = createHeadingId(item, index);
+  });
+
+  return headings;
+}
+
 export function TableOfContents({ toc }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
   const isAtBottomRef = useRef(false);
   const observerActiveIdRef = useRef<string>("");
 
   useEffect(() => {
-    const headings = Array.from(
-      document.querySelectorAll<HTMLElement>("#post-content h2, #post-content h3")
-    );
+    const postContent = document.getElementById("post-content");
+    if (!postContent) return;
 
-    headings.forEach((heading, index) => {
-      const item = toc[index];
-      if (!item) return;
-      heading.id = createHeadingId(item, index);
+    syncHeadingIds(toc);
+
+    const observer = new MutationObserver(() => {
+      syncHeadingIds(toc);
     });
+
+    observer.observe(postContent, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
   }, [toc]);
 
   // 스크롤 최하단 감지 + activeId 동기화
@@ -69,6 +89,7 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
   useEffect(() => {
     const scrollContainer = document.getElementById("app-scroll-container");
 
+    const headings = syncHeadingIds(toc);
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -86,7 +107,6 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
       },
     );
 
-    const headings = document.querySelectorAll("#post-content h2, #post-content h3");
     headings.forEach((h) => {
       if (h.id) observer.observe(h);
     });
@@ -98,7 +118,24 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
     e.preventDefault();
     const element = document.getElementById(key);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const scrollContainer = document.getElementById("app-scroll-container");
+      const headerOffset = 96;
+
+      if (scrollContainer) {
+        const scrollContainerRect = scrollContainer.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
+        const nextTop =
+          scrollContainer.scrollTop +
+          (elementRect.top - scrollContainerRect.top) -
+          headerOffset;
+
+        scrollContainer.scrollTo({
+          top: Math.max(0, nextTop),
+          behavior: "smooth",
+        });
+      } else {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
       setActiveId(key);
     }
   };
