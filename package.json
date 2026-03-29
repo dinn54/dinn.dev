@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm gen:types && next build",
+    "build": "next build",
+    "build:full": "pnpm gen:types && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "biome format --write",
