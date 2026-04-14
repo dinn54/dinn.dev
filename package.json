@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm gen:types && next build",
     "build:full": "pnpm gen:types && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "biome format --write",
     "lint:fix": "biome lint --fix",
     "format:tailwind": "prettier --write .",
-    "gen:types": "npx supabase gen types typescript --project-id mowzqxruruhcvjgpzzdb > src/shared/lib/supabase/types.ts"
+    "gen:types": "node scripts/gen-supabase-types.mjs"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
