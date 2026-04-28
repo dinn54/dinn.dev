@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ThumbsUp } from "lucide-react";
+import { likePost } from "../api/actions";
 
 interface LikeButtonProps {
   postId: string;
@@ -28,14 +29,7 @@ export function LikeButton({ postId, initialCount }: LikeButtonProps) {
     localStorage.setItem(storageKey, "true");
 
     try {
-      const res = await fetch(`/api/posts/${postId}/like`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (!res.ok) throw new Error("요청 실패");
-
-      const { likeCount } = await res.json();
+      const likeCount = await likePost(postId);
       setCount(likeCount);
     } catch {
       // 롤백
