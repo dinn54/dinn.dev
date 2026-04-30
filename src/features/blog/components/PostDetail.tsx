@@ -121,7 +121,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
               )}
             </div>
 
-            <LikeButton postId={post.id} initialCount={post.likeCount} />
+            <LikeButton postId={post.id} />
 
             {/* Footer Actions & Navigation Combined */}
             <div id="post-footer" className="mt-10 border-t border-slate-200 pt-8 dark:border-slate-800">

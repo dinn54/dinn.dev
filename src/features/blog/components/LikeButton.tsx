@@ -2,30 +2,48 @@
 
 import { useEffect, useState } from "react";
 import { ThumbsUp } from "lucide-react";
-import { likePost } from "../api/actions";
+import { getPostEngagement, likePost } from "../api/actions";
 
 interface LikeButtonProps {
   postId: string;
-  initialCount: number;
 }
 
-export function LikeButton({ postId, initialCount }: LikeButtonProps) {
+export function LikeButton({ postId }: LikeButtonProps) {
   const storageKey = `liked:${postId}`;
   const [isLiked, setIsLiked] = useState(false);
-  const [count, setCount] = useState(initialCount);
+  const [count, setCount] = useState<number | null>(null);
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     setIsLiked(localStorage.getItem(storageKey) === "true");
-  }, [storageKey]);
+
+    getPostEngagement(postId)
+      .then(({ likeCount }) => {
+        if (!cancelled) {
+          setCount(likeCount);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setCount(0);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [postId, storageKey]);
 
   async function handleClick() {
-    if (isLiked || pending) return;
+    if (isLiked || pending || count === null) return;
     setPending(true);
 
     // 낙관적 업데이트
+    const previousCount = count;
     setIsLiked(true);
-    setCount((prev) => prev + 1);
+    setCount(previousCount + 1);
     localStorage.setItem(storageKey, "true");
 
     try {
@@ -34,7 +52,7 @@ export function LikeButton({ postId, initialCount }: LikeButtonProps) {
     } catch {
       // 롤백
       setIsLiked(false);
-      setCount((prev) => prev - 1);
+      setCount(previousCount);
       localStorage.removeItem(storageKey);
     } finally {
       setPending(false);
@@ -46,7 +64,7 @@ export function LikeButton({ postId, initialCount }: LikeButtonProps) {
       <button
         type="button"
         onClick={handleClick}
-        disabled={isLiked || pending}
+        disabled={isLiked || pending || count === null}
         className={[
           "flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 active:scale-90",
           isLiked ? "bg-[#e8f0fe] cursor-default" : "bg-transparent hover:bg-[#e8f0fe]/40",
@@ -68,7 +86,7 @@ export function LikeButton({ postId, initialCount }: LikeButtonProps) {
           isLiked ? "text-[#829cf3]" : "text-slate-400 dark:text-slate-500",
         ].join(" ")}
       >
-        {count}
+        {count ?? "-"}
       </span>
     </div>
   );
