@@ -1,52 +1,12 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { animate, eases } from "animejs";
-import { FiSun, FiMoon } from "react-icons/fi";
-import { B3F, B4F } from "@/shared/ui/text/text";
+import React, { useEffect } from "react";
+import { Moon, Sun } from "lucide-react";
+import { B3F } from "@/shared/ui/text/text";
 import { useThemeToggle } from "@/shared/state/themeStore";
 
 const Header = () => {
-  const [dark, setDark] = useState(false);
-  const translateXRef = useRef<HTMLDivElement>(null);
-  const spinRef = useRef<HTMLDivElement>(null);
   const { darkMode, toggle } = useThemeToggle();
-
-  // 현재 페이지 정보 (예시)
-
-  // 클릭시 안에 공 먼저 이동
-  // 공이 전부 움직임이 끝나명 border 변경
-  const handleToggle = () => {
-    const device = window.innerWidth > 600 ? "tab" : "mobile";
-
-    setDark((prev) => {
-      const next = !prev;
-      if (translateXRef.current && spinRef.current) {
-        animate(spinRef.current, {
-          rotate: next
-            ? { to: 360, ease: "linear" }
-            : { to: 0, ease: "linear" },
-          duration: 300,
-          easing: eases.outQuad,
-        });
-        if (device === "tab") {
-          animate(translateXRef.current, {
-            translateX: next ? 32 : 2, // 32px 이동 (버튼 크기에 맞게 조정)
-            duration: 300,
-            easing: eases.outQuad,
-          });
-        } else {
-          animate(translateXRef.current, {
-            translateX: 0, // 32px 이동 (버튼 크기에 맞게 조정)
-            duration: 300,
-            easing: eases.outQuad,
-          });
-        }
-      }
-      return next;
-    });
-    toggle();
-  };
 
   useEffect(() => {
     const root = document.documentElement;
@@ -61,48 +21,36 @@ const Header = () => {
     <header className="tab:h-[4.25rem] pc:h-[5rem] tab:px-6 pc:px-8 fixed top-0 z-10 flex h-[3.5rem] w-full max-w-[1440px] shrink-0 justify-center bg-transparent px-4 backdrop-blur-sm">
       <div className="flex h-full w-full items-center justify-between">
         <nav className="flex h-full w-fit items-center">
-          <Link href="/#introduction-section" className="group">
+          <Link href="/posts" className="group">
             <B3F className="underline-animate">Dinn.dev</B3F>
           </Link>
         </nav>
-        <div className="tab:gap-5 pc:gap-8 flex h-full w-auto gap-2">
-          <nav className="tab:gap-4 pc:gap-6 flex h-full items-center gap-1">
-            <Link href="/about" className="group px-2 py-1" title="내 소개">
-              <B4F className="underline-animate">About</B4F>
-            </Link>
-            <Link
-              href="/projects/1"
-              className="group px-2 py-1"
-              title="프로젝트"
-            >
-              <B4F className="underline-animate">Projects</B4F>
-            </Link>
-            <Link href="/posts" title="블로그" className="group px-2 py-1">
-              <B4F className="underline-animate text-center whitespace-pre-line">{`Posts`}</B4F>
-            </Link>
-          </nav>
-
+        <div className="flex h-full w-auto items-center">
           <div className="flex items-center justify-center">
             <button
               type="button"
               id="darkmode-toggle"
-              onClick={handleToggle}
-              className={`tab:w-16 tab:justify-start flex h-8 w-8 items-center justify-center ${dark ? "bg-[#1B2433] ring-[#192232]" : "bg-[#ffe8ab] ring-[#ffe396]"} rounded-2xl transition duration-300 ease-out hover:cursor-pointer hover:ring-amber-300 focus:outline-none dark:hover:ring-blue-900`}
+              aria-label={darkMode ? "라이트 모드로 변경" : "다크 모드로 변경"}
+              aria-pressed={darkMode}
+              onClick={toggle}
+              className={`relative flex h-8 w-16 items-center rounded-full border p-0.5 transition duration-300 ease-out hover:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-slate-500 dark:focus-visible:ring-offset-slate-950 ${
+                darkMode
+                  ? "border-slate-700 bg-slate-950 shadow-inner shadow-black/30"
+                  : "border-slate-200 bg-white/80 shadow-sm shadow-slate-900/10 backdrop-blur"
+              }`}
             >
               <div
-                ref={translateXRef}
-                className={`tab:translate-x-[2px] h-7 w-7 rounded-2xl ${dark ? "bg-blue-200" : "bg-amber-100"} flex items-center justify-center transition duration-300 ease-out`}
+                className={`flex h-7 w-7 items-center justify-center rounded-full transition duration-300 ease-out ${
+                  darkMode
+                    ? "translate-x-8 bg-slate-100 text-slate-950 shadow-lg shadow-black/30"
+                    : "translate-x-0 bg-slate-900 text-white shadow-md shadow-slate-900/20"
+                }`}
               >
-                <div
-                  ref={spinRef}
-                  className="flex h-full w-full items-center justify-center"
-                >
-                  {dark ? (
-                    <FiMoon className="text-blue-500" />
-                  ) : (
-                    <FiSun className="text-amber-500" />
-                  )}
-                </div>
+                {darkMode ? (
+                  <Moon className="h-4 w-4" strokeWidth={2.25} />
+                ) : (
+                  <Sun className="h-4 w-4" strokeWidth={2.25} />
+                )}
               </div>
             </button>
           </div>
