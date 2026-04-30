@@ -64,9 +64,9 @@ export function TagFilter({
   const hiddenCount = Math.max(0, allTags.length - currentVisibleCount);
 
   return (
-    <div className="tab:pt-10 flex w-full flex-col border-b border-slate-100 py-6 dark:border-slate-800">
+    <div className="tab:pt-10 flex w-full flex-col border-b border-slate-200/70 py-6 transition-colors duration-300 ease-in-out dark:border-slate-800">
       <div
-        className={`flex items-center gap-2 ${
+        className={`-my-1.5 flex items-center gap-2 py-1.5 ${
           expanded
             ? "flex-wrap overflow-visible"
             : "flex-nowrap overflow-x-auto"
@@ -74,10 +74,10 @@ export function TagFilter({
       >
         <Link
           href="/posts"
-          className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+          className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-300 ease-in-out ${
             !selectedTag
-              ? "bg-blog-light dark:bg-blog-dark text-blue-700 shadow-sm dark:text-blue-300"
-              : "hover:bg-blog-light dark:hover:bg-blog-dark text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
+              ? "bg-slate-950 text-white shadow-sm shadow-slate-900/15 dark:bg-slate-100 dark:text-slate-950 dark:shadow-black/20"
+              : "text-slate-500 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
           }`}
         >
           All
@@ -90,10 +90,10 @@ export function TagFilter({
             <Link
               key={tag}
               href={isSelected ? "/posts" : `/posts?tag=${tag}`}
-              className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+              className={`shrink-0 rounded-full px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-all duration-300 ease-in-out ${
                 isSelected
-                  ? "bg-blog-light dark:bg-blog-dark text-blue-700 shadow-sm dark:text-blue-300"
-                  : "hover:bg-blog-light dark:hover:bg-blog-dark text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
+                  ? "bg-slate-950 text-white shadow-sm shadow-slate-900/15 dark:bg-slate-100 dark:text-slate-950 dark:shadow-black/20"
+                  : "text-slate-500 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-slate-100"
               }`}
             >
               {tag}
@@ -103,8 +103,9 @@ export function TagFilter({
 
         {hasMore && (
           <button
+            type="button"
             onClick={() => setExpanded(!expanded)}
-            className="flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium text-slate-400 transition-all duration-200 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
+            className="flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-sm font-medium text-slate-400 transition-all duration-300 ease-in-out hover:bg-slate-100 hover:text-slate-700 dark:text-slate-500 dark:hover:bg-slate-900 dark:hover:text-slate-200"
           >
             {expanded ? (
               <>
