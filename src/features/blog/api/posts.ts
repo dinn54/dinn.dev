@@ -1,8 +1,12 @@
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import { createServerClient } from "@/shared/lib/supabase/server";
 import { Tables } from "@/shared/lib/supabase/types";
 import { LexicalNode } from "../components/LexicalRenderer";
 import { parseMarkdownToLexicalNodes } from "../lib/parseMarkdownServer";
+
+export const BLOG_POSTS_CACHE_TAG = "blog-posts";
+export const BLOG_TAGS_CACHE_TAG = "blog-tags";
 
 export interface Post {
   id: string;
@@ -77,20 +81,22 @@ function transformPost(row: Tables<"dinn_posts">): Post {
   };
 }
 
-export async function getPosts({
-  limit = 10,
-  offset = 0,
+async function fetchPosts({
+  limit,
+  offset,
   tag,
 }: {
-  limit?: number;
-  offset?: number;
+  limit: number;
+  offset: number;
   tag?: string;
-} = {}): Promise<Post[]> {
+}): Promise<Post[]> {
   const supabase = createServerClient();
 
   let query = supabase
     .from("dinn_posts")
-    .select("*")
+    .select(
+      "id, slug, title, description, published_at, created_at, updated_at, tags, image_url, author_name, author_avatar, author_role, read_time, view_count, like_count, is_visible",
+    )
     .eq("is_visible", true)
     .order("published_at", { ascending: false, nullsFirst: false })
     .range(offset, offset + limit - 1);
@@ -105,7 +111,29 @@ export async function getPosts({
     return [];
   }
 
-  return (data || []).map(transformPost);
+  return (data || []).map((row) =>
+    transformPost({ ...row, content: null } as Tables<"dinn_posts">),
+  );
+}
+
+const getCachedPosts = unstable_cache(
+  async (limit: number, offset: number, tag?: string) => {
+    return fetchPosts({ limit, offset, tag });
+  },
+  ["blog-posts"],
+  { tags: [BLOG_POSTS_CACHE_TAG], revalidate: false },
+);
+
+export async function getPosts({
+  limit = 10,
+  offset = 0,
+  tag,
+}: {
+  limit?: number;
+  offset?: number;
+  tag?: string;
+} = {}): Promise<Post[]> {
+  return getCachedPosts(limit, offset, tag);
 }
 
 export const getPostBySlug = cache(async function getPostBySlug(rawSlug: string): Promise<Post | null> {
@@ -155,58 +183,23 @@ export const getPostById = cache(async function getPostById(id: string): Promise
   return data ? transformPost(data) : null;
 });
 
-const ADJACENT_POST_SELECT =
-  "id, slug, title, description, published_at, created_at, updated_at, tags, image_url, author_name, author_avatar, author_role, read_time, view_count, like_count, is_visible" as const;
-
 export async function getAdjacentPosts(
   currentId: string,
 ): Promise<{ prev?: Post; next?: Post }> {
-  const supabase = createServerClient();
+  const posts = await getPosts({ limit: 1000 });
+  const currentIndex = posts.findIndex((post) => post.id === currentId);
 
-  // 현재 글의 published_at 가져오기
-  const { data: currentPost } = await supabase
-    .from("dinn_posts")
-    .select("published_at")
-    .eq("id", currentId)
-    .single();
-
-  if (!currentPost) {
+  if (currentIndex === -1) {
     return {};
   }
 
-  const currentDate = currentPost.published_at;
-
-  // 이전 글, 다음 글 병렬 조회
-  const [{ data: prevData }, { data: nextData }] = await Promise.all([
-    supabase
-      .from("dinn_posts")
-      .select(ADJACENT_POST_SELECT)
-      .eq("is_visible", true)
-      .lt("published_at", currentDate)
-      .order("published_at", { ascending: false })
-      .limit(1)
-      .single(),
-    supabase
-      .from("dinn_posts")
-      .select(ADJACENT_POST_SELECT)
-      .eq("is_visible", true)
-      .gt("published_at", currentDate)
-      .order("published_at", { ascending: true })
-      .limit(1)
-      .single(),
-  ]);
-
   return {
-    prev: prevData
-      ? transformPost({ ...prevData, content: null } as Tables<"dinn_posts">)
-      : undefined,
-    next: nextData
-      ? transformPost({ ...nextData, content: null } as Tables<"dinn_posts">)
-      : undefined,
+    prev: posts[currentIndex + 1],
+    next: posts[currentIndex - 1],
   };
 }
 
-export async function getAllTags(): Promise<string[]> {
+async function fetchAllTags(): Promise<string[]> {
   const supabase = createServerClient();
 
   const { data, error } = await supabase
@@ -221,6 +214,12 @@ export async function getAllTags(): Promise<string[]> {
 
   return (data || []).map((tag) => tag.name);
 }
+
+export const getAllTags = unstable_cache(
+  fetchAllTags,
+  ["blog-tags"],
+  { tags: [BLOG_TAGS_CACHE_TAG], revalidate: false },
+);
 
 export async function incrementViewCount(postId: string): Promise<void> {
   const supabase = createServerClient();
