@@ -5,7 +5,6 @@ import {
   getPosts,
   getPostBySlug,
   getAdjacentPosts,
-  incrementViewCount,
 } from "@/features/blog/api/posts";
 import { siteConfig } from "@/shared/config/siteConfig";
 
@@ -63,7 +62,6 @@ export default async function PostDetailPage({ params }: PageProps) {
   }
 
   const { prev, next } = await getAdjacentPosts(post.id);
-  incrementViewCount(post.id);
 
   const postUrl = `${siteConfig.url}/posts/${encodeURIComponent(post.slug)}`;
   const ogImage = post.imageUrl

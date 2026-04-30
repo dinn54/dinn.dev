@@ -220,9 +220,3 @@ export const getAllTags = unstable_cache(
   ["blog-tags"],
   { tags: [BLOG_TAGS_CACHE_TAG], revalidate: false },
 );
-
-export async function incrementViewCount(postId: string): Promise<void> {
-  const supabase = createServerClient();
-
-  await supabase.rpc("increment_view_count", { post_id: postId });
-}

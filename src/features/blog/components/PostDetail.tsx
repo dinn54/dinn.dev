@@ -8,6 +8,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { LikeButton } from "./LikeButton";
+import { PostViewTracker } from "./PostViewTracker";
 import { SaveButton } from "./SaveButton";
 import { ShareButton } from "./ShareButton";
 import { ScrollTopButton } from "./ScrollTopButton";
@@ -51,6 +52,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
       withHorizontalPadding={false}
       innerClassName="max-w-none"
     >
+      <PostViewTracker postId={post.id} />
       <div className="w-full px-4 pt-4 pb-10 sm:px-6 md:pb-14 xl:px-0">
         <div className="grid w-full grid-cols-1 xl:grid-cols-[minmax(0,1fr)_864px_minmax(0,1fr)] 2xl:grid-cols-[minmax(0,1fr)_936px_minmax(0,1fr)]">
           <div className="hidden xl:block" />
