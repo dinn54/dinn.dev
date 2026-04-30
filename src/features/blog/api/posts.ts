@@ -108,7 +108,7 @@ async function fetchPosts({
   const { data, error } = await query;
   if (error) {
     console.error("Error fetching posts:", error);
-    return [];
+    throw new Error(error.message);
   }
 
   return (data || []).map((row) =>
@@ -209,7 +209,7 @@ async function fetchAllTags(): Promise<string[]> {
 
   if (error) {
     console.error("Error fetching tags:", error);
-    return [];
+    throw new Error(error.message);
   }
 
   return (data || []).map((tag) => tag.name);

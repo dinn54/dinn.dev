@@ -22,29 +22,37 @@ export function PostList({
   const [posts, setPosts] = useState(initialPosts);
   const [hasMore, setHasMore] = useState(initialPosts.length >= PAGE_SIZE);
   const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   // Reset when initialPosts change (tag navigation)
   useEffect(() => {
     setPosts(initialPosts);
     setHasMore(initialPosts.length >= PAGE_SIZE);
+    setLoadError(false);
   }, [initialPosts]);
 
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
     setLoading(true);
 
-    const newPosts = await fetchMorePosts({
-      offset: posts.length,
-      tag: selectedTag,
-    });
+    try {
+      const newPosts = await fetchMorePosts({
+        offset: posts.length,
+        tag: selectedTag,
+      });
 
-    if (newPosts.length < PAGE_SIZE) {
-      setHasMore(false);
+      if (newPosts.length < PAGE_SIZE) {
+        setHasMore(false);
+      }
+
+      setPosts((prev) => [...prev, ...newPosts]);
+      setLoadError(false);
+    } catch {
+      setLoadError(true);
+    } finally {
+      setLoading(false);
     }
-
-    setPosts((prev) => [...prev, ...newPosts]);
-    setLoading(false);
   }, [loading, hasMore, posts.length, selectedTag]);
 
   useEffect(() => {
@@ -108,8 +116,24 @@ export function PostList({
         </div>
       )}
 
+      {loadError && (
+        <div className="mt-8 flex flex-col items-center gap-3 rounded-lg border border-slate-200/70 bg-slate-50 px-4 py-5 text-center transition-colors duration-300 ease-in-out dark:border-slate-800 dark:bg-slate-950">
+          <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
+            게시글을 더 불러오지 못했습니다.
+          </p>
+          <button
+            type="button"
+            onClick={loadMore}
+            disabled={loading}
+            className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition-colors duration-300 ease-in-out hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-slate-300"
+          >
+            다시 시도
+          </button>
+        </div>
+      )}
+
       {/* Sentinel for IntersectionObserver */}
-      {hasMore && (
+      {hasMore && !loadError && (
         <div ref={sentinelRef} className="flex justify-center py-8">
           {loading && (
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-slate-200 border-t-slate-900 transition-colors duration-300 ease-in-out dark:border-slate-800 dark:border-t-slate-100" />
