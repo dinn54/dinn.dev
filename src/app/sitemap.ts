@@ -13,8 +13,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: siteConfig.url, lastModified: new Date().toISOString().split("T")[0] },
-    { url: `${siteConfig.url}/about`, lastModified: new Date().toISOString().split("T")[0] },
     { url: `${siteConfig.url}/posts`, lastModified: new Date().toISOString().split("T")[0] },
   ];
 

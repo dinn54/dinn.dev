@@ -1,4 +1,3 @@
-import { PageHeaderProjectArrow } from "./pageHeaderProjectArrow";
 import { H1 } from "./text/text";
 
 export const PageHeader = ({
@@ -18,7 +17,6 @@ export const PageHeader = ({
         {children}
         <div className="tab:left-10 pc:left-0 tab:w-[calc(100%-2.5rem)] pc:w-full absolute bottom-5 left-0 flex w-[calc(100%-1.5rem)] items-center gap-4 z-10">
           <H1 className="shrink-0 pl-[clamp(2rem,6vw,7rem)]">{title}</H1>
-          <PageHeaderProjectArrow />
         </div>
       </div>
     </div>

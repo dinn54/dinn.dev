@@ -1,6 +1,7 @@
 "use client";
-import { LucideArrowUpCircle } from "lucide-react";
+
 import { Dispatch, SetStateAction } from "react";
+import { LucideArrowUpCircle } from "lucide-react";
 
 const FixedLiftUpIcon = ({
   targetId,
@@ -24,11 +25,14 @@ const FixedLiftUpIcon = ({
 
   return (
     <button
+      type="button"
       onClick={handleClick}
-      className="group fixed right-[50%] bottom-4 z-[100] aspect-square w-[24px] translate-x-[50%] rounded-full hover:cursor-pointer"
+      aria-label="맨 위로 이동"
+      className="group fixed right-[50%] bottom-4 z-[100] flex aspect-square w-9 translate-x-[50%] items-center justify-center rounded-full border border-slate-200 bg-white/85 text-slate-500 shadow-sm shadow-slate-900/10 backdrop-blur transition duration-300 ease-in-out hover:cursor-pointer hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:bg-slate-950/85 dark:text-slate-400 dark:shadow-black/30 dark:hover:border-slate-700 dark:hover:text-slate-100"
     >
-      <LucideArrowUpCircle className="h-full w-full rounded-full opacity-50 shadow-2xl group-hover:opacity-100" />
+      <LucideArrowUpCircle className="h-5 w-5" />
     </button>
   );
 };
+
 export default FixedLiftUpIcon;
