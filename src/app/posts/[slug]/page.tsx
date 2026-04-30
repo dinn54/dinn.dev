@@ -96,25 +96,11 @@ export default async function PostDetailPage({ params }: PageProps) {
     ...(post.tags[0] && { articleSection: post.tags[0] }),
   };
 
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "홈", item: siteConfig.url },
-      { "@type": "ListItem", position: 2, name: "글", item: `${siteConfig.url}/posts` },
-      { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
-    ],
-  };
-
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <PostDetail post={post} prevPost={prev} nextPost={next} />
     </>
