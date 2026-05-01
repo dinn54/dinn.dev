@@ -24,7 +24,7 @@ function CopyToast({ message, onClose }: { message: string; onClose: () => void 
 
   return createPortal(
     <div
-      className={`fixed bottom-8 left-1/2 z-[9999] -translate-x-1/2 transition-all duration-300 ${
+      className={`fixed bottom-8 left-1/2 z-[9999] -translate-x-1/2 transition-all duration-300 ease-in-out ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >
@@ -94,7 +94,7 @@ export function ShareButton({ title, description }: ShareButtonProps) {
         variant="ghost"
         size="sm"
         onClick={handleShare}
-        className="gap-2 rounded-full text-slate-500 transition-colors hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
+        className="gap-2 rounded-full text-slate-500 transition-colors duration-300 ease-in-out hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
       >
         {isDesktop ? (
           <LinkIcon className="h-4 w-4" />

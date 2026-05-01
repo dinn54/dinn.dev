@@ -13,7 +13,7 @@ export function ScrollTopButton() {
   return (
     <button
       onClick={handleScrollTop}
-      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all hover:border-slate-300 hover:text-slate-600 dark:border-slate-800 dark:hover:border-slate-700 dark:hover:text-slate-300"
+      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all duration-300 ease-in-out hover:border-slate-300 hover:text-slate-600 dark:border-slate-800 dark:hover:border-slate-700 dark:hover:text-slate-300"
       title="맨 위로"
     >
       <ArrowUp className="h-5 w-5" />

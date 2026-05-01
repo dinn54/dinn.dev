@@ -225,7 +225,7 @@ export function SaveButton({ postTitle }: SaveButtonProps) {
       variant="ghost"
       size="sm"
       onClick={handleDownloadHtml}
-      className="gap-2 rounded-full text-slate-500 transition-colors hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
+      className="gap-2 rounded-full text-slate-500 transition-colors duration-300 ease-in-out hover:bg-teal-50 hover:text-teal-600 dark:hover:bg-teal-900/20 dark:hover:text-teal-400"
     >
       <Bookmark className="h-4 w-4" />
       <span className="font-medium">저장하기</span>

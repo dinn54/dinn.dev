@@ -145,7 +145,7 @@ export default function LexicalYouTubeComponent({
       )}
       {isEditable && (
         <div
-          className={`absolute inset-0 rounded-lg border-2 border-dashed transition-colors pointer-events-none ${
+          className={`absolute inset-0 rounded-lg border-2 border-dashed transition-colors duration-300 ease-in-out pointer-events-none ${
             isSelected ? "border-indigo-400" : "border-transparent hover:border-slate-300"
           }`}
         />
@@ -164,13 +164,13 @@ export default function LexicalYouTubeComponent({
       {isSelected && isEditable && (
         <>
           <div
-            className="resize-handle absolute left-0 top-0 bottom-0 w-4 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors z-20"
+            className="resize-handle absolute left-0 top-0 bottom-0 w-4 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors duration-300 ease-in-out z-20"
             onMouseDown={(e) => handleResizeStart(e, "left")}
           >
             <div className="w-1 h-10 bg-indigo-500 rounded-full opacity-80" />
           </div>
           <div
-            className="resize-handle absolute right-0 top-0 bottom-0 w-4 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors z-20"
+            className="resize-handle absolute right-0 top-0 bottom-0 w-4 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors duration-300 ease-in-out z-20"
             onMouseDown={(e) => handleResizeStart(e, "right")}
           >
             <div className="w-1 h-10 bg-indigo-500 rounded-full opacity-80" />

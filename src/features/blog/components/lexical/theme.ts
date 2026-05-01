@@ -30,7 +30,7 @@ export const theme = {
     focus: "ring-2 ring-indigo-500",
   },
   // Modern: Subtle link style, color accent
-  link: "font-medium text-teal-600 dark:text-teal-400 hover:underline decoration-2 underline-offset-4 cursor-pointer transition-colors",
+  link: "font-medium text-teal-600 dark:text-teal-400 hover:underline decoration-2 underline-offset-4 cursor-pointer transition-colors duration-300 ease-in-out",
   // Modern: Table styles
   table: "w-full text-left border-collapse border border-slate-200 dark:border-slate-800 my-4 text-[15px]",
   tableCell: "border-b border-r border-slate-200 dark:border-slate-800 px-3 py-2 last:border-r-0",

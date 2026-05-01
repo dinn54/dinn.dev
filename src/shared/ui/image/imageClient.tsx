@@ -60,7 +60,9 @@ const ImageClient = ({
       style={{
         borderRadius: "12px",
         outline: isLoaded ? `10px solid ${outlineColor}` : "none",
-        transition: shouldAnimate ? "outline 0.3s ease-in" : "none",
+        transition: shouldAnimate
+          ? "outline var(--theme-color-transition-duration) var(--theme-color-transition-easing)"
+          : "none",
       }}
     />
   );

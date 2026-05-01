@@ -66,7 +66,7 @@ export function LikeButton({ postId }: LikeButtonProps) {
         onClick={handleClick}
         disabled={isLiked || pending || count === null}
         className={[
-          "flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 active:scale-90",
+          "flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ease-in-out active:scale-90",
           isLiked ? "bg-[#e8f0fe] cursor-default" : "bg-transparent hover:bg-[#e8f0fe]/40",
           pending ? "opacity-60" : "",
         ].join(" ")}
@@ -74,7 +74,7 @@ export function LikeButton({ postId }: LikeButtonProps) {
       >
         <ThumbsUp
           className={[
-            "h-6 w-6 transition-all duration-300",
+            "h-6 w-6 transition-all duration-300 ease-in-out",
             isLiked ? "scale-110 text-[#829cf3]" : "text-slate-400",
           ].join(" ")}
           strokeWidth={isLiked ? 2.2 : 1.8}
@@ -82,7 +82,7 @@ export function LikeButton({ postId }: LikeButtonProps) {
       </button>
       <span
         className={[
-          "text-sm font-semibold tabular-nums transition-colors duration-300",
+          "text-sm font-semibold tabular-nums transition-colors duration-300 ease-in-out",
           isLiked ? "text-[#829cf3]" : "text-slate-400 dark:text-slate-500",
         ].join(" ")}
       >

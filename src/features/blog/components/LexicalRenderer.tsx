@@ -106,7 +106,7 @@ export const editorTheme = {
     listitem: "pl-1 leading-relaxed text-[15px]",
   },
   // Modern: Subtle link style, color accent
-  link: "font-medium text-teal-600 dark:text-teal-400 hover:underline decoration-2 underline-offset-4 cursor-pointer transition-colors",
+  link: "font-medium text-teal-600 dark:text-teal-400 hover:underline decoration-2 underline-offset-4 cursor-pointer transition-colors duration-300 ease-in-out",
   text: {
     bold: "font-bold text-slate-900 dark:text-slate-100",
     italic: "italic",

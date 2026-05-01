@@ -61,7 +61,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
             <div className="mb-8">
               <Link
                 href="/posts"
-                className="group flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400"
+                className="group flex w-fit items-center gap-2 text-sm font-medium text-slate-500 transition-colors duration-300 ease-in-out hover:text-teal-600 dark:text-slate-400 dark:hover:text-teal-400"
               >
                 <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
                 목록으로 돌아가기
@@ -70,7 +70,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
 
             {/* Article Header */}
             <header id="post-header" className="relative mb-5">
-              <div className="animate-in fade-in absolute -top-10 -left-10 -z-10 h-32 w-32 rounded-full bg-teal-400/10 opacity-0 blur-3xl duration-1000 dark:opacity-20"></div>
+              <div className="animate-in fade-in absolute -top-10 -left-10 -z-10 h-32 w-32 rounded-full bg-teal-400/10 opacity-0 blur-3xl duration-300 ease-in-out dark:opacity-20"></div>
 
               <h1 className="font-heading mb-4 text-xl leading-snug font-bold tracking-tight text-slate-900 sm:text-2xl md:text-3xl dark:text-white">
                 {post.title}
@@ -100,7 +100,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
                       <Link
                         key={tag}
                         href={`/posts?tag=${encodeURIComponent(tag)}`}
-                        className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 transition-colors hover:bg-teal-100 hover:text-teal-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-teal-900/30 dark:hover:text-teal-300"
+                        className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 transition-colors duration-300 ease-in-out hover:bg-teal-100 hover:text-teal-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-teal-900/30 dark:hover:text-teal-300"
                       >
                         #{tag}
                       </Link>
@@ -169,9 +169,9 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
                 {prevPost ? (
                   <Link
                     href={`/posts/${encodeURIComponent(prevPost.slug)}`}
-                    className="group relative flex flex-1 cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-4 transition-all duration-300 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
+                    className="group relative flex flex-1 cursor-pointer items-center gap-4 rounded-xl border border-slate-200 p-4 transition-all duration-300 ease-in-out hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
                   >
-                    <ArrowLeft className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
+                    <ArrowLeft className="h-5 w-5 shrink-0 text-slate-400 transition-colors duration-300 ease-in-out group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                     <div className="min-w-0 flex-1">
                       <span className="mb-1 block text-xs font-medium text-slate-400">
                         이전 글
@@ -192,7 +192,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
                 {nextPost ? (
                   <Link
                     href={`/posts/${encodeURIComponent(nextPost.slug)}`}
-                    className="group relative flex flex-1 cursor-pointer items-center justify-end gap-4 rounded-xl border border-slate-200 p-4 text-right transition-all duration-300 hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
+                    className="group relative flex flex-1 cursor-pointer items-center justify-end gap-4 rounded-xl border border-slate-200 p-4 text-right transition-all duration-300 ease-in-out hover:border-slate-300 dark:border-slate-800 dark:hover:border-slate-700"
                   >
                     <div className="min-w-0 flex-1">
                       <span className="mb-1 block text-xs font-medium text-slate-400">
@@ -202,7 +202,7 @@ export function PostDetail({ post, prevPost, nextPost }: PostDetailProps) {
                         {nextPost.title}
                       </h4>
                     </div>
-                    <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
+                    <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition-colors duration-300 ease-in-out group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                   </Link>
                 ) : (
                   <div className="flex-1"></div>

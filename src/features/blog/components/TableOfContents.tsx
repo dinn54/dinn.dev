@@ -138,7 +138,7 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
               key={`${item.key}-${index}`}
               href={`#${headingId}`}
               onClick={(e) => handleTocClick(e, headingId)}
-              className={`block cursor-pointer truncate transition-colors ${
+              className={`block cursor-pointer truncate transition-colors duration-300 ease-in-out ${
                 item.level === 3 ? "pl-3" : "font-medium"
               } ${
                 activeId === headingId

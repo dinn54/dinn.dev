@@ -92,7 +92,7 @@ export function PostEditorViewer({ markdownContent }: PostEditorViewerProps) {
                   key={item.key}
                   href={`#${item.key}`}
                   onClick={(e) => handleTocClick(e, item.key)}
-                  className={`block cursor-pointer truncate transition-colors ${
+                  className={`block cursor-pointer truncate transition-colors duration-300 ease-in-out ${
                     item.level === 3
                       ? "pl-3 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                       : "font-medium text-slate-900 hover:text-teal-600 dark:text-white dark:hover:text-teal-400"

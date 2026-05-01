@@ -189,13 +189,13 @@ export default function LexicalImageComponent({
         {isSelected && isEditable && (
           <>
             <div
-              className="resize-handle absolute left-0 top-0 bottom-0 w-3 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors"
+              className="resize-handle absolute left-0 top-0 bottom-0 w-3 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors duration-300 ease-in-out"
               onMouseDown={(e) => handleResizeStart(e, "left")}
             >
               <div className="w-1 h-8 bg-indigo-500 rounded-full opacity-70" />
             </div>
             <div
-              className="resize-handle absolute right-0 top-0 bottom-0 w-3 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors"
+              className="resize-handle absolute right-0 top-0 bottom-0 w-3 cursor-ew-resize flex items-center justify-center hover:bg-indigo-500/20 transition-colors duration-300 ease-in-out"
               onMouseDown={(e) => handleResizeStart(e, "right")}
             >
               <div className="w-1 h-8 bg-indigo-500 rounded-full opacity-70" />
