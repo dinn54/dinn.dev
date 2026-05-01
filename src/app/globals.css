@@ -9,6 +9,8 @@
 
 :root {
   --color-text: #111111;
+  --theme-color-transition-duration: 300ms;
+  --theme-color-transition-easing: ease-in-out;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -310,7 +312,9 @@
     /* underline matches text color */
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      background-color var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      transform var(--theme-color-transition-duration) var(--theme-color-transition-easing);
   }
 
   .group:hover .underline-animate::after,
@@ -330,9 +334,28 @@
 
   .darkMode-animate {
     transition:
-      background-color 0.3s ease-in-out,
-      border-color 0.3s ease-in-out,
-      color 0.3s ease-in-out;
+      background-color var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      border-color var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      box-shadow var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      color var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      fill var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      outline-color var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      stroke var(--theme-color-transition-duration) var(--theme-color-transition-easing),
+      text-decoration-color var(--theme-color-transition-duration) var(--theme-color-transition-easing);
+  }
+
+  .theme-color-transition {
+    transition-property: background-color, border-color, box-shadow, color, fill,
+      outline-color, stroke, text-decoration-color;
+    transition-duration: var(--theme-color-transition-duration);
+    transition-timing-function: var(--theme-color-transition-easing);
+  }
+
+  .theme-color-motion-transition {
+    transition-property: background-color, border-color, box-shadow, color, fill,
+      opacity, outline-color, stroke, text-decoration-color, transform;
+    transition-duration: var(--theme-color-transition-duration);
+    transition-timing-function: var(--theme-color-transition-easing);
   }
 
   .multi-drop-shadow {
